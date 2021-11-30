@@ -17,7 +17,6 @@
   "dependencies": {
     "@astar/types": "0.1.4-13",
     "@babel/runtime": "^7.10.2",
-    "@edgeware/node-types": "3.5.1-erup-4",
     "@polkadot/api": "^6.1.2",
     "@polkadot/rpc-core": "^6.1.2"
   }

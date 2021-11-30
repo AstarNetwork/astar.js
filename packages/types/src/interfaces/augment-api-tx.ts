@@ -1,12 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
+import type { AccountId32, Call } from '@astar/types/interfaces/runtime';
 import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
 import type { Bytes, U8aFixed, u128, u32, u8 } from '@polkadot/types';
 import type { Extrinsic } from '@polkadot/types/interfaces/extrinsics';
 import type { AnyNumber } from '@polkadot/types/types';
-import type { NodeTemplateRuntimeElement, PalletAnchorEdgeMetadata } from '@astar/types/interfaces/pallets';
-import type { AccountId32, Call } from '@astar/types/interfaces/runtime';
 
 declare module '@polkadot/api/types/submittable' {
   export interface AugmentedSubmittables<ApiType> {

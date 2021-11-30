@@ -55,9 +55,6 @@ export interface CallHash extends Hash {}
 /** @name CallHashOf */
 export interface CallHashOf extends CallHash {}
 
-/** @name ChainId */
-export interface ChainId extends u32 {}
-
 /** @name ChangesTrieConfiguration */
 export interface ChangesTrieConfiguration extends Struct {
   readonly digestInterval: u32;

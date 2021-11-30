@@ -1,0 +1,17 @@
+{
+  "name": "@astar/app-util",
+  "version": "0.1.2-82",
+  "description": "Utilities to work with Astar",
+  "author": "Webb Developers <drew@webb.tools>",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": "https://github.com/webb-tools/astar.js.git",
+  "dependencies": {
+    "@babel/runtime": "^7.10.2",
+    "bignumber.js": "^9.0.0"
+  }
+}

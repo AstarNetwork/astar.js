@@ -1,7 +1,4 @@
 import { jsonrpcFromDefs, typesAliasFromDefs, typesFromDefs } from '@open-web3/orml-type-definitions/utils';
-
-import mixer from './mixer';
-import merkle from './merkle';
 import pallets from './pallets';
 import versioned from './types-known/versioned';
 
@@ -10,7 +7,6 @@ import versioned from './types-known/versioned';
 const additionalOverride = {
   Address: 'AccountId',
   LookupSource: 'AccountId',
-  Keys: 'SessionKeys2',
   PalletsOrigin: {
     _enum: {
       System: 'SystemOrigin',
@@ -35,34 +31,30 @@ const additionalOverride = {
       // Contracts: 'Null',
       // EVM: 'Null',
       Sudo: 'Null',
-      TransactionPayment: 'Null',
-      Merkle: 'Null',
-      Mixer: 'Null'
+      TransactionPayment: 'Null'
     }
   }
 };
 
-const webbDefs = {
-  mixer,
-  merkle,
+const astarDefs = {
   pallets
 };
 
 export const types = {
-  ...typesFromDefs(webbDefs),
+  ...typesFromDefs(astarDefs),
   ...additionalOverride
 };
 
 export const typesBundle = {
   spec: {
-    webb: {
+    astar: {
       types: versioned
     }
   }
 };
 
-export const rpc = jsonrpcFromDefs(webbDefs, {});
-export const typesAlias = typesAliasFromDefs(webbDefs, {});
+export const rpc = jsonrpcFromDefs(astarDefs, {});
+export const typesAlias = typesAliasFromDefs(astarDefs, {});
 
 const bundle = {
   types: [...versioned].map((version) => {
@@ -79,6 +71,6 @@ const bundle = {
 // Type overrides have priority issues
 export const typesBundleForPolkadot = {
   spec: {
-    webb: bundle
+    astar: bundle
   }
 };

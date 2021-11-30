@@ -40,19 +40,11 @@ const data = await api.query.system.account('5F98oWfz2r5rcRVnP9VCndg33DAAsky3iuo
 console.log(data.toHuman())
 ```
 
-# Scripts
-You will also find a number of scripts inside this API. To run the scripts, you will want to use the following command:
-```
-yarn script <PATH_TO_SCRIPT>
-```
-For example, if you want to generate a quadratic distribution of all balances on Edgeware at some block hash, you can run the following command:
-```
-yarn script scripts/edgeware/getQuadraticDistribution.ts
-```
-
 # Packages
 
 - [api](./packages/api)
   - Contains necessary options to create a polkadot.js API instance
+- [api-utils](./packages/api-utils)
+  - Contains utility classes such as logging for end-user applications.
 - [types](./packages/types)
-  - Polkadot.js type definations for Webb Network.
+  - Polkadot.js type definitions for Astar Network.

@@ -1,6 +1,5 @@
 export default {
   rpc: {},
-  types: {
-    ChainId: 'u32'
-  }
+  types: {},
+  typesAlias: {}
 };

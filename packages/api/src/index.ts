@@ -1,18 +1,14 @@
 import {
-  rpc as webbRpc,
-  types as webbTypes,
-  typesAlias as webbTypesAlias,
-  typesBundle as webbTypesBundle
+  rpc as astarRpc,
+  types as astarTypes,
+  typesAlias as astarTypesAlias,
+  typesBundle as astarTypesBundle
 } from '@astar/types';
-import { spec as edgewareTypes } from '@edgeware/node-types';
 import { ApiOptions } from '@polkadot/api/types';
-import * as edgewareDefinitions from '@edgeware/node-types/dist/src/interfaces/definitions';
-
-const edgTypes = Object.values(edgewareDefinitions).reduce((res, { types }) => ({ ...res, ...types }), {});
 
 export const defaultOptions: ApiOptions = {
-  types: webbTypes,
-  rpc: webbRpc
+  types: astarTypes,
+  rpc: astarRpc
 };
 
 export const options = ({
@@ -23,60 +19,24 @@ export const options = ({
   ...otherOptions
 }: ApiOptions = {}): ApiOptions => ({
   types: {
-    ...webbTypes,
+    ...astarTypes,
     ...types
   },
   rpc: {
-    ...webbRpc,
+    ...astarRpc,
     ...rpc
   },
   typesAlias: {
-    ...webbTypesAlias,
+    ...astarTypesAlias,
     ...typesAlias
   },
   typesBundle: {
     ...typesBundle,
     spec: {
       ...typesBundle.spec,
-      webb: {
-        ...webbTypesBundle?.spec?.webb,
-        ...typesBundle?.spec?.webb
-      }
-    }
-  },
-  ...otherOptions
-});
-
-export const optionsWithEdgeware = ({
-  types = {},
-  rpc = {},
-  typesAlias = {},
-  typesBundle = {},
-  ...otherOptions
-}: ApiOptions = {}): ApiOptions => ({
-  types: {
-    ...webbTypes,
-    ...edgTypes,
-    ...types,
-    Address: 'MultiAddress',
-    LookupSource: 'MultiAddress'
-  },
-  rpc: {
-    ...webbRpc,
-    ...rpc
-  },
-  typesAlias: {
-    ...webbTypesAlias,
-    ...typesAlias
-  },
-  typesBundle: {
-    ...typesBundle,
-    spec: {
-      ...typesBundle.spec,
-      ...edgewareTypes.typesBundle.spec,
-      webb: {
-        ...webbTypesBundle?.spec?.webb,
-        ...typesBundle?.spec?.webb
+      astar: {
+        ...astarTypesBundle?.spec?.astar,
+        ...typesBundle?.spec?.astar
       }
     }
   },

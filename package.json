@@ -9,14 +9,11 @@
     "packages/*",
     "examples/*"
   ],
-  "resolutions": {
-    "@edgeware/node-types": "3.5.1-erup-4"
-  },
   "scripts": {
     "pumbp": "node ./scripts/update-version.js prerelease",
     "build": "yarn build:interfaces && yarn build-ts:dev",
-    "build-ts:dev": "node ./scripts/webb-build-dev.js",
-    "build:release": "node ./scripts/webb-build-release.js",
+    "build-ts:dev": "node ./scripts/build-dev.js",
+    "build:release": "node ./scripts/build-release.js",
     "build:interfaces": "ts-node-script -r tsconfig-paths/register packages/types/scripts/generate.ts && ts-node-script -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
     "lint": "polkadot-dev-run-lint --skip-tsc",
     "clean": "polkadot-dev-clean-build",
@@ -25,10 +22,8 @@
     "test:perf": "cross-env NODE_OPTIONS=--experimental-wasm-modules jest --config ./jest.perf.config.js",
     "check-deps": "./node_modules/@open-web3/util/scripts/check-deps.js yarn.lock @polkadot/ @open-web3/",
     "update-metadata": "ts-node-script -r tsconfig-paths/register packages/types/scripts/updateMetadata.ts",
-    "example:sdk-mixer": "cd ./examples/sdk-mixer && yarn dev",
     "script": "ts-node-script -r tsconfig-paths/register",
-    "format": "prettier --write \"packages/**/*.{ts,js,jsx,tsx}\" && cargo fmt --manifest-path packages/wasm-utils/Cargo.toml",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-ty…pes-from-chain --package sample-polkadotjs-typegen/interfaces --endpoint ./packages/types/src/metadata/edgware.json --output ./interfaces --strict"
+    "format": "prettier --write \"packages/**/*.{ts,js,jsx,tsx}\""
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

@@ -74,7 +74,7 @@ async function buildJs(dir) {
 async function buildMonorepo() {
   execSync('yarn polkadot-dev-clean-build');
   const cw = process.cwd();
-  const packages = path.join(cw, 'packages', 'wasm-utils');
+  const packages = path.join(cw, 'packages');
   execSync(`cd ` + packages + ' && yarn build');
 
   process.chdir('packages');
