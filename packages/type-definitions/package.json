@@ -1,6 +1,6 @@
 {
   "name": "@astar/type-definitions",
-  "version": "0.1.4-12",
+  "version": "0.1.4-13",
   "description": "Polkadot.js type definations for astar Network",
   "main": "index.js",
   "author": "Webb Developers <drew@webb.tools>",

@@ -1,6 +1,6 @@
 {
   "name": "@astar/api",
-  "version": "0.1.4-12",
+  "version": "0.1.4-13",
   "description": "Astar JS API",
   "main": "index.js",
   "author": "Webb Developers <drew@webb.tools>",
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/webb-tools/astar.js",
   "dependencies": {
-    "@astar/types": "0.1.4-12",
+    "@astar/types": "0.1.4-13",
     "@babel/runtime": "^7.10.2",
     "@edgeware/node-types": "3.5.1-erup-4",
     "@polkadot/api": "^6.1.2",
