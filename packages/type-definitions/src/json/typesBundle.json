@@ -1,0 +1,128 @@
+{
+    "spec": {
+        "webb": {
+            "types": [
+                {
+                    "types": {
+                        "CurrencyId": "u64",
+                        "Amount": "i128",
+                        "AmountOf": "Amount",
+                        "CurrencyIdOf": "CurrencyId",
+                        "ScalarData": "[u8; 32]",
+                        "Nullifier": "ScalarData",
+                        "Commitment": "ScalarData",
+                        "MixerInfo": {
+                            "minimum_deposit_length_for_reward": "BlockNumber",
+                            "fixed_deposit_size": "Balance",
+                            "currency_id": "CurrencyIdOf"
+                        },
+                        "WithdrawProof": {
+                            "mixer_id": "TreeId",
+                            "cached_block": "BlockNumber",
+                            "cached_root": "ScalarData",
+                            "comms": "Vec<Commitment>",
+                            "nullifier_hash": "ScalarData",
+                            "proof_bytes": "Vec<u8>",
+                            "leaf_index_commitments": "Vec<Commitment>",
+                            "proof_commitments": "Vec<Commitment>",
+                            "recipient": "Option<AccountId>",
+                            "relayer": "Option<AccountId>"
+                        },
+                        "HashFunction": {
+                            "_enum": [
+                                "PoseidonDefault",
+                                "PoseidonExp3",
+                                "PoseidonExp5",
+                                "PoseidonExp17",
+                                "MiMC",
+                                "Blake2",
+                                "Sha256"
+                            ]
+                        },
+                        "TreeId": "u32",
+                        "KeyId": "u32",
+                        "Manager": {
+                            "accountId": "AccountId",
+                            "required": "bool"
+                        },
+                        "MerkleTree": {
+                            "leaf_count": "u32",
+                            "max_leaves": "u32",
+                            "depth": "u8",
+                            "root_hash": "ScalarData",
+                            "edge_nodes": "Vec<ScalarData>",
+                            "hasher": "HashFunction",
+                            "should_store_leaves": "bool"
+                        },
+                        "Element": "Vec<u8>",
+                        "NodeTemplateRuntimeElement": "Vec<u8>",
+                        "PalletMixerMixerMetadata": {
+                            "creator": "AccountId",
+                            "deposit_size": "Balance",
+                            "asset": "AssetId"
+                        },
+                        "PalletAnchorAnchorMetadata": {
+                            "creator": "AccountId",
+                            "deposit_size": "Balance"
+                        },
+                        "PalletAnchorEdgeMetadata": {
+                            "src_chain_id": "ChainId",
+                            "root": "Element",
+                            "height": "BlockNumber"
+                        },
+                        "PalletAnchorHandlerUpdateRecord": {
+                            "tree_id": "TreeId",
+                            "resource_id": "ResourceId",
+                            "edge_metadata": "PalletAnchorEdgeMetadata"
+                        },
+                        "PalletAssetRegistryAssetType": {
+                            "_enum": [
+                                "Token",
+                                "PoolShare"
+                            ]
+                        },
+                        "PalletAssetRegistryAssetMetadata": {
+                            "symbol": "Vec<u8>",
+                            "decimals": "u8"
+                        },
+                        "ResourceId": "[u8; 32]",
+                        "PalletAssetRegistryAssetDetails": {
+                            "name": "Vec<u8>",
+                            "asset_type": "PalletAssetRegistryAssetType",
+                            "existential_deposit": "Balance",
+                            "locked": "bool"
+                        },
+                        "DarkwebbPrimitivesDepositDetails": {
+                            "depositor": "AccountId",
+                            "deposit": "Balance"
+                        },
+                        "Address": "AccountId",
+                        "LookupSource": "AccountId",
+                        "Keys": "SessionKeys2",
+                        "PalletsOrigin": {
+                            "_enum": {
+                                "System": "SystemOrigin",
+                                "Timestamp": "Null",
+                                "RandomnessCollectiveFlip": "Null",
+                                "Balances": "Null",
+                                "Utility": "Null",
+                                "Indices": "Null",
+                                "Authorship": "Null",
+                                "Aura": "Null",
+                                "Grandpa": "Null",
+                                "Staking": "Null",
+                                "Session": "Null",
+                                "Historical": "Null",
+                                "Sudo": "Null",
+                                "TransactionPayment": "Null",
+                                "Merkle": "Null",
+                                "Mixer": "Null"
+                            }
+                        }
+                    }
+                }
+            ],
+            "alias": {}
+        }
+    }
+}

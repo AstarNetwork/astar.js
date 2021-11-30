@@ -1,0 +1,20 @@
+{
+  "name": "@astar/type-definitions",
+  "version": "0.1.4-10",
+  "description": "Polkadot.js type definations for astar Network",
+  "main": "index.js",
+  "author": "Webb Developers <drew@webb.tools>",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": "https://github.com/webb-tools/astar.js.git",
+  "bugs": {
+    "url": "https://github.com/webb-tools/astar.js/issues"
+  },
+  "homepage": "https://github.com/webb-tools/astar.js",
+  "dependencies": {
+    "@open-web3/orml-type-definitions": "^0.8.2-6"
+  }
+}

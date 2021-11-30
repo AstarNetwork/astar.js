@@ -1,0 +1,41 @@
+{
+  "extends": "@open-web3/dev-config/config/tsconfig.json",
+  "exclude": [
+    "build/**/*",
+    "**/build/**/*",
+    "examples/**"
+  ],
+  "compilerOptions": {
+    "declaration": true,
+    "target": "ES2020",
+    "module": "CommonJS",
+    "baseUrl": ".",
+    "allowJs": true,
+    "paths": {
+      "@astar/api": [
+        "packages/api/src"
+      ],
+      "@astar/api/*": [
+        "packages/api/src/*"
+      ],
+      "@astar/types": [
+        "packages/types/src"
+      ],
+      "@astar/types/*": [
+        "packages/types/src/*"
+      ],
+      "@astar/type-definitions": [
+        "packages/type-definitions/src"
+      ],
+      "@astar/type-definitions/*": [
+        "packages/type-definitions/src/*"
+      ]
+    },
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "./node_modules/@polkadot/ts",
+      "./node_modules/@types"
+    ]
+  }
+}
