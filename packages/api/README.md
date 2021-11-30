@@ -1,6 +1,6 @@
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
 
-# @webb-tools
+# @astar api
 
 This library provides additional typing information for user to access Astar's modules by using [polkadot.js](https://github.com/polkadot-js/api)
 
