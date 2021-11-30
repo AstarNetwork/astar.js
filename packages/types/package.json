@@ -1,6 +1,6 @@
 {
   "name": "@astar/types",
-  "version": "0.1.4-11",
+  "version": "0.1.4-12",
   "description": "Polkadot.js type definations for Astar Network",
   "main": "index.js",
   "author": "Webb Developers <drew@webb.tools>",
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/webb-tools/astar.js",
   "dependencies": {
-    "@astar/type-definitions": "0.1.4-11",
+    "@astar/type-definitions": "0.1.4-12",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-types": "^0.8.2-6",
     "@polkadot/metadata": "^4.17.1",
