@@ -1,9 +1,9 @@
-import { optionsWithEdgeware } from '@webb-tools/api';
+import { optionsWithEdgeware } from '@astar/api';
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import { LoggerService } from '@webb-tools/app-util';
+// import { LoggerService } from '@webb-tools/app-util';
 
 const ENDPOINT = 'ws://localhost:9944';
-const apiLogger = LoggerService.get('Api');
+// const apiLogger = LoggerService.get('Api');
 
 // const blockHash = process.argv[0];
 

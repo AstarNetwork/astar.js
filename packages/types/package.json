@@ -20,7 +20,7 @@
     "@polkadot/metadata": "^4.17.1",
     "@polkadot/typegen": "^6.1.2",
     "@polkadot/types": "^6.1.2",
-    "@webb-tools/type-definitions": "0.1.4-10"
+    "@astar/type-definitions": "0.1.4-10"
   },
   "devDependencies": {
     "@types/websocket": "^1.0.0",

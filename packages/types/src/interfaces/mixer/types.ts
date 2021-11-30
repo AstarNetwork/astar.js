@@ -2,8 +2,8 @@
 /* eslint-disable */
 
 import type { Bytes, Option, Struct, U8aFixed, Vec, i128, u64 } from '@polkadot/types';
-import type { TreeId } from '@webb-tools/types/interfaces/merkle';
-import type { AccountId, Balance, BlockNumber } from '@webb-tools/types/interfaces/runtime';
+import type { TreeId } from '@astar/types/interfaces/merkle';
+import type { AccountId, Balance, BlockNumber } from '@astar/types/interfaces/runtime';
 
 /** @name Amount */
 export interface Amount extends i128 {}

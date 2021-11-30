@@ -3,8 +3,8 @@
 
 import type { Bytes, Enum, Struct, U8aFixed, bool, u8 } from '@polkadot/types';
 import type { ChainId } from '@polkadot/types/interfaces/bridges';
-import type { TreeId } from '@webb-tools/types/interfaces/merkle';
-import type { AccountId, AssetId, Balance, BlockNumber } from '@webb-tools/types/interfaces/runtime';
+import type { TreeId } from '@astar/types/interfaces/merkle';
+import type { AccountId, AssetId, Balance, BlockNumber } from '@astar/types/interfaces/runtime';
 
 /** @name DarkwebbPrimitivesDepositDetails */
 export interface DarkwebbPrimitivesDepositDetails extends Struct {

@@ -39,7 +39,7 @@ const { runtime, ...substrateDefinitions } = defaultDefinitions;
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const definitions = {
   '@polkadot/types/interfaces': substrateDefinitions,
-  '@webb-tools/types/interfaces': webbDefinitions
+  '@astar/types/interfaces': webbDefinitions
 } as any;
 
 const metadata = filterModules(['Anchor', 'AnchorHandler', 'bridge', 'Hasher', 'Mixer', 'Mt', 'Verifier'], definitions);
@@ -50,7 +50,7 @@ export * from './augment-api-tx';
 export * from './augment-api-query';
 export * from './augment-types';
 `.trim();
-generateTsDef(definitions, 'packages/types/src/interfaces', '@webb-tools/types/interfaces');
+generateTsDef(definitions, 'packages/types/src/interfaces', '@astar/types/interfaces');
 generateInterfaceTypes(definitions, 'packages/types/src/interfaces/augment-types.ts');
 generateDefaultConsts('packages/types/src/interfaces/augment-api-consts.ts', metadata, definitions);
 

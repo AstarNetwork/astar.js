@@ -1,6 +1,6 @@
-import { options } from '@webb-tools/api';
+import { options } from '@astar/api';
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-import { LoggerService } from '@webb-tools/app-util';
+// import { LoggerService } from '@webb-tools/app-util';
 import BN from 'bn.js';
 
 const ENDPOINT = 'ws://localhost:9944';

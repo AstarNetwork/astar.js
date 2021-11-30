@@ -2,8 +2,8 @@
 /* eslint-disable */
 
 import type { Enum, Struct, Vec, bool, u32, u8 } from '@polkadot/types';
-import type { ScalarData } from '@webb-tools/types/interfaces/mixer';
-import type { AccountId } from '@webb-tools/types/interfaces/runtime';
+import type { ScalarData } from '@astar/types/interfaces/mixer';
+import type { AccountId } from '@astar/types/interfaces/runtime';
 
 /** @name HashFunction */
 export interface HashFunction extends Enum {

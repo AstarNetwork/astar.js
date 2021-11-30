@@ -3,7 +3,7 @@ import {
   types as webbTypes,
   typesAlias as webbTypesAlias,
   typesBundle as webbTypesBundle
-} from '@webb-tools/types';
+} from '@astar/types';
 import { spec as edgewareTypes } from '@edgeware/node-types';
 import { ApiOptions } from '@polkadot/api/types';
 import * as edgewareDefinitions from '@edgeware/node-types/dist/src/interfaces/definitions';

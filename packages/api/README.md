@@ -11,7 +11,7 @@ More documentation and examples on [wiki](https://github.com/webb-tools/webb.js/
 - Install dependencies
 
 ```bash
-yarn add @polkadot/api @webb-tools/api@beta
+yarn add @polkadot/api @astar/api@beta
 ```
 
 - Create API instance
@@ -19,7 +19,7 @@ yarn add @polkadot/api @webb-tools/api@beta
 ```ts
 import { ApiPromise } from '@polkadot/api';
 import { WsProvider } from '@polkadot/rpc-provider';
-import { options } from '@webb-tools/api';
+import { options } from '@astar/api';
 
 async function main() {
     const provider = new WsProvider('wss://localhost:9944');
