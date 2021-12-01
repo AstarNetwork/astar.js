@@ -1,8 +1,8 @@
-name: Main
+name: Master
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   master:
@@ -15,13 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
       - name: ${{ matrix.step }}
         env:
-          # CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          GH_PAT: ${{ secrets.GITHUB_TOKEN }}
-          GH_RELEASE_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          GH_RELEASE_GITHUB_API_TOKEN: ${{ secrets.GH_PAT }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn install --immutable | grep -v 'YN0013'
           yarn ${{ matrix.step }}
@@ -31,4 +31,4 @@ jobs:
     steps:
       - name: dummy
         run: |
-          echo "Should you add another job,"
+          echo "Dummy skip step"
