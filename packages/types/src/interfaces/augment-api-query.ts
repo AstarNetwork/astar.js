@@ -1,104 +1,63 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { AccountId32 } from '@astar/types/interfaces/runtime';
-import type { ApiTypes } from '@polkadot/api/types';
-import type { Bytes, Option, U8aFixed, bool, u32, u64 } from '@polkadot/types';
-import type { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
-
 declare module '@polkadot/api/types/storage' {
-  export interface AugmentedQueries<ApiType> {
-    anchor: {
+  import type { AccountId32, PalletDappsStakingEraRewardAndStake, PalletDappsStakingEraStakingPoints, PalletDappsStakingForcing, ShidenRuntimeSmartContract } from '@astar/types/interfaces/runtime';
+  import type { ApiTypes, AugmentedQuery, QueryableModuleStorage, QueryableStorageEntry } from '@polkadot/api/types';
+  import type { Null, Option, bool, u128, u32 } from '@polkadot/types';
+  import type { AnyNumber, Observable } from '@polkadot/types/types';
+
+  export interface AugmentedQueries<ApiType extends ApiTypes> {
+    dappsStaking: {
       /**
-       * A helper map for denoting whether an anchor is bridged to given chain
+       * Accumulator for block rewards during an era. It is reset at every new era
        **/
-      anchorHasEdge: AugmentedQuery<ApiType, (arg: ITuple<[u32, u32]> | [u32 | AnyNumber | Uint8Array, u32 | AnyNumber | Uint8Array]) => Observable<bool>, [ITuple<[u32, u32]>]> & QueryableStorageEntry<ApiType, [ITuple<[u32, u32]>]>;
+      blockRewardAccumulator: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The map of trees to their anchor metadata
+       * Stores amount staked and stakers for a contract per era
        **/
-      anchors: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<PalletAnchorAnchorMetadata>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      contractEraStake: AugmentedQuery<ApiType, (arg1: ShidenRuntimeSmartContract | { Evm: any } | { Wasm: any } | string | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletDappsStakingEraStakingPoints>>, [ShidenRuntimeSmartContract, u32]> & QueryableStorageEntry<ApiType, [ShidenRuntimeSmartContract, u32]>;
       /**
-       * The map of trees and chain ids to their edge metadata
+       * The current era index.
        **/
-      edgeList: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<PalletAnchorEdgeMetadata>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
+      currentEra: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The parameter maintainer who can change the parameters
+       * Total block rewards for the pallet per era and total staked funds
        **/
-      maintainer: AugmentedQuery<ApiType, () => Observable<AccountId32>, []> & QueryableStorageEntry<ApiType, []>;
+      eraRewardsAndStakes: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletDappsStakingEraRewardAndStake>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
-       * The map of trees to the maximum number of anchor edges they can have
+       * Mode of era forcing.
        **/
-      maxEdges: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<u32>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      forceEra: AugmentedQuery<ApiType, () => Observable<PalletDappsStakingForcing>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The map of (tree, chain id) pairs to their latest recorded merkle root
+       * Bonded amount for the staker
        **/
-      neighborRoots: AugmentedQuery<ApiType, (arg1: ITuple<[u32, u32]> | [u32 | AnyNumber | Uint8Array, u32 | AnyNumber | Uint8Array], arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<U8aFixed>>, [ITuple<[u32, u32]>, u32]> & QueryableStorageEntry<ApiType, [ITuple<[u32, u32]>, u32]>;
+      ledger: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<u128>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
-       * The next neighbor root index to store the merkle root update record
+       * Enable or disable pre-approval list for new contract registration
        **/
-      nextNeighborRootIndex: AugmentedQuery<ApiType, (arg: ITuple<[u32, u32]> | [u32 | AnyNumber | Uint8Array, u32 | AnyNumber | Uint8Array]) => Observable<u32>, [ITuple<[u32, u32]>]> & QueryableStorageEntry<ApiType, [ITuple<[u32, u32]>]>;
+      preApprovalIsEnabled: AugmentedQuery<ApiType, () => Observable<bool>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * Generic query
+       * List of pre-approved developers
        **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-    anchorHandler: {
+      preApprovedDevelopers: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Null>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
-       * The map of trees to their anchor metadata
+       * Registered dapp points to the developer who registered it
        **/
-      anchorList: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<u32>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
+      registeredDapps: AugmentedQuery<ApiType, (arg: ShidenRuntimeSmartContract | { Evm: any } | { Wasm: any } | string | Uint8Array) => Observable<Option<AccountId32>>, [ShidenRuntimeSmartContract]> & QueryableStorageEntry<ApiType, [ShidenRuntimeSmartContract]>;
       /**
-       * The number of updates
+       * Registered developer accounts points to coresponding contract
        **/
-      counts: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<u64>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * sourceChainID => nonce => Update Record
-       **/
-      updateRecords: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u64 | AnyNumber | Uint8Array) => Observable<PalletAnchorHandlerUpdateRecord>, [u32, u64]> & QueryableStorageEntry<ApiType, [u32, u64]>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-    mixer: {
-      /**
-       * The parameter maintainer who can change the parameters
-       **/
-      maintainer: AugmentedQuery<ApiType, () => Observable<AccountId32>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * The map of trees to their mixer metadata
-       **/
-      mixers: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletMixerMixerMetadata>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * The map of trees to their spent nullifier hashes
-       **/
-      nullifierHashes: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: NodeTemplateRuntimeElement | string | Uint8Array) => Observable<bool>, [u32, NodeTemplateRuntimeElement]> & QueryableStorageEntry<ApiType, [u32, NodeTemplateRuntimeElement]>;
+      registeredDevelopers: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<ShidenRuntimeSmartContract>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Generic query
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
-    verifier: {
-      /**
-       * Details of the module's parameters
-       **/
-      deposit: AugmentedQuery<ApiType, () => Observable<Option<DarkwebbPrimitivesDepositDetails>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * The parameter maintainer who can change the parameters
-       **/
-      maintainer: AugmentedQuery<ApiType, () => Observable<AccountId32>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Details of the module's parameters
-       **/
-      parameters: AugmentedQuery<ApiType, () => Observable<Bytes>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-  }
+  } // AugmentedQueries
 
   export interface QueryableStorage<ApiType extends ApiTypes> extends AugmentedQueries<ApiType> {
     [key: string]: QueryableModuleStorage<ApiType>;
-  }
-}
+  } // QueryableStorage
+
+} // declare module

@@ -1,7 +1,7 @@
 {
-  "name": "@astar/type-definitions",
+  "name": "@astar/api-derive",
   "version": "0.1.4-13",
-  "description": "Polkadot.js type definations for astar Network",
+  "description": "Astar JS API",
   "main": "index.js",
   "author": "Webb Developers <drew@webb.tools>",
   "license": "Apache-2.0",
@@ -15,6 +15,9 @@
   },
   "homepage": "https://github.com/webb-tools/astar.js",
   "dependencies": {
-    "@open-web3/orml-type-definitions": "^1.0.2-0"
+    "@astar/types": "0.1.4-13",
+    "@babel/runtime": "^7.10.2",
+    "@open-web3/orml-types": "^1.0.2-0",
+    "@polkadot/api-derive": "^6.5.2"
   }
 }

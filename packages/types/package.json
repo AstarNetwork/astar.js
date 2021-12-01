@@ -17,13 +17,19 @@
   "dependencies": {
     "@astar/type-definitions": "0.1.4-13",
     "@babel/runtime": "^7.10.2",
-    "@open-web3/orml-types": "^0.8.2-6",
-    "@polkadot/metadata": "^4.17.1",
-    "@polkadot/typegen": "^6.1.2",
-    "@polkadot/types": "^6.1.2"
+    "@open-web3/api-mobx": "^1.0.2-0",
+    "@open-web3/orml-types": "^1.0.2-0",
+    "@polkadot/api": "^6.5.2",
+    "@polkadot/typegen": "^6.5.2",
+    "@polkadot/types": "^6.5.2"
   },
   "devDependencies": {
     "@types/websocket": "^1.0.0",
     "websocket": "^1.0.31"
+  },
+  "peerDependencies": {
+    "@polkadot/api": "^6.5.2",
+    "@polkadot/typegen": "^6.5.2",
+    "@polkadot/types": "^6.5.2"
   }
 }

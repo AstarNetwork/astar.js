@@ -1,20 +1,26 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable  @typescript-eslint/ban-ts-comment */
-/* @ts-ignore */
+/* eslint-disable */
+// @ts-nocheck
 
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
+import { Metadata } from '@polkadot/types';
 import { TypeRegistry } from '@polkadot/types/create';
 import { generateInterfaceTypes } from '@polkadot/typegen/generate/interfaceRegistry';
 import { generateTsDef } from '@polkadot/typegen/generate/tsDef';
-import { generateDefaultConsts } from '@polkadot/typegen/generate/consts';
-import { generateDefaultQuery } from '@polkadot/typegen/generate/query';
-import { generateDefaultTx } from '@polkadot/typegen/generate/tx';
+import {
+  generateDefaultConsts,
+  generateDefaultQuery,
+  generateDefaultTx,
+  generateDefaultRpc
+} from '@polkadot/typegen/generate';
 import { registerDefinitions } from '@polkadot/typegen/util';
+// import generateMobx from '@open-web3/api-mobx/scripts/mobx';
 import metaHex from '../src/metadata/static-latest';
-import fs from 'fs';
+
 import * as defaultDefinitions from '@polkadot/types/interfaces/definitions';
 
-import * as webbDefinitions from '../src/interfaces/definitions';
-import { Metadata } from '@polkadot/types';
+import * as ormlDefinitions from '@open-web3/orml-types/interfaces/definitions';
+
+import * as astarDefinitions from '../src/interfaces/definitions';
 
 // Only keep our own modules to avoid confllicts with the one provided by polkadot.js
 // TODO: make an issue on polkadot.js
@@ -22,39 +28,46 @@ function filterModules(names: string[], defs: any): string {
   const registry = new TypeRegistry();
   registerDefinitions(registry, defs);
   const metadata = new Metadata(registry, metaHex);
+
   // hack https://github.com/polkadot-js/api/issues/2687#issuecomment-705342442
   metadata.asLatest.toJSON();
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
   const filtered = metadata.toJSON() as any;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  filtered.metadata.v14.pallets = filtered?.metadata?.v14?.pallets?.filter(({ name }: any) => {
-    return names.includes(name);
-  });
+
+  // console.log(filtered.metadata.v14.modules.map(x => x.name))
+
+  filtered.metadata.v14.pallets = filtered.metadata.v14.pallets.filter(({ name }: any) => names.includes(name));
+
   return new Metadata(registry, filtered).toHex();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { runtime, ...substrateDefinitions } = defaultDefinitions;
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { runtime: _runtime, ...ormlModulesDefinitions } = ormlDefinitions;
+
 const definitions = {
   '@polkadot/types/interfaces': substrateDefinitions,
-  '@astar/types/interfaces': webbDefinitions
+  // '@open-web3/orml-types/interfaces': ormlModulesDefinitions,
+  '@astar/types/interfaces': astarDefinitions
 } as any;
 
-const metadata = filterModules(['Anchor', 'AnchorHandler', 'bridge', 'Hasher', 'Mixer', 'Mt', 'Verifier'], definitions);
-const augmentApiIndex = `
-/* eslint-disable */
-export * from './augment-api-consts';
-export * from './augment-api-tx';
-export * from './augment-api-query';
-export * from './augment-types';
-`.trim();
+const metadata = filterModules(
+  [
+    'DappsStaking',
+    'BlockReward',
+    'EthCall'
+  ],
+  definitions
+);
+
 generateTsDef(definitions, 'packages/types/src/interfaces', '@astar/types/interfaces');
 generateInterfaceTypes(definitions, 'packages/types/src/interfaces/augment-types.ts');
 generateDefaultConsts('packages/types/src/interfaces/augment-api-consts.ts', metadata, definitions);
 
-generateDefaultTx('packages/types/src/interfaces/augment-api-tx.ts', metadata, definitions);
+// TODO: figure out why this failed
+// generateDefaultTx('packages/types/src/interfaces/augment-api-tx.ts', metadata, definitions);
 generateDefaultQuery('packages/types/src/interfaces/augment-api-query.ts', metadata, definitions);
-
-fs.writeFileSync('packages/types/src/interfaces/augment-api.ts', augmentApiIndex);
+generateDefaultRpc('packages/types/src/interfaces/augment-api-rpc.ts', definitions);
+// generateMobx('packages/types/src/interfaces/augment-api-mobx.ts', metaHex, definitions);
