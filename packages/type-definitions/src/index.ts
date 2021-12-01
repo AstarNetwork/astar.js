@@ -1,8 +1,13 @@
+import type { OverrideVersionedType } from '@polkadot/types/types';
+
 import { jsonrpcFromDefs, typesAliasFromDefs, typesFromDefs } from '@open-web3/orml-type-definitions/utils';
 import pallets from './pallets';
-import versioned from './types-known/versioned';
 
-// FIXME: currently we cannot override this in runtime definations because the code generation script cannot handle overrides
+import astarVersioned from './specs/astar';
+import shidenVersioned from './specs/shiden';
+import shibuyaVersioned from './specs/shibuya';
+
+// FIXME: currently we cannot override this in runtime definitions because the code generation script cannot handle overrides
 // This will make it behave correctly in runtime, but wrong types in TS defination.
 const additionalOverride = {
   Address: 'AccountId',
@@ -45,32 +50,41 @@ export const types = {
   ...additionalOverride
 };
 
-export const typesBundle = {
-  spec: {
-    astar: {
-      types: versioned
-    }
-  }
-};
-
 export const rpc = jsonrpcFromDefs(astarDefs, {});
 export const typesAlias = typesAliasFromDefs(astarDefs, {});
 
-const bundle = {
-  types: [...versioned].map((version) => {
-    return {
-      types: {
-        ...types,
-        ...version.types
-      }
-    };
-  }),
-  alias: typesAlias
+function getBundle(versioned: OverrideVersionedType[]) {
+  return {
+    rpc,
+    instances: {
+      council: ['generalCouncil']
+    },
+    types: [...versioned].map((version) => {
+      return {
+        minmax: version.minmax,
+        types: {
+          ...types,
+          ...version.types
+        }
+      };
+    }),
+    alias: typesAlias
+  };
+}
+
+export const typesBundle = {
+  spec: {
+    astar: getBundle(astarVersioned),
+    shiden: getBundle(shidenVersioned),
+    shibuya: getBundle(shibuyaVersioned)
+  }
 };
 
 // Type overrides have priority issues
 export const typesBundleForPolkadot = {
   spec: {
-    astar: bundle
+    astar: getBundle(astarVersioned),
+    shiden: getBundle(shidenVersioned),
+    shibuya: getBundle(shibuyaVersioned)
   }
 };

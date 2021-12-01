@@ -37,6 +37,14 @@ export const options = ({
       astar: {
         ...astarTypesBundle?.spec?.astar,
         ...typesBundle?.spec?.astar
+      },
+      shiden: {
+        ...astarTypesBundle?.spec?.shiden,
+        ...typesBundle?.spec?.shiden
+      },
+      shibuya: {
+        ...astarTypesBundle?.spec?.shibuya,
+        ...typesBundle?.spec?.shibuya
       }
     }
   },
