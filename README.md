@@ -46,7 +46,7 @@ console.log(data.toHuman())
   - Contains necessary options to create a polkadot.js API instance
 - [api-derive](./packages/api-derive)
   - Contains utility classes and derived methods.
-- [types-definitions](./packages/types-definitions)
+- [types-definitions](./packages/type-definitions)
   - Polkadot.js type definitions for Astar Network.
 - [types](./packages/types)
   - Polkadot.js type definitions for Astar Network.
