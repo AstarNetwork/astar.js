@@ -1,12 +1,17 @@
 {
-  "name": "sdk-core",
+  "name": "@astar/sdk-core",
   "version": "1.0.0",
-  "description": "",
+  "description": "the core for astar SDK",
+  "author": "Webb Developers <drew@webb.tools>",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "repository": "https://github.com/webb-tools/astar.js.git",
+  "bugs": {
+    "url": "https://github.com/webb-tools/astar.js/issues"
+  },
+  "homepage": "https://github.com/webb-tools/astar.js" 
 }
