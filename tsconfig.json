@@ -29,6 +29,12 @@
       ],
       "@astar/type-definitions/*": [
         "packages/type-definitions/src/*"
+      ],
+      "@astar/sdk-core":[
+        "packages/sdk-core/src"
+      ],
+      "@astar/sdk-core/*": [
+        "packages/sdk-core/src/*"
       ]
     },
     "skipLibCheck": true,
