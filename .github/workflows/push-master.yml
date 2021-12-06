@@ -9,14 +9,17 @@ jobs:
     strategy:
       matrix:
         step: ['build:release']
+        node-version: [14.x]
     name: ${{ matrix.step }}
     if: "! startsWith(github.event.head_commit.message, '[CI Skip]')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
+          node-version: ${{ matrix.node-version }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          node-version: 14.x
       - name: ${{ matrix.step }}
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
