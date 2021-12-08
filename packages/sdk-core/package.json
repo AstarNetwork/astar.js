@@ -13,5 +13,10 @@
   "bugs": {
     "url": "https://github.com/webb-tools/astar.js/issues"
   },
-  "homepage": "https://github.com/webb-tools/astar.js" 
+  "homepage": "https://github.com/webb-tools/astar.js",
+  "dependencies": {
+    "@polkadot/keyring": "^8.1.2",
+    "@polkadot/util": "^8.1.2",
+    "@polkadot/util-crypto": "^8.1.2"
+  }
 }
