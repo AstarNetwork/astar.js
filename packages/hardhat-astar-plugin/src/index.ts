@@ -1,5 +1,5 @@
 import { extendEnvironment } from 'hardhat/config';
-import { lazyFunction, lazyObject } from 'hardhat/plugins';
+import { lazyFunction } from 'hardhat/plugins';
 
 import './type-extensions';
 
