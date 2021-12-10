@@ -45,5 +45,8 @@
   },
   "peerDependencies": {
     "hardhat": "^2.0.0"
+  },
+  "dependencies": {
+    "@astar/sdk-core": "file:../sdk-core"
   }
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "the core for astar SDK",
   "author": "Webb Developers <drew@webb.tools>",
-  "main": "index.js",
+  "main": "index.ts",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public",
