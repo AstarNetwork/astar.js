@@ -47,6 +47,6 @@
     "hardhat": "^2.0.0"
   },
   "dependencies": {
-    "@astar/sdk-core": "file:../sdk-core"
+    "@astar/sdk-core": "1.0.0"
   }
 }
