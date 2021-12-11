@@ -14,6 +14,9 @@
     "hardhat",
     "hardhat-plugin"
   ],
+  "resolutions": {
+    "@astar/sdk-core": "../sdk-core"
+  },
   "scripts": {
     "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
     "lint": "tslint --config tslint.json --project tsconfig.json",
