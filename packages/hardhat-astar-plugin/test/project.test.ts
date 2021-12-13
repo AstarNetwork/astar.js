@@ -1,14 +1,24 @@
+// tslint:disable-next-line no-implicit-dependencies
 import { assert } from 'chai';
+
+// import { evmConverter } from '@astar/sdk-core';
+import { evmConverter } from '../../sdk-core/src/converter';
 
 import { useEnvironment } from './helpers';
 
-describe('Hello CI', function () {
-  describe('Hardhat Runtime Environment extension', function () {
+describe('evmConverter test', function () {
+  describe('Unit tests for the EVM converter', function () {
     useEnvironment('hardhat-project');
 
-    it('this hello should fix failing tests', function () {
-      const he = 'hello';
-      assert.equal(he, 'hello');
+    const ethAddress = '0x1111111111111111111111111111111111111111';
+    const astarAddress = evmConverter(ethAddress);
+
+    it('the address is a string', function () {
+      assert.isString(astarAddress);
+    });
+
+    it('the address starts with i', function () {
+      assert.isTrue(astarAddress.startsWith('i'));
     });
   });
 });
