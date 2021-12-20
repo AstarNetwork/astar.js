@@ -1,5 +1,5 @@
 {
-  "name": "@astar/sdk-core",
+  "name": "@astar-network/astar-sdk-core",
   "version": "1.0.0",
   "description": "the core for astar SDK",
   "author": "Webb Developers <drew@webb.tools>",

@@ -8,6 +8,7 @@ jobs:
   master:
     strategy:
       matrix:
+        node-version: [14.x]
         step: ['build:release']
     name: ${{ matrix.step }}
     if: "! startsWith(github.event.head_commit.message, '[CI Skip]')"
