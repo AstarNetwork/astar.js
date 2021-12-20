@@ -23,4 +23,4 @@ export const rpc: Record<string, Record<string, DefinitionRpc | DefinitionRpcSub
 
 export const typesAlias: Record<string, OverrideModuleType> = astarTypeAlias;
 
-export const typesBundle = (astarTypesBundle as any) as OverrideBundleType;
+export const typesBundle = astarTypesBundle as OverrideBundleType;
