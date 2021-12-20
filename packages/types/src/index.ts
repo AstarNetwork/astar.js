@@ -3,7 +3,7 @@ import {
   types as astarTypes,
   typesAlias as astarTypeAlias,
   rpc as astarRpc
-} from '@astar/type-definitions';
+} from '@astar-network/type-definitions';
 import {
   OverrideBundleType,
   OverrideModuleType,
@@ -23,4 +23,4 @@ export const rpc: Record<string, Record<string, DefinitionRpc | DefinitionRpcSub
 
 export const typesAlias: Record<string, OverrideModuleType> = astarTypeAlias;
 
-export const typesBundle = astarTypesBundle as unknown as OverrideBundleType;
+export const typesBundle = astarTypesBundle as OverrideBundleType;

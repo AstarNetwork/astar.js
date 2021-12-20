@@ -1,1 +1,1 @@
-# @astar/sdk-core
+# @astar-network/sdk-core
