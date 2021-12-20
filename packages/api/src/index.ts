@@ -3,7 +3,7 @@ import {
   types as astarTypes,
   typesAlias as astarTypesAlias,
   typesBundle as astarTypesBundle
-} from '@astar/types';
+} from '@astar-network/types';
 import { ApiOptions } from '@polkadot/api/types';
 
 export const defaultOptions: ApiOptions = {

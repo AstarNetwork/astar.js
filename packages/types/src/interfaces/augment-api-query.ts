@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 declare module '@polkadot/api/types/storage' {
-  import type { AccountId32, PalletDappsStakingEraRewardAndStake, PalletDappsStakingEraStakingPoints, PalletDappsStakingForcing, ShidenRuntimeSmartContract } from '@astar/types/interfaces/runtime';
+  import type { AccountId32, PalletDappsStakingEraRewardAndStake, PalletDappsStakingEraStakingPoints, PalletDappsStakingForcing, ShidenRuntimeSmartContract } from '@astar-network/types/interfaces/runtime';
   import type { ApiTypes, AugmentedQuery, QueryableModuleStorage, QueryableStorageEntry } from '@polkadot/api/types';
   import type { Null, Option, bool, u128, u32 } from '@polkadot/types';
   import type { AnyNumber, Observable } from '@polkadot/types/types';
