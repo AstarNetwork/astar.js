@@ -2,7 +2,7 @@ import { hexToU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 import { blake2AsU8a } from '@polkadot/util-crypto/blake2';
 import Keyring, { createPair } from '@polkadot/keyring';
 
-export function evmConverter(evmAddress = '') {
+export function evmConverter(evmAddress = ''): string {
   try {
     const addr = hexToU8a(evmAddress);
     const data = stringToU8a('evm:');
