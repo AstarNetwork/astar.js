@@ -1,5 +1,5 @@
 {
-  "name": "@astar/sdk-core",
+  "name": "@astar-network/sdk-core",
   "version": "1.0.0",
   "type": "module",
   "description": "the core for astar SDK",

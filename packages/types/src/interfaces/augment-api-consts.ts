@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 declare module '@polkadot/api/types/consts' {
-  import type { Perbill } from '@astar/types/interfaces/runtime';
+  import type { Perbill } from '@astar-network/types/interfaces/runtime';
   import type { ApiTypes, AugmentedConst, QueryableModuleConsts } from '@polkadot/api/types';
   import type { u128, u16, u32 } from '@polkadot/types';
   import type { FrameSupportPalletId } from '@polkadot/types/lookup';
