@@ -14,7 +14,6 @@ import {
 
 import './interfaces/augment-api-query';
 import './interfaces/augment-api-consts';
-import './interfaces/augment-api-query';
 import './interfaces/augment-types';
 
 export const types: RegistryTypes = astarTypes;
