@@ -8,28 +8,34 @@
   "compilerOptions": {
     "declaration": true,
     "target": "ES2020",
-    "module": "CommonJS",
+    "module": "commonjs",
     "baseUrl": ".",
     "allowJs": true,
     "paths": {
-      "@astar/api": [
+      "@astar-network/api": [
         "packages/api/src"
       ],
-      "@astar/api/*": [
+      "@astar-network/api/*": [
         "packages/api/src/*"
       ],
-      "@astar/types": [
+      "@astar-network/types": [
         "packages/types/src"
       ],
-      "@astar/types/*": [
+      "@astar-network/types/*": [
         "packages/types/src/*"
       ],
-      "@astar/type-definitions": [
+      "@astar-network/type-definitions": [
         "packages/type-definitions/src"
       ],
-      "@astar/type-definitions/*": [
+      "@astar-network/type-definitions/*": [
         "packages/type-definitions/src/*"
-      ]
+      ],
+      "@astar-network/sdk-core":[
+        "packages/sdk-core/src"
+      ],
+      "@astar-network/sdk-core/*": [
+        "packages/sdk-core/src/*"
+      ],
     },
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,

@@ -1,3 +1,3 @@
-# @astar/type-definitions
+# @astar-network/type-definitions
 
-Polkadot.js type definations for Webb Network
+Polkadot.js type definations for Astar Network

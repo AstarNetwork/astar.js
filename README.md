@@ -1,5 +1,5 @@
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
-# @astar
+# @astar-network
 
 This library provides additional typing information for user to access Astar's modules by using [polkadot.js](https://github.com/polkadot-js/api)
 
@@ -10,7 +10,7 @@ More documentation and examples on [wiki](https://github.com/webb-tools/astar.js
 - Install dependencies
 
 ```bash
-yarn add @polkadot/api @astar/api@beta
+yarn add @polkadot/api @astar-network/api@beta
 ```
 
 - Create API instance
@@ -18,7 +18,7 @@ yarn add @polkadot/api @astar/api@beta
 ```ts
 import { ApiPromise } from '@polkadot/api';
 import { WsProvider } from '@polkadot/rpc-provider';
-import { options } from '@astar/api';
+import { options } from '@astar-network/api';
 
 async function main() {
     const provider = new WsProvider('wss://localhost:9944');
@@ -44,7 +44,9 @@ console.log(data.toHuman())
 
 - [api](./packages/api)
   - Contains necessary options to create a polkadot.js API instance
-- [api-utils](./packages/api-utils)
-  - Contains utility classes such as logging for end-user applications.
+- [api-derive](./packages/api-derive)
+  - Contains utility classes and derived methods.
+- [types-definitions](./packages/type-definitions)
+  - Polkadot.js type definitions for Astar Network.
 - [types](./packages/types)
   - Polkadot.js type definitions for Astar Network.

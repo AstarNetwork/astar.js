@@ -1,5 +1,5 @@
 {
-  "version": "0.1.4-13",
+  "version": "0.1.5",
   "private": true,
   "engines": {
     "yarn": "^1.10.1",
@@ -20,7 +20,7 @@
     "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage",
+    "test": "polkadot-dev-run-test --coverage --passWithNoTests",
     "check-deps": "./node_modules/@open-web3/util/scripts/check-deps.js yarn.lock @polkadot/ @open-web3/",
     "update-metadata": "ts-node --project ./tsconfig.json packages/types/scripts/updateMetadata.ts"
   },

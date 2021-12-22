@@ -1,4 +1,4 @@
-import { types, typesBundleForPolkadot, rpc } from '@astar/type-definitions';
+import { types, typesBundleForPolkadot, rpc } from '@astar-network/type-definitions';
 import fs from 'fs';
 
 fs.writeFileSync('packages/type-definitions/src/json/types.json', JSON.stringify(types, null, 4));
