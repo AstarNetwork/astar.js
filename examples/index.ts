@@ -4,7 +4,7 @@ import { options } from '@astar-network/astar-api';
 
 
 async function main() {
-  const provider = new WsProvider('wss://localhost:9944');
+  const provider = new WsProvider('wss://shiden.api.onfinality.io/public-ws');
   const api = new ApiPromise(options({ provider }));
   await api.isReady;
   console.log({ api });
