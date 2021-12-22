@@ -1,5 +1,5 @@
 {
-  "name": "@astar-network/api",
+  "name": "@astar-network/astar-api",
   "version": "0.1.4-13",
   "description": "Astar JS API",
   "main": "index.js",
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/webb-tools/astar.js",
   "dependencies": {
-    "@astar-network/types": "0.1.4-13",
+    "@astar-network/astar-types": "0.1.4-13",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-api-derive": "^1.0.2-0",
     "@polkadot/api": "^6.5.2",

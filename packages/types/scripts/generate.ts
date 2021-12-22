@@ -50,7 +50,7 @@ const { runtime: _runtime, ...ormlModulesDefinitions } = ormlDefinitions;
 const definitions = {
   '@polkadot/types/interfaces': substrateDefinitions,
   // '@open-web3/orml-types/interfaces': ormlModulesDefinitions,
-  '@astar-network/types/interfaces': astarDefinitions
+  '@astar-network/astar-types/interfaces': astarDefinitions
 } as any;
 
 const metadata = filterModules(
@@ -62,7 +62,7 @@ const metadata = filterModules(
   definitions
 );
 
-generateTsDef(definitions, 'packages/types/src/interfaces', '@astar-network/types/interfaces');
+generateTsDef(definitions, 'packages/types/src/interfaces', '@astar-network/astar-types/interfaces');
 generateInterfaceTypes(definitions, 'packages/types/src/interfaces/augment-types.ts');
 generateDefaultConsts('packages/types/src/interfaces/augment-api-consts.ts', metadata, definitions);
 

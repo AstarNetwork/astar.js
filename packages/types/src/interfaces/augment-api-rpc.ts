@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 declare module '@polkadot/rpc-core/types.jsonrpc' {
-  import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from '@astar-network/types/interfaces/runtime';
+  import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from '@astar-network/astar-types/interfaces/runtime';
   import type { AugmentedRpc } from '@polkadot/api/types';
   import type { Bytes, HashMap, Json, Metadata, Null, Option, StorageKey, Text, U256, U64, Vec, bool, u32, u64 } from '@polkadot/types';
   import type { ExtrinsicOrHash, ExtrinsicStatus } from '@polkadot/types/interfaces/author';
