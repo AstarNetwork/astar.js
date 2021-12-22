@@ -32,6 +32,12 @@ async function main() {
 main()
 ```
 
+Run the example in this repository:
+
+```shell
+yarn dev
+```
+
 - Use api to interact with node
 
 ```ts
