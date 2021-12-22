@@ -10,7 +10,7 @@ More documentation and examples on [wiki](https://github.com/webb-tools/astar.js
 - Install dependencies
 
 ```bash
-yarn add @polkadot/api @astar-network/api@beta
+yarn add @polkadot/api @astar-network/astar-api@beta
 ```
 
 - Create API instance
@@ -18,7 +18,7 @@ yarn add @polkadot/api @astar-network/api@beta
 ```ts
 import { ApiPromise } from '@polkadot/api';
 import { WsProvider } from '@polkadot/rpc-provider';
-import { options } from '@astar-network/api';
+import { options } from '@astar-network/astar-api';
 
 async function main() {
     const provider = new WsProvider('wss://localhost:9944');

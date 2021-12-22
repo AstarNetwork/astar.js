@@ -3,7 +3,7 @@ import {
   types as astarTypes,
   typesAlias as astarTypeAlias,
   rpc as astarRpc
-} from '@astar-network/type-definitions';
+} from '@astar-network/astar-type-definitions';
 import {
   OverrideBundleType,
   OverrideModuleType,

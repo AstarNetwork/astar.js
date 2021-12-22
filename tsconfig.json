@@ -12,28 +12,28 @@
     "baseUrl": ".",
     "allowJs": true,
     "paths": {
-      "@astar-network/api": [
+      "@astar-network/astar-api": [
         "packages/api/src"
       ],
-      "@astar-network/api/*": [
+      "@astar-network/astar-api/*": [
         "packages/api/src/*"
       ],
-      "@astar-network/types": [
+      "@astar-network/astar-types": [
         "packages/types/src"
       ],
-      "@astar-network/types/*": [
+      "@astar-network/astar-types/*": [
         "packages/types/src/*"
       ],
-      "@astar-network/type-definitions": [
+      "@astar-network/astar-type-definitions": [
         "packages/type-definitions/src"
       ],
-      "@astar-network/type-definitions/*": [
+      "@astar-network/astar-type-definitions/*": [
         "packages/type-definitions/src/*"
       ],
-      "@astar-network/sdk-core":[
+      "@astar-network/astar-sdk-core":[
         "packages/sdk-core/src"
       ],
-      "@astar-network/sdk-core/*": [
+      "@astar-network/astar-sdk-core/*": [
         "packages/sdk-core/src/*"
       ],
     },

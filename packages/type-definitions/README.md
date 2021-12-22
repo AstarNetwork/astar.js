@@ -1,3 +1,3 @@
-# @astar-network/type-definitions
+# @astar-network/astar-type-definitions
 
 Polkadot.js type definations for Astar Network
