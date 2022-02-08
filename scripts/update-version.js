@@ -25,8 +25,8 @@ function updateDependencies(dependencies, others, version) {
 }
 
 console.log('$ update versions', process.argv.slice(2).join(' '));
-console.log(`yarn version --${type}`);
-execSync(`yarn version --${type}`);
+console.log(`yarn version ${type}`);
+execSync(`yarn version ${type}`);
 
 // yarn workspaces does an OOM, manual looping takes ages
 if (fs.existsSync('packages')) {
