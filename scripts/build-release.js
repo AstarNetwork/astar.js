@@ -51,48 +51,48 @@ function npmGetVersion() {
   return JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8')).version;
 }
 
-// function npmSetup() {
-//   const registry = 'registry.npmjs.org';
+function npmSetup() {
+  const registry = 'registry.npmjs.org';
 
-//   fs.writeFileSync(path.join(os.homedir(), '.npmrc'), `//${registry}/:_authToken=${process.env.NPM_TOKEN}`);
-// }
+  fs.writeFileSync(path.join(os.homedir(), '.npmrc'), `//${registry}/:_authToken=${process.env.NPM_TOKEN}`);
+}
 
-// function npmPublish() {
-//   if (fs.existsSync('.skip-npm')) {
-//     return;
-//   }
+function npmPublish() {
+  if (fs.existsSync('.skip-npm')) {
+    return;
+  }
 
-//   rimraf.sync('build/package.json');
-//   ['LICENSE', 'README.md', 'package.json'].forEach((file) => copySync(file, 'build'));
-//   console.log('args', process.argv);
+  rimraf.sync('build/package.json');
+  ['LICENSE', 'README.md', 'package.json'].forEach((file) => copySync(file, 'build'));
+  console.log('args', process.argv);
 
-//   process.chdir('build');
+  process.chdir('build');
 
-//   const tag = npmGetVersion().includes('-') ? '--tag beta' : '';
-//   let count = 1;
+  const tag = npmGetVersion().includes('-') ? '--tag beta' : '';
+  let count = 1;
 
-//   while (true) {
-//     try {
-//       execSync(`npm publish --access public ${tag}`);
+  while (true) {
+    try {
+      execSync(`npm publish --access public ${tag}`);
 
-//       break;
-//     } catch (error) {
-//       console.error(error);
-//       if (count < 5) {
-//         const end = Date.now() + 15000;
+      break;
+    } catch (error) {
+      console.error(error);
+      if (count < 5) {
+        const end = Date.now() + 15000;
 
-//         console.error(`Publish failed on attempt ${count}/5. Retrying in 15s`);
-//         count++;
+        console.error(`Publish failed on attempt ${count}/5. Retrying in 15s`);
+        count++;
 
-//         while (Date.now() < end) {
-//           // just spin our wheels
-//         }
-//       }
-//     }
-//   }
+        while (Date.now() < end) {
+          // just spin our wheels
+        }
+      }
+    }
+  }
 
-//   process.chdir('..');
-// }
+  process.chdir('..');
+}
 
 function gitSetup() {
   execSync('git config push.default simple');
@@ -162,36 +162,36 @@ skip-checks: true"`);
   }
 }
 
-// function loopFunc(fn) {
-//   if (fs.existsSync('packages')) {
-//     fs.readdirSync('packages')
-//       .filter((dir) => {
-//         const pkgDir = path.join(process.cwd(), 'packages', dir);
+function loopFunc(fn) {
+  if (fs.existsSync('packages')) {
+    fs.readdirSync('packages')
+      .filter((dir) => {
+        const pkgDir = path.join(process.cwd(), 'packages', dir);
 
-//         return (
-//           fs.statSync(pkgDir).isDirectory() &&
-//           fs.existsSync(path.join(pkgDir, 'package.json')) &&
-//           fs.existsSync(path.join(pkgDir, 'build'))
-//         );
-//       })
-//       .forEach((dir) => {
-//         process.chdir(path.join('packages', dir));
-//         fn();
-//         process.chdir('../..');
-//       });
-//   } else {
-//     fn();
-//   }
-// }
+        return (
+          fs.statSync(pkgDir).isDirectory() &&
+          fs.existsSync(path.join(pkgDir, 'package.json')) &&
+          fs.existsSync(path.join(pkgDir, 'build'))
+        );
+      })
+      .forEach((dir) => {
+        process.chdir(path.join('packages', dir));
+        fn();
+        process.chdir('../..');
+      });
+  } else {
+    fn();
+  }
+}
 
 gitSetup();
 gitBump();
-// npmSetup();
+npmSetup();
 
 runClean();
 runCheck();
 // runTest();
-// runBuild();
+runBuild();
 
 gitPush();
-// loopFunc(npmPublish);
+loopFunc(npmPublish);
