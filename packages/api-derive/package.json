@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-api-derive",
-  "version": "0.1.4-13",
+  "version": "0.1.5-1",
   "description": "Astar JS API",
   "main": "index.js",
   "author": "Webb Developers <drew@webb.tools>",
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/webb-tools/astar.js",
   "dependencies": {
-    "@astar-network/astar-types": "0.1.4-13",
+    "@astar-network/astar-types": "0.1.5-1",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-types": "^1.0.2-0",
     "@polkadot/api-derive": "^6.5.2"
