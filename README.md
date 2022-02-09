@@ -9,6 +9,8 @@ More documentation and examples on [wiki](https://github.com/webb-tools/astar.js
 
 - Install dependencies
 
+**📝NOTE: @polkadod/api version is pinned**
+
 ```bash
 yarn add @polkadot/api@^6.5.1 @astar-network/astar-api@beta
 ```
