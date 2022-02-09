@@ -29,13 +29,13 @@ console.log(`yarn version ${type}`);
 execSync(`yarn version ${type}`);
 
 
-function deleteStableVersion {
+function deleteStableVersion() {
   const packageJsonPath = path.join(process.cwd(), 'package.json')
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
   delete packageJson["stableVersion"]
-  fs.writeFileSync(packageJsonPath, `${JSON.stringify(updated, null, 2)}\n`);
+  fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
 }
-deleteStableVersion(`yarn version ${type}`);
+deleteStableVersion();
 
 // yarn workspaces does an OOM, manual looping takes ages
 if (fs.existsSync('packages')) {
