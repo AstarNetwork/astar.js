@@ -9,8 +9,10 @@ More documentation and examples on [wiki](https://github.com/webb-tools/astar.js
 
 - Install dependencies
 
+**📝NOTE: @polkadod/api version is pinned**
+
 ```bash
-yarn add @polkadot/api @astar-network/astar-api@beta
+yarn add @polkadot/api@^6.5.1 @astar-network/astar-api@beta
 ```
 
 - Create API instance
@@ -21,21 +23,20 @@ import { WsProvider } from '@polkadot/rpc-provider';
 import { options } from '@astar-network/astar-api';
 
 async function main() {
-    const provider = new WsProvider('wss://localhost:9944');
+    const provider = new WsProvider('ws://localhost:9944');
+    // OR
+    // const provider = new WsProvider('wss://shiden.api.onfinality.io/public-ws');
     const api = new ApiPromise(options({ provider }));
     await api.isReady;
 
-    // use the api
-    //..
+    // Use the api
+    // For example:
+    console.log((await api.rpc.system.properties()).toHuman());
+
+    process.exit(0);
 }
 
 main()
-```
-
-Run the example in this repository:
-
-```shell
-yarn dev
 ```
 
 - Use api to interact with node
