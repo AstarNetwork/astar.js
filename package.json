@@ -41,6 +41,5 @@
   "dependencies": {
     "ts-proto": "^1.82.2"
   },
-  "packageManager": "yarn@3.1.1",
-  "stableVersion": "0.1.5-0"
+  "packageManager": "yarn@3.1.1"
 }
