@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-sdk-core",
-  "version": "0.1.5-1",
+  "version": "0.1.5-2",
   "type": "module",
   "description": "the core for astar SDK",
   "author": "Webb Developers <drew@webb.tools>",
