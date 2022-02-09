@@ -28,11 +28,10 @@ console.log('$ update versions', process.argv.slice(2).join(' '));
 console.log(`yarn version ${type}`);
 execSync(`yarn version ${type}`);
 
-
 function deleteStableVersion() {
-  const packageJsonPath = path.join(process.cwd(), 'package.json')
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-  delete packageJson["stableVersion"]
+  delete packageJson.stableVersion;
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
 }
 deleteStableVersion();
