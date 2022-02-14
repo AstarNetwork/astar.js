@@ -1,3 +1,5 @@
+import { derive as ormlDerive } from '@open-web3/orml-api-derive';
+import { derive as astarDerive } from '@astar-network/astar-api-derive';
 import {
   rpc as astarRpc,
   types as astarTypes,
@@ -29,6 +31,10 @@ export const options = ({
   typesAlias: {
     ...astarTypesAlias,
     ...typesAlias
+  },
+  derives: {
+    ...ormlDerive,
+    ...astarDerive
   },
   typesBundle: {
     ...typesBundle,
