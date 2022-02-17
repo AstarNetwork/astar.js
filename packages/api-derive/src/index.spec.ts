@@ -9,9 +9,11 @@ import { ApiPromise } from '@polkadot/api';
 import { WsProvider } from '@polkadot/rpc-provider';
 import { options } from '@astar-network/astar-api';
 
-test('derive', async (): Promise<void> => {
+test('stakers', async (): Promise<void> => {
   const provider = new WsProvider('wss://shiden.api.onfinality.io/public-ws');
   const api = new ApiPromise(options({ provider }));
   await api.isReady;
+  const res = await (api.derive as any).dappStaking.stakers();
+  console.log({ res });
   await api.disconnect();
 });
