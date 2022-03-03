@@ -21,7 +21,7 @@ __metadata:
     "@astar-network/astar-types": 0.1.5-3
     "@babel/runtime": ^7.10.2
     "@open-web3/orml-types": ^1.0.2-0
-    "@polkadot/api-derive": ^6.5.2
+    "@polkadot/api-derive": ^7.10.1
   languageName: unknown
   linkType: soft
 
@@ -2457,7 +2457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/api-derive@npm:6.12.1, @polkadot/api-derive@npm:^6.5.2":
+"@polkadot/api-derive@npm:6.12.1":
   version: 6.12.1
   resolution: "@polkadot/api-derive@npm:6.12.1"
   dependencies:
@@ -2472,7 +2472,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/api-derive@npm:7.10.1":
+"@polkadot/api-derive@npm:7.10.1, @polkadot/api-derive@npm:^7.10.1":
   version: 7.10.1
   resolution: "@polkadot/api-derive@npm:7.10.1"
   dependencies:
@@ -2677,7 +2677,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/rpc-core@npm:7.10.1":
+"@polkadot/rpc-core@npm:7.10.1, @polkadot/rpc-core@npm:^7.10.1":
   version: 7.10.1
   resolution: "@polkadot/rpc-core@npm:7.10.1"
   dependencies:
@@ -12055,8 +12055,10 @@ __metadata:
     "@open-web3/dev-config": ^0.1.13
     "@open-web3/util": ^1.0.2-0
     "@polkadot/api": ^7.10.1
+    "@polkadot/api-derive": ^7.10.1
     "@polkadot/dev": ^0.65.60
     "@polkadot/networks": ^8.4.1
+    "@polkadot/rpc-core": ^7.10.1
     "@polkadot/typegen": ^6.5.2
     "@polkadot/types": ^7.10.1
     "@types/jest": 27.4.0

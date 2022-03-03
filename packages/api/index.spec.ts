@@ -5,21 +5,34 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 
-import { ApiPromise } from '@polkadot/api';
-import { WsProvider } from '@polkadot/rpc-provider';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 import { options } from '@astar-network/astar-api';
 import { PalletDappsStakingEraStakingPoints } from '@astar-network/astar-types/interfaces';
 
 const getAddressEnum = (address: string) => ({ Evm: address });
 
-test('stakers', async (): Promise<void> => {
-  const address = '0x072416b9df2382a62Df34956DffB7B0aDdf668F9';
-  const provider = new WsProvider('wss://shiden.api.onfinality.io/public-ws');
-  const api = new ApiPromise(options({ provider }));
-  await api.isReady;
-  const res = await api.query.dappsStaking.contractEraStake.entries<PalletDappsStakingEraStakingPoints>(
-    getAddressEnum(address)
-  );
-  console.log({ res });
-  await api.disconnect();
+describe('astar-api', () => {
+  let api: ApiPromise | null = null;
+  beforeAll(async () => {
+    const provider = new WsProvider('wss://shiden.api.onfinality.io/public-ws');
+    api = new ApiPromise(options({ provider }));
+    await api.isReady;
+  });
+
+  test('api.query.dappsStaking.contractEraStake.entries', async (): Promise<void> => {
+    const address = '0x072416b9df2382a62Df34956DffB7B0aDdf668F9';
+    if (api === null) {
+      fail(`API is not initialized`);
+    }
+    const stakingByEra = await api.query.dappsStaking.contractEraStake.entries<PalletDappsStakingEraStakingPoints>(
+      getAddressEnum(address)
+    );
+    stakingByEra.forEach(([era, stakeInfo]) => {
+      console.log({ era: era.toHuman(), stakeInfo: `${Object.keys(stakeInfo.toJSON().stakers).length} stakers` });
+    });
+  });
+
+  afterAll(async () => {
+    await api?.disconnect();
+  });
 });
