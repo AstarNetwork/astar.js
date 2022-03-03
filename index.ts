@@ -1,5 +1,4 @@
-import { ApiPromise } from '@polkadot/api';
-import { WsProvider } from '@polkadot/rpc-provider';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 import { options } from '@astar-network/astar-api';
 import { BTreeMap, Option, Struct } from '@polkadot/types';
 import { AccountId, Balance, EraIndex } from '@polkadot/types/interfaces';
