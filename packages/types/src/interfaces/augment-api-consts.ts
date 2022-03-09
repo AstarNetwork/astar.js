@@ -54,7 +54,7 @@ declare module '@polkadot/api/types/consts' {
       /**
        * Dapps staking pallet Id
        **/
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType> & any;
       /**
        * Minimum bonded deposit for new contract registration.
        **/
