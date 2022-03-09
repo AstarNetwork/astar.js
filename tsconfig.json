@@ -3,7 +3,11 @@
   "exclude": [
     "build/**/*",
     "**/build/**/*",
-    "examples/**"
+    "examples/**",
+    "scripts/**",
+    "coverage/**",
+    "**/babel.config.js",
+    "**/jest.config.cjs"
   ],
   "compilerOptions": {
     "declaration": true,

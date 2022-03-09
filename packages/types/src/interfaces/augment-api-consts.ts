@@ -1,14 +1,14 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-declare module '@polkadot/api/types/consts' {
-  import type { Perbill } from '@astar-network/astar-types/interfaces/runtime';
-  import type { ApiTypes, AugmentedConst, QueryableModuleConsts } from '@polkadot/api/types';
-  import type { u128, u16, u32 } from '@polkadot/types';
-  import type { FrameSupportPalletId } from '@polkadot/types/lookup';
-  import type { Codec } from '@polkadot/types/types';
+import type { Perbill } from '@astar-network/astar-types/interfaces/runtime';
+import type { ApiTypes } from '@polkadot/api-base/types';
+import type { u128, u16, u32 } from '@polkadot/types-codec';
+import type { Codec } from '@polkadot/types-codec/types';
+import type { FrameSupportPalletId } from '@polkadot/types/lookup';
 
-  export interface AugmentedConsts<ApiType  extends ApiTypes> {
+declare module '@polkadot/api-base/types/consts' {
+  export interface AugmentedConsts<ApiType extends ApiTypes> {
     blockReward: {
       /**
        * The amount of issuance for each block.
@@ -54,7 +54,7 @@ declare module '@polkadot/api/types/consts' {
       /**
        * Dapps staking pallet Id
        **/
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType> & any;
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * Minimum bonded deposit for new contract registration.
        **/
@@ -79,9 +79,4 @@ declare module '@polkadot/api/types/consts' {
       [key: string]: Codec;
     };
   } // AugmentedConsts
-
-  export interface QueryableConsts<ApiType extends ApiTypes> extends AugmentedConsts<ApiType> {
-    [key: string]: QueryableModuleConsts;
-  } // QueryableConsts
-
 } // declare module

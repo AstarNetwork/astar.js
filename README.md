@@ -63,5 +63,5 @@ console.log(data.toHuman())
 ### Update polkadot libraries
 
 ```shell
-yarn up @polkadot/api @polkadot/api-derive @polkadot/rpc-core @polkadot/types @polkadot/typegen
+yarn up @polkadot/api @polkadot/api-derive @polkadot/rpc-core @polkadot/types   
 ```
