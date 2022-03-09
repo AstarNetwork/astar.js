@@ -18,7 +18,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api-derive@workspace:packages/api-derive"
   dependencies:
-    "@astar-network/astar-types": 0.1.5-3
+    "@astar-network/astar-types": 0.1.5-4
     "@babel/runtime": ^7.10.2
     "@open-web3/orml-types": ^1.0.2-0
     "@polkadot/api-derive": ^7.11.1
@@ -29,7 +29,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api@workspace:packages/api"
   dependencies:
-    "@astar-network/astar-types": 0.1.5-3
+    "@astar-network/astar-types": 0.1.5-4
     "@babel/runtime": ^7.10.2
     "@open-web3/orml-api-derive": ^1.0.2-0
     "@polkadot/api": ^7.11.1
@@ -45,7 +45,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-type-definitions@0.1.5-3, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
+"@astar-network/astar-type-definitions@0.1.5-4, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-type-definitions@workspace:packages/type-definitions"
   dependencies:
@@ -54,11 +54,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-types@0.1.5-3, @astar-network/astar-types@workspace:packages/types":
+"@astar-network/astar-types@0.1.5-4, @astar-network/astar-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-types@workspace:packages/types"
   dependencies:
-    "@astar-network/astar-type-definitions": 0.1.5-3
+    "@astar-network/astar-type-definitions": 0.1.5-4
     "@babel/runtime": ^7.10.2
     "@open-web3/api-mobx": ^1.0.2-0
     "@open-web3/orml-types": ^1.0.2-0
