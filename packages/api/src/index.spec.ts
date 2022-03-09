@@ -24,10 +24,10 @@ describe('astar-api', () => {
   test('api.query.dappsStaking.contractEraStake.entries', async (): Promise<void> => {
     const address = '0x072416b9df2382a62Df34956DffB7B0aDdf668F9';
     if (api === null) {
-      fail(`API is not initialized`);
+      fail('API is not initialized');
     }
     const stakingByEra = await api.query.dappsStaking.contractEraStake.entries<
-      Option<PalletDappsStakingEraStakingPoints>
+    Option<PalletDappsStakingEraStakingPoints>
     >(getAddressEnum(address));
     stakingByEra.forEach(([era, stakeInfo]) => {
       // console.log({

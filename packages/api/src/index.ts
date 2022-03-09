@@ -10,13 +10,11 @@ export const defaultOptions: ApiOptions = {
   rpc: astarRpc
 };
 
-export const options = ({
-  types = {},
+export const options = ({ types = {},
   rpc = {},
   typesAlias = {},
   typesBundle = {},
-  ...otherOptions
-}: ApiOptions = {}): ApiOptions => ({
+  ...otherOptions }: ApiOptions = {}): ApiOptions => ({
   types: {
     ...astarTypes,
     ...types

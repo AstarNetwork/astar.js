@@ -21,6 +21,10 @@ module.exports = {
     ...base.rules,
     '@typescript-eslint/no-explicit-any': 'off',
     'header/header': 'off',
-    'sort-keys': 'off'
+    'sort-keys': 'off',
+    'simple-import-sort/imports': 'off',
+    'sort-destructure-keys/sort-destructure-keys': 'off',
+    'padding-line-between-statements': 'off',
+    'space-before-function-paren': 'off'
   }
 };
