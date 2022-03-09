@@ -57,3 +57,11 @@ console.log(data.toHuman())
   - Polkadot.js type definitions for Astar Network.
 - [types](./packages/types)
   - Polkadot.js type definitions for Astar Network.
+
+## How-to
+
+### Update polkadot libraries
+
+```shell
+yarn up @polkadot/api @polkadot/api-derive @polkadot/rpc-core @polkadot/types
+```
