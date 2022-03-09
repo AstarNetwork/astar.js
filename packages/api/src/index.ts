@@ -1,11 +1,8 @@
-import { derive as ormlDerive } from '@open-web3/orml-api-derive';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { derive as astarDerive } from '@astar-network/astar-api-derive';
-import {
-  rpc as astarRpc,
-  types as astarTypes,
-  typesAlias as astarTypesAlias,
-  typesBundle as astarTypesBundle
-} from '@astar-network/astar-types';
+import { rpc as astarRpc, types as astarTypes, typesAlias as astarTypesAlias, typesBundle as astarTypesBundle } from '@astar-network/astar-types';
+import { derive as ormlDerive } from '@open-web3/orml-api-derive';
+
 import { ApiOptions } from '@polkadot/api/types';
 
 export const defaultOptions: ApiOptions = {
