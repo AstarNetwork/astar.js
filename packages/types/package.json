@@ -20,7 +20,7 @@
     "@open-web3/api-mobx": "^1.0.2-0",
     "@open-web3/orml-types": "^1.0.2-0",
     "@polkadot/api": "^7.11.1",
-    "@polkadot/typegen": "^6.5.2",
+    "@polkadot/typegen": "^7.11.1",
     "@polkadot/types": "^7.11.1"
   },
   "devDependencies": {
