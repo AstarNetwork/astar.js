@@ -9,7 +9,11 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "repository": "https://github.com/webb-tools/astar.js.git",
+  "repository": {
+    "directory": "packages/api",
+    "type": "git",
+    "url": "https://github.com/webb-tools/astar.js"
+  },
   "bugs": {
     "url": "https://github.com/webb-tools/astar.js/issues"
   },
@@ -18,11 +22,10 @@
     "@astar-network/astar-types": "0.1.5-3",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-api-derive": "^1.0.2-0",
-    "@polkadot/api": "^6.5.2",
-    "@polkadot/rpc-core": "^6.5.2"
+    "@polkadot/api": "^7.11.1"
   },
   "peerDependencies": {
-    "@polkadot/api": "^6.5.2",
-    "@polkadot/types": "^6.5.2"
+    "@polkadot/api": "^7.11.1",
+    "@polkadot/types": "^7.11.1"
   }
 }

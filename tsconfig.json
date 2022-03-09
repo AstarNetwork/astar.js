@@ -3,7 +3,9 @@
   "exclude": [
     "build/**/*",
     "**/build/**/*",
-    "examples/**"
+    "examples/**",
+    "scripts/**",
+    "coverage/**"
   ],
   "compilerOptions": {
     "declaration": true,
@@ -17,6 +19,12 @@
       ],
       "@astar-network/astar-api/*": [
         "packages/api/src/*"
+      ],
+      "@astar-network/astar-api-derive": [
+        "packages/api-derive/src"
+      ],
+      "@astar-network/astar-api-derive/*": [
+        "packages/api-derive/src/*"
       ],
       "@astar-network/astar-types": [
         "packages/types/src"

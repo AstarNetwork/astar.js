@@ -1,12 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-declare module '@polkadot/api/types/storage' {
-  import type { AccountId32, PalletDappsStakingEraRewardAndStake, PalletDappsStakingEraStakingPoints, PalletDappsStakingForcing, ShidenRuntimeSmartContract } from '@astar-network/astar-types/interfaces/runtime';
-  import type { ApiTypes, AugmentedQuery, QueryableModuleStorage, QueryableStorageEntry } from '@polkadot/api/types';
-  import type { Null, Option, bool, u128, u32 } from '@polkadot/types';
-  import type { AnyNumber, Observable } from '@polkadot/types/types';
+import type { AccountId32, PalletDappsStakingEraRewardAndStake, PalletDappsStakingEraStakingPoints, PalletDappsStakingForcing, ShidenRuntimeSmartContract } from '@astar-network/astar-types/interfaces/runtime';
+import type { ApiTypes } from '@polkadot/api-base/types';
+import type { Null, Option, bool, u128, u32 } from '@polkadot/types-codec';
+import type { AnyNumber } from '@polkadot/types-codec/types';
+import type { Observable } from '@polkadot/types/types';
 
+declare module '@polkadot/api-base/types/storage' {
   export interface AugmentedQueries<ApiType extends ApiTypes> {
     dappsStaking: {
       /**
@@ -55,9 +56,4 @@ declare module '@polkadot/api/types/storage' {
       [key: string]: QueryableStorageEntry<ApiType>;
     };
   } // AugmentedQueries
-
-  export interface QueryableStorage<ApiType extends ApiTypes> extends AugmentedQueries<ApiType> {
-    [key: string]: QueryableModuleStorage<ApiType>;
-  } // QueryableStorage
-
 } // declare module

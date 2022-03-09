@@ -10,7 +10,11 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "repository": "https://github.com/webb-tools/astar.js.git",
+  "repository": {
+    "directory": "packages/sdk-core",
+    "type": "git",
+    "url": "https://github.com/webb-tools/astar.js"
+  },
   "bugs": {
     "url": "https://github.com/webb-tools/astar.js/issues"
   },

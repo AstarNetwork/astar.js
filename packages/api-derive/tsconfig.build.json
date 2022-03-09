@@ -1,0 +1,14 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "./src"
+    },
+    "exclude": [
+      "**/checkTypes.manual.ts",
+      "**/*.spec.ts",
+      "**/test/**/*"
+    ],
+    "references": [ ]
+  }

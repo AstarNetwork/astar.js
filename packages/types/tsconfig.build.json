@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "./src",
+      "resolveJsonModule": true
+    },
+    "exclude": [
+      "**/checkTypes.manual.ts",
+      "**/*.spec.ts",
+      "**/test/**/*",
+      "scripts/**/*"
+    ],
+    "references": [
+      { "path": "../type-definitions/tsconfig.build.json" }
+    ]
+  }

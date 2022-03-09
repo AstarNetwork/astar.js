@@ -9,7 +9,11 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "repository": "https://github.com/webb-tools/astar.js.git",
+  "repository": {
+    "directory": "packages/api-derive",
+    "type": "git",
+    "url": "https://github.com/webb-tools/astar.js"
+  },
   "bugs": {
     "url": "https://github.com/webb-tools/astar.js/issues"
   },
@@ -18,6 +22,6 @@
     "@astar-network/astar-types": "0.1.5-3",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-types": "^1.0.2-0",
-    "@polkadot/api-derive": "^6.5.2"
+    "@polkadot/api-derive": "^7.11.1"
   }
 }
