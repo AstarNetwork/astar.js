@@ -5,9 +5,7 @@
     "**/build/**/*",
     "examples/**",
     "scripts/**",
-    "coverage/**",
-    "**/babel.config.js",
-    "**/jest.config.cjs"
+    "coverage/**"
   ],
   "compilerOptions": {
     "declaration": true,
