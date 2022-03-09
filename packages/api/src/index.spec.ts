@@ -1,10 +1,3 @@
-// Copyright 2017-2022 @polkadot/api-derive authors & contributors
-// SPDX-License-Identifier: Apache-2.0
-
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { options } from '@astar-network/astar-api';
 import { PalletDappsStakingEraStakingPoints } from '@astar-network/astar-types/interfaces';
