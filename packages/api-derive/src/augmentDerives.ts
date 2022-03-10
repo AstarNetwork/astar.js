@@ -6,7 +6,12 @@ import { ContractAddress } from './types';
 declare module '@polkadot/api-derive/derive' {
   export interface ExactDerive {
     dappStaking: {
-      stakers: ReturnType<(contractAddress: ContractAddress) => (contractAddress: ContractAddress) => Observable<AccountId[]>>;
+      stakers: ReturnType<
+        (contractAddress: ContractAddress) => (contractAddress: ContractAddress) => Observable<AccountId[]>
+      >;
+      stakedDapps: ReturnType<
+        (contractAddress: ContractAddress) => (contractAddress: ContractAddress) => Observable<AccountId[]>
+      >;
     };
   }
 }

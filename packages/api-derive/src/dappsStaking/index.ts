@@ -30,3 +30,26 @@ export function stakers(
       )
   );
 }
+
+export function stakedDapps(
+  instanceId: string,
+  api: ApiInterfaceRx
+): (contractAddress: ContractAddress) => Observable<AccountId[]> {
+  return memo(
+    instanceId,
+    (contractAddress: ContractAddress): Observable<AccountId[]> =>
+      api.query.dappsStaking.contractEraStake.entries<Option<PalletDappsStakingEraStakingPoints>>(contractAddress).pipe(
+        map((res) => {
+          const stakers: AccountId[] = [];
+          // TODO this is inefficient. Expect performance to decrease as chain gets longer.
+          for (const eraInfo of res) {
+            const eraStakers = Array.from(eraInfo[1].unwrap().stakers.keys());
+            for (const staker of eraStakers) {
+              if (!stakers.includes(staker)) stakers.push(staker);
+            }
+          }
+          return stakers;
+        })
+      )
+  );
+}
