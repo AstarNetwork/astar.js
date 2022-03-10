@@ -1,8 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import { options } from '@astar-network/astar-api';
-import { AccountId } from '@polkadot/types/interfaces';
 
-const getAddressEnum = (address: string) => ({ Evm: address });
+// const getAddressEnum = (address: string) => ({ Evm: address });
 
 const endpoint = 'wss://shiden.api.onfinality.io/public-ws';
 // const endpoint = 'ws://localhost:9944';
