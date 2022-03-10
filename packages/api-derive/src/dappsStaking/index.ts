@@ -18,6 +18,7 @@ export function stakers(instanceId: string, api: ApiInterfaceRx): () => Observab
         .pipe(
           map((res) => {
             const stakers: AccountId[] = [];
+            // TODO this is inefficient. Expect performance to decrease as chain gets longer.
             for (const eraInfo of res) {
               const eraStakers = Array.from(eraInfo[1].unwrap().stakers.keys());
               for (const staker of eraStakers) {
