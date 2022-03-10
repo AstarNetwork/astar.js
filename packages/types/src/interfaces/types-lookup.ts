@@ -15,6 +15,7 @@ declare module '@polkadot/types/lookup' {
   import type { VestingInfo } from '@polkadot/types/interfaces/vesting';
   import type { Outcome } from '@polkadot/types/interfaces/xcm';
   
+  // TODO this is manually added
   export interface FrameSupportPalletId extends U8aFixed {}
   
   /** @name PalletSystemCall (11) */
