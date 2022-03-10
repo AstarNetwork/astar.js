@@ -3,7 +3,9 @@
   "exclude": [
     "build/**/*",
     "**/build/**/*",
-    "examples/**"
+    "examples/**",
+    "scripts/**",
+    "coverage/**"
   ],
   "compilerOptions": {
     "declaration": true,

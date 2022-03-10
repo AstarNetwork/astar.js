@@ -10,7 +10,8 @@ import {
   generateDefaultConsts,
   generateDefaultQuery,
   generateDefaultTx,
-  generateDefaultRpc
+  generateDefaultRpc,
+  generateDefaultLookup
 } from '@polkadot/typegen/generate';
 import { registerDefinitions } from '@polkadot/typegen/util';
 // import generateMobx from '@open-web3/api-mobx/scripts/mobx';

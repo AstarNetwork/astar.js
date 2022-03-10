@@ -1,5 +1,4 @@
-import { DeriveCustom } from '@polkadot/api-derive';
-import * as staking from './staking';
+import type { DeriveCustom } from '@polkadot/api-base/types';
 
 export const derive: DeriveCustom = {
   dappStaking: staking as unknown as DeriveCustom[string]

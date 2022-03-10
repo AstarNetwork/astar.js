@@ -1,0 +1,39 @@
+{
+  "extends": "@polkadot/dev/config/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@astar-network/astar-api": [
+        "api/src"
+      ],
+      "@astar-network/astar-api/*": [
+        "api/src/*"
+      ],
+      "@astar-network/astar-api-derive": [
+        "api-derive/src"
+      ],
+      "@astar-network/astar-api-derive/*": [
+        "api-derive/src/*"
+      ],
+      "@astar-network/astar-types": [
+        "types/src"
+      ],
+      "@astar-network/astar-types/*": [
+        "types/src/*"
+      ],
+      "@astar-network/astar-type-definitions": [
+        "type-definitions/src"
+      ],
+      "@astar-network/astar-type-definitions/*": [
+        "type-definitions/src/*"
+      ],
+      "@astar-network/astar-sdk-core":[
+        "sdk-core/src"
+      ],
+      "@astar-network/astar-sdk-core/*": [
+        "sdk-core/src/*"
+      ],
+    },
+    "skipLibCheck": true
+  }
+ }
