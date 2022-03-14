@@ -185,13 +185,13 @@ function loopFunc(fn) {
 }
 
 gitSetup();
-// gitBump();
+gitBump();
 npmSetup();
 
 runClean();
 runCheck();
-runTest();
+// runTest();
 runBuild();
 
-// gitPush();
+gitPush();
 loopFunc(npmPublish);
