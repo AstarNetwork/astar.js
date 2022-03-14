@@ -1,7 +1,9 @@
 {
-  "extends": "@polkadot/dev/config/tsconfig.json",
+  "extends": "@open-web3/dev-config/config/tsconfig.json",
   "compilerOptions": {
     "composite": true,
+    "module": "CommonJS",
+    "target": "es2019",
     "paths": {
       "@astar-network/astar-api": [
         "api/src"
