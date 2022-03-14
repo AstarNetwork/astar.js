@@ -12,7 +12,7 @@
     "url": "https://github.com/webb/api.git"
   },
   "sideEffects": false,
-  "version": "0.1.5-6",
+  "version": "0.1.5-7",
   "workspaces": [
     "packages/*",
     "examples/*"
