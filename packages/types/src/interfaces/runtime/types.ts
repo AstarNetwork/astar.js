@@ -367,8 +367,20 @@ export interface SignedBlockWithJustifications extends Struct {
 /** @name Slot */
 export interface Slot extends u64 {}
 
+/** @name SlotDuration */
+export interface SlotDuration extends u64 {}
+
 /** @name StorageData */
 export interface StorageData extends Bytes {}
+
+/** @name StorageInfo */
+export interface StorageInfo extends Struct {
+  readonly palletName: Bytes;
+  readonly storage_name: Bytes;
+  readonly prefix: Bytes;
+  readonly maxValues: Option<u32>;
+  readonly maxSize: Option<u32>;
+}
 
 /** @name StorageProof */
 export interface StorageProof extends Struct {
@@ -383,6 +395,9 @@ export interface TransactionInfo extends Struct {
   readonly blockChunks: u32;
 }
 
+/** @name TransactionLongevity */
+export interface TransactionLongevity extends u64 {}
+
 /** @name TransactionPriority */
 export interface TransactionPriority extends u64 {}
 
@@ -391,6 +406,9 @@ export interface TransactionStorageProof extends Struct {
   readonly chunk: Bytes;
   readonly proof: Vec<Bytes>;
 }
+
+/** @name TransactionTag */
+export interface TransactionTag extends Bytes {}
 
 /** @name U32F32 */
 export interface U32F32 extends UInt {}
