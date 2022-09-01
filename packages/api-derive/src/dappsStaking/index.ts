@@ -22,7 +22,9 @@ export function stakers(
           for (const eraInfo of res) {
             const eraStakers = Array.from(eraInfo[1].unwrap().stakers.keys());
             for (const staker of eraStakers) {
-              if (!stakers.includes(staker)) stakers.push(staker);
+              if (!stakers.includes(staker)) {
+                stakers.push(staker);
+              }
             }
           }
           return stakers;
