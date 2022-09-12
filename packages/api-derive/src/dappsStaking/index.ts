@@ -8,6 +8,9 @@ import { ContractAddress } from '../types';
 
 export const getAddressEnum = (address: string) => ({ Evm: address });
 
+/**
+ * @deprecated stakers does not return results
+ */
 export function stakers(
   instanceId: string,
   api: ApiInterfaceRx
