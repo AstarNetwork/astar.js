@@ -19,12 +19,6 @@ export const defaultAmountWithDecimals = (
     return formatFixed(hexValue, decimal);
   }
 
-  try {
-    const hexValue = value.toJSON();
-    return formatFixed(hexValue, decimal);
-  } catch (error) {
-    const bigValue = strToBig(value.toString());
-    const hexValue = bigValue.toJSON();
-    return formatFixed(hexValue, decimal);
-  }
+  const bigValue = strToBig(value.toString());
+  return formatFixed(bigValue, decimal);
 };
