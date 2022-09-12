@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { GenericAccountId, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericEthereumAccountId, GenericLookupSource, GenericMultiAddress, StorageKey } from '@polkadot/types';
+import type { GenericAccountId32, GenericAccountId33, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericEthereumAccountId, GenericLookupSource, GenericMultiAddress, StorageKey } from '@polkadot/types';
 import type { BTreeMap, Bytes, Compact, DoNotConstruct, Enum, Int, Null, Option, Struct, U8aFixed, UInt, Vec, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AuthorityId } from '@polkadot/types/interfaces/consensus';
@@ -16,7 +16,10 @@ export interface AccountId extends AccountId32 {}
 export interface AccountId20 extends GenericEthereumAccountId {}
 
 /** @name AccountId32 */
-export interface AccountId32 extends GenericAccountId {}
+export interface AccountId32 extends GenericAccountId32 {}
+
+/** @name AccountId33 */
+export interface AccountId33 extends GenericAccountId33 {}
 
 /** @name AccountIdOf */
 export interface AccountIdOf extends AccountId {}
@@ -367,8 +370,20 @@ export interface SignedBlockWithJustifications extends Struct {
 /** @name Slot */
 export interface Slot extends u64 {}
 
+/** @name SlotDuration */
+export interface SlotDuration extends u64 {}
+
 /** @name StorageData */
 export interface StorageData extends Bytes {}
+
+/** @name StorageInfo */
+export interface StorageInfo extends Struct {
+  readonly palletName: Bytes;
+  readonly storage_name: Bytes;
+  readonly prefix: Bytes;
+  readonly maxValues: Option<u32>;
+  readonly maxSize: Option<u32>;
+}
 
 /** @name StorageProof */
 export interface StorageProof extends Struct {
@@ -383,6 +398,9 @@ export interface TransactionInfo extends Struct {
   readonly blockChunks: u32;
 }
 
+/** @name TransactionLongevity */
+export interface TransactionLongevity extends u64 {}
+
 /** @name TransactionPriority */
 export interface TransactionPriority extends u64 {}
 
@@ -391,6 +409,9 @@ export interface TransactionStorageProof extends Struct {
   readonly chunk: Bytes;
   readonly proof: Vec<Bytes>;
 }
+
+/** @name TransactionTag */
+export interface TransactionTag extends Bytes {}
 
 /** @name U32F32 */
 export interface U32F32 extends UInt {}

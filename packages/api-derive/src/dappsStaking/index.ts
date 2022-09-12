@@ -8,6 +8,9 @@ import { ContractAddress } from '../types';
 
 export const getAddressEnum = (address: string) => ({ Evm: address });
 
+/**
+ * @deprecated stakers does not return results
+ */
 export function stakers(
   instanceId: string,
   api: ApiInterfaceRx
@@ -20,9 +23,13 @@ export function stakers(
           const stakers: AccountId[] = [];
           // TODO this is inefficient. Expect performance to decrease as chain gets longer.
           for (const eraInfo of res) {
-            const eraStakers = Array.from(eraInfo[1].unwrap().stakers.keys());
-            for (const staker of eraStakers) {
-              if (!stakers.includes(staker)) stakers.push(staker);
+            if (eraInfo[1].unwrap().stakers) {
+              const eraStakers = Array.from(eraInfo[1].unwrap().stakers.keys());
+              for (const staker of eraStakers) {
+                if (!stakers.includes(staker)) {
+                  stakers.push(staker);
+                }
+              }
             }
           }
           return stakers;
