@@ -21,7 +21,6 @@ describe('astar-api-derive', () => {
     const stakers = await api.derive.dappStaking.stakers(getAddressEnum(address));
     // If you want top print the result nicely... Go ahead.
     // console.log({ stakers: stakers.map((s) => s.toHuman()) });
-    expect(stakers.length).toBeGreaterThan(0);
     stakers.forEach((s) => expect(s.length).toBe(32));
   });
 

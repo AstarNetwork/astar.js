@@ -1,14 +1,20 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/consts';
+
 import type { Perbill } from '@astar-network/astar-types/interfaces/runtime';
-import type { ApiTypes } from '@polkadot/api-base/types';
+import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
 import type { u128, u16, u32 } from '@polkadot/types-codec';
 import type { Codec } from '@polkadot/types-codec/types';
 import type { FrameSupportPalletId } from '@polkadot/types/lookup';
 
+export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
+
 declare module '@polkadot/api-base/types/consts' {
-  export interface AugmentedConsts<ApiType extends ApiTypes> {
+  interface AugmentedConsts<ApiType extends ApiTypes> {
     blockReward: {
       /**
        * The amount of issuance for each block.
