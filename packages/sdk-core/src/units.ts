@@ -24,6 +24,9 @@ export const getUnitNames = () => {
 
 export const getUnit = (unitType: string) => {
   const index = arrUnitNames.findIndex((elem) => elem === unitType);
+  if (index === -1) {
+    return 0;
+  }
   return arrUnitPrefixes[index];
 };
 
