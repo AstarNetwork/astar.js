@@ -1,9 +1,9 @@
 {
   "name": "@astar-network/astar-types",
-  "version": "0.1.5-7",
+  "version": "0.1.8",
   "description": "Polkadot.js type definations for Astar Network",
   "main": "index.js",
-  "author": "Webb Developers <drew@webb.tools>",
+  "author": "Astar Network <nikhil@astar.network>",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public",
@@ -12,14 +12,14 @@
   "repository": {
     "directory": "packages/api-types",
     "type": "git",
-    "url": "https://github.com/webb-tools/astar.js"
+    "url": "https://github.com/astarNetwork/astar.js"
   },
   "bugs": {
-    "url": "https://github.com/webb-tools/astar.js/issues"
+    "url": "https://github.com/astarNetwork/astar.js/issues"
   },
-  "homepage": "https://github.com/webb-tools/astar.js",
+  "homepage": "https://github.com/astarNetwork/astar.js",
   "dependencies": {
-    "@astar-network/astar-type-definitions": "0.1.5-7",
+    "@astar-network/astar-type-definitions": "0.1.8",
     "@babel/runtime": "^7.10.2",
     "@open-web3/api-mobx": "^1.0.2-0",
     "@open-web3/orml-types": "^1.0.2-0",

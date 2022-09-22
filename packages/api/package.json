@@ -1,9 +1,9 @@
 {
   "name": "@astar-network/astar-api",
-  "version": "0.1.5-7",
+  "version": "0.1.8",
   "description": "Astar JS API",
   "main": "index.js",
-  "author": "Webb Developers <drew@webb.tools>",
+  "author": "Astar Network <nikhil@astar.network>",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public",
@@ -12,15 +12,15 @@
   "repository": {
     "directory": "packages/api",
     "type": "git",
-    "url": "https://github.com/webb-tools/astar.js"
+    "url": "https://github.com/astarNetwork/astar.js"
   },
   "bugs": {
-    "url": "https://github.com/webb-tools/astar.js/issues"
+    "url": "https://github.com/astarNetwork/astar.js/issues"
   },
-  "homepage": "https://github.com/webb-tools/astar.js",
+  "homepage": "https://github.com/astarNetwork/astar.js",
   "dependencies": {
-    "@astar-network/astar-api-derive": "0.1.5-7",
-    "@astar-network/astar-types": "0.1.5-7",
+    "@astar-network/astar-api-derive": "0.1.8",
+    "@astar-network/astar-types": "0.1.8",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-api-derive": "^1.0.2-0",
     "@polkadot/api": "^9.2.4"

@@ -5,7 +5,7 @@ This library provides additional typing information for user to access Astar's m
 
 # Getting Started
 
-More documentation and examples on [wiki](https://github.com/webb-tools/astar.js/wiki)
+More documentation and examples on [wiki](https://github.com/astarNetwork/astar.js/wiki)
 
 - Install dependencies
 

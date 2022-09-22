@@ -1,9 +1,9 @@
 {
   "name": "@astar-network/astar-sdk-core",
-  "version": "0.1.5-7",
+  "version": "0.1.8",
   "type": "module",
   "description": "the core for astar SDK",
-  "author": "Webb Developers <drew@webb.tools>",
+  "author": "Astar Network <nikhil@astar.network>",
   "main": "index.js",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -13,12 +13,12 @@
   "repository": {
     "directory": "packages/sdk-core",
     "type": "git",
-    "url": "https://github.com/webb-tools/astar.js"
+    "url": "https://github.com/astarNetwork/astar.js"
   },
   "bugs": {
-    "url": "https://github.com/webb-tools/astar.js/issues"
+    "url": "https://github.com/astarNetwork/astar.js/issues"
   },
-  "homepage": "https://github.com/webb-tools/astar.js",
+  "homepage": "https://github.com/astarNetwork/astar.js",
   "dependencies": {
     "@ethersproject/bignumber": "^5.6.2",
     "@polkadot/keyring": "^10.1.7",
