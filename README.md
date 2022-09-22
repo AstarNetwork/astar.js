@@ -57,6 +57,10 @@ console.log(data.toHuman())
   - Polkadot.js type definitions for Astar Network.
 - [types](./packages/types)
   - Polkadot.js type definitions for Astar Network.
+- [sdk-core](./packages/sdk-core)
+  - core api libraries
+- [precomplies](./packages/precomplies)
+  - precomplied contracts abi
 
 ## How-to
 
