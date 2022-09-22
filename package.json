@@ -1,15 +1,15 @@
 {
-  "bugs": "https://github.com/astarNetwork/astar.js/issues",
+  "bugs": "https://github.com/AstarNetwork/astar.js/issues",
   "engines": {
     "yarn": "^1.10.1"
   },
-  "homepage": "https://github.com/astarNetwork/astar.js#readme",
+  "homepage": "https://github.com/AstarNetwork/astar.js#readme",
   "license": "Apache-2.0",
   "packageManager": "yarn@3.1.1",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/astarNetwork/astar.js.git"
+    "url": "https://github.com/AstarNetwork/astar.js.git"
   },
   "sideEffects": false,
   "version": "0.1.8",
