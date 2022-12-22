@@ -12,7 +12,7 @@ More documentation and examples on [wiki](https://github.com/astarNetwork/astar.
 **📝NOTE: @polkadod/api version is pinned**
 
 ```bash
-yarn add @polkadot/api@^6.5.1 @astar-network/astar-api@beta
+yarn add @polkadot/api @astar-network/astar-api
 ```
 
 - Create API instance
