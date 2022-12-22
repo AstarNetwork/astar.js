@@ -39,7 +39,7 @@ async function main() {
 main()
 ```
 
-- Use api to interact with node
+- Use api to interact with node.
 
 ```ts
 // query and display account data
