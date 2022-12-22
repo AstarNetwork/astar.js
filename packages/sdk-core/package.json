@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-sdk-core",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "type": "module",
   "description": "the core for astar SDK",
   "author": "Astar Network <info@astar.network>",
