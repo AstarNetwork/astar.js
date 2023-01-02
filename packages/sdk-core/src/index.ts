@@ -1,4 +1,3 @@
-export * from './connection';
 export * from './converter';
 export * from './defaultAmountWithDecimals';
 export * from './formatUnitAmount';
