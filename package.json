@@ -12,7 +12,7 @@
     "url": "https://github.com/AstarNetwork/astar.js.git"
   },
   "sideEffects": false,
-  "version": "0.1.8",
+  "version": "0.1.12",
   "workspaces": [
     "packages/*",
     "examples/*"
