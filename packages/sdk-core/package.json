@@ -20,9 +20,9 @@
   "homepage": "https://github.com/AstarNetwork/astar.js",
   "dependencies": {
     "@ethersproject/bignumber": "^5.6.2",
-    "@polkadot/keyring": "^10.1.7",
-    "@polkadot/util": "^10.1.4",
-    "@polkadot/util-crypto": "^10.1.4",
+    "@polkadot/keyring": "^10.2.2",
+    "@polkadot/util": "^10.2.2",
+    "@polkadot/util-crypto": "^10.2.2",
     "bn.js": "^5.2.1",
     "ethers": "^5.6.9"
   }
