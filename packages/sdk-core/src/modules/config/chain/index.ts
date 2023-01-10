@@ -7,3 +7,4 @@ export enum astarChain {
 
 export const ASTAR_SS58_FORMAT = 5;
 export const ASTAR_DECIMALS = 18;
+export const SUBSTRATE_SS58_FORMAT = 42;

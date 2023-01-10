@@ -1,3 +1,6 @@
+import { SubmittableExtrinsic } from '@polkadot/api/types';
+export type ExtrinsicPayload = SubmittableExtrinsic<'promise'>;
+
 export const objToArray = (obj: any): any[] => {
   const keys = Object.keys(obj);
   const array = keys.map((k) => obj[k]);
