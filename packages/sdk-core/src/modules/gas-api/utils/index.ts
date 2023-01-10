@@ -9,7 +9,7 @@ import { astarChain } from '../../config';
 export const getEvmGas = async (web3: Web3, selectedGasPrice: string): Promise<string> => {
   const gasPriceFallback = await web3.eth.getGasPrice();
   const gasPrice = selectedGasPrice !== '0' ? selectedGasPrice : gasPriceFallback;
-  return gasPrice as string;
+  return gasPrice;
 };
 
 export const getEvmGasCost = async ({ isNativeToken,
@@ -42,7 +42,7 @@ export const getEvmGasCost = async ({ isNativeToken,
     };
 
   const numEstimatedGas = await web3.eth.estimateGas(tx);
-  const estimatedGas = new BN(numEstimatedGas as number);
+  const estimatedGas = new BN(numEstimatedGas);
   const data = {
     ...evmGasPrice,
     slow: ethers.utils.formatEther(estimatedGas.mul(new BN(evmGasPrice.slow)).toString()),
@@ -78,9 +78,9 @@ export const fetchEvmGasPrice = async ({ network,
     const { tip } = data.data;
     const { priorityFeePerGas } = data.data.eip1559;
     const nativeTipPrice = {
-      slow: formatTip(tip.slow as string),
-      average: formatTip(tip.average as string),
-      fast: formatTip(tip.fast as string)
+      slow: formatTip(tip.slow),
+      average: formatTip(tip.average),
+      fast: formatTip(tip.fast)
     };
 
     if (isEip1559) {
