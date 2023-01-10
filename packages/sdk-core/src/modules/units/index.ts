@@ -2,9 +2,6 @@ import { BigNumber, formatFixed } from '@ethersproject/bignumber';
 import { isString } from '@polkadot/util';
 import BN from 'bn.js';
 
-export const ASTAR_SS58_FORMAT = 5;
-export const ASTAR_DECIMALS = 18;
-
 const strToBig = (str: string): BigNumber => BigNumber.from(str.toString());
 
 /**
@@ -55,4 +52,31 @@ export const nFormatter = (num: number): string => {
     notation: 'compact',
     compactDisplay: 'short'
   }).format(num);
+};
+
+/**
+ * Formats number and adds weight prefix e.g. 10000 formats to 10k
+ * @param value Value to format
+ * @param digits Number of decimal places
+ * @returns Formated number
+ */
+export const formatNumber = (value: number, digits: number): string => {
+  const lookup = [
+    { value: 1, symbol: '' },
+    { value: 1e3, symbol: 'k' },
+    { value: 1e6, symbol: 'M' },
+    { value: 1e9, symbol: 'B' },
+    { value: 1e12, symbol: 'T' },
+    { value: 1e15, symbol: 'P' },
+    { value: 1e18, symbol: 'E' }
+  ];
+  const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+  const item = lookup
+    .slice()
+    .reverse()
+    .find(function (item) {
+      return value >= item.value;
+    });
+
+  return item ? (value / item.value).toFixed(digits).replace(rx, '$1') + item.symbol : '0';
 };
