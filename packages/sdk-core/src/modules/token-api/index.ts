@@ -1,3 +1,5 @@
+export * from './utils';
+
 export const TOKEN_API_URL = 'https://api.astar.network/api';
 
 export type ChartData = [number, number][];
