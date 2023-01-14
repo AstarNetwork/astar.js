@@ -6,3 +6,4 @@ export * from './config';
 export * from './dapp-staking';
 export * from './gas-api';
 export * from './token-api';
+export * from './price';
