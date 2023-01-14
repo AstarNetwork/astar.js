@@ -7,16 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
-steps:
-      - uses: actions/checkout@v2
+        node-version: [14.x]
+    steps:
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - name: lint
         run: |
-          yarn
+          yarn install --immutable | grep -v 'YN0013'
           yarn lint
 
   test:
@@ -24,16 +24,16 @@ steps:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: unit_test
+      - name: test
         run: |
-          yarn
+          yarn install --immutable | grep -v 'YN0013'
           yarn test
 
   build_code:
@@ -41,14 +41,14 @@ steps:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - name: build
         run: |
-          yarn
+          yarn install --immutable | grep -v 'YN0013'
           yarn build
