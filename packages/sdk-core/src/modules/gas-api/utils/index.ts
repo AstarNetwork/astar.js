@@ -97,9 +97,9 @@ export const fetchEvmGasPrice = async ({ network,
     } else {
       const { slow, average, fast } = data.data;
       const evmGasPrice = {
-        slow: slow,
-        average: average,
-        fast: fast,
+        slow,
+        average,
+        fast,
         baseFeePerGas: '0'
       };
       return {
