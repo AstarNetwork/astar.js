@@ -1,4 +1,4 @@
-name: PR
+name: PR Check
 on: [pull_request]
 
 jobs:
@@ -7,48 +7,49 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: lint
         run: |
-          yarn install --immutable | grep -v 'YN0013'
+          yarn
           yarn lint
-
-  test:
-    name: Testing
+        working-directory: ./
+  run_tests:
+    name: Unit Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: test
+      - name: unit_test
         run: |
-          yarn install --immutable | grep -v 'YN0013'
+          yarn
           yarn test
-
+        working-directory: ./
   build_code:
     name: Build Code
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - name: build
         run: |
-          yarn install --immutable | grep -v 'YN0013'
+          yarn
           yarn build
+        working-directory: ./
