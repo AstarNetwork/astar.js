@@ -58,7 +58,7 @@ export const nFormatter = (num: number): string => {
  * Formats number and adds weight prefix e.g. 10000 formats to 10k
  * @param value Value to format
  * @param digits Number of decimal places
- * @returns Formated number
+ * @returns Formate number
  */
 export const formatNumber = (value: number, digits: number): string => {
   const lookup = [

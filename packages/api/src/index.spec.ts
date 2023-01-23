@@ -18,7 +18,8 @@ describe('astar-api', () => {
       fail('API is not initialized');
     }
     const stakingByEra = await api.query.dappsStaking.contractEraStake.entries(getAddressEnum(address));
-    stakingByEra.forEach(([era, stakeInfo]) => {
+    // stakingByEra.forEach(([era, stakeInfo]) => {
+    stakingByEra.forEach(([_, stakeInfo]) => {
       // console.log({
       //   era: (era.toHuman() as any[])[1],
       //   stakeInfo: `${Object.keys(stakeInfo.unwrap().stakers.toHuman()).length} stakers`

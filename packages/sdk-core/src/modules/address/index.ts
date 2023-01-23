@@ -81,7 +81,7 @@ export function getShortenAddress(address: string, place = 6): string {
   return address ? `${address.slice(0, place)}${'.'.repeat(place)}${address.slice(-place)}` : '';
 }
 
-export const getPubkeyFromSS58Addr = (ss58MappedAddr: string) => {
+export const getPubkeyFromSS58Addr = (ss58MappedAddr: string): string => {
   const publicKey = decodeAddress(ss58MappedAddr);
   const hexPublicKey = u8aToHex(publicKey);
   return hexPublicKey;

@@ -11,7 +11,7 @@ interface SystemAccount extends Struct {
   };
 }
 
-export const fetchNativeBalance = async ({ api, address }: { api: ApiPromise; address: string }) => {
+export const fetchNativeBalance = async ({ api, address }: { api: ApiPromise; address: string }): Promise<string> => {
   try {
     const accountInfo = await api.query.system.account<SystemAccount>(address);
     const balance = accountInfo.data.free;
@@ -30,7 +30,7 @@ export const getVested = ({ currentBlock,
   startBlock: BN;
   perBlock: BN;
   locked: BN;
-}) => {
+}): BN => {
   if (currentBlock.lt(startBlock)) {
     return new BN(0);
   }

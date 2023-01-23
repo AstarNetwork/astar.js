@@ -12,17 +12,6 @@ export const getUsdBySymbol = async (symbol: string): Promise<number> => {
   }
 };
 
-export const numFormatter = (num: number): string => {
-  if (num > 999 && num < 1000000) {
-    return (num / 1000).toFixed(1) + 'K';
-  }
-  if (num > 1000000) {
-    return (num / 1000000).toFixed(1) + 'M';
-  }
-
-  return String(num);
-};
-
 export const calUsdAmount = async ({ symbol,
   amount }: {
   symbol: string;

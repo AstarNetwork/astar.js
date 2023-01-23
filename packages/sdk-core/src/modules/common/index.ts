@@ -7,7 +7,7 @@ export const objToArray = (obj: any): any[] => {
   return array;
 };
 
-export const checkIsNullOrUndefined = (value: any) => {
+export const checkIsNullOrUndefined = (value: any): boolean => {
   return value === null || value === undefined;
 };
 

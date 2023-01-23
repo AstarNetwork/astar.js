@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     curly: 'off',
     'array-callback-return': 'off',
     'no-useless-escape': 'off',
