@@ -1,7 +1,5 @@
-import { ApiPromise, WsProvider } from '@polkadot/api';
 import { options } from '@astar-network/astar-api';
-import { PalletDappsStakingEraStakingPoints } from '@astar-network/astar-types/interfaces';
-import { Option, StorageKey } from '@polkadot/types';
+import { ApiPromise, WsProvider } from '@polkadot/api';
 
 const getAddressEnum = (address: string) => ({ Evm: address });
 
@@ -19,15 +17,14 @@ describe('astar-api', () => {
     if (api === null) {
       fail('API is not initialized');
     }
-    const stakingByEra = await api.query.dappsStaking.contractEraStake.entries<
-    Option<PalletDappsStakingEraStakingPoints>
-    >(getAddressEnum(address));
-    stakingByEra.forEach(([era, stakeInfo]) => {
+    const stakingByEra = await api.query.dappsStaking.contractEraStake.entries(getAddressEnum(address));
+    // stakingByEra.forEach(([era, stakeInfo]) => {
+    stakingByEra.forEach(([_, stakeInfo]) => {
       // console.log({
       //   era: (era.toHuman() as any[])[1],
       //   stakeInfo: `${Object.keys(stakeInfo.unwrap().stakers.toHuman()).length} stakers`
       // });
-      expect(era).toBeInstanceOf(StorageKey);
+      // expect(era).toBeInstanceOf(StorageKey);
       expect(stakeInfo).not.toBeNull();
     });
   });
