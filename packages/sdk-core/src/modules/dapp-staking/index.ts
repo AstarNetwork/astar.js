@@ -1,6 +1,6 @@
 import { ExtrinsicPayload, isValidAddressPolkadotAddress } from '@astar-network/astar-sdk-core';
 import { ApiPromise } from '@polkadot/api';
-import { bool, Option, Struct } from '@polkadot/types';
+import { bool, Compact, Option, Struct, u64 } from '@polkadot/types';
 import { AccountId, Balance } from '@polkadot/types/interfaces';
 import { BN } from '@polkadot/util';
 import { isEthereumAddress } from '@polkadot/util-crypto';
@@ -55,9 +55,25 @@ export interface State {
   };
 }
 
-export interface PayloadWithWeight {
-  payload: ExtrinsicPayload;
-  weight: BN;
+export class PayloadWithWeight {
+  public isWeightV2: boolean;
+
+  constructor(public payload: ExtrinsicPayload, public weight: WeightV2) {
+    this.isWeightV2 = 'proofSize' in weight && 'refTime' in weight;
+  }
+
+  public asWeightV1(): BN {
+    return this.weight.refTime.toBn();
+  }
+
+  public asWeightV2(): WeightV2 {
+    return this.weight;
+  }
+}
+
+export interface WeightV2 {
+  refTime: Compact<u64>;
+  proofSize: Compact<u64>;
 }
 
 export const checkIsDappOwner = async ({ dappAddress,
@@ -261,11 +277,11 @@ const getTxsForClaimDapp = async ({ dappAddress,
 
     if (era === e) {
       const tx = api.tx.dappsStaking.claimDapp(getDappAddressEnum(dappAddress), era);
-      transactions.push({ payload: tx, weight: info.weight });
+      transactions.push(new PayloadWithWeight(tx, info.weight));
     } else {
       // Memo: e -> skip to the era that have been staked after unstaked
       const tx = api.tx.dappsStaking.claimDapp(getDappAddressEnum(dappAddress), e);
-      transactions.push({ payload: tx, weight: info.weight });
+      transactions.push(new PayloadWithWeight(tx, info.weight));
       era = e;
     }
   }
@@ -293,7 +309,7 @@ const getTxsForClaimStaker = async ({ dappAddress,
 
   for (let i = 0; i < numberOfUnclaimedEra; i++) {
     const tx = api.tx.dappsStaking.claimStaker(getDappAddressEnum(dappAddress));
-    transactions.push({ payload: tx, weight: claimInfo.weight });
+    transactions.push(new PayloadWithWeight(tx, claimInfo.weight));
   }
 
   if (!isRegistered) {
@@ -301,7 +317,7 @@ const getTxsForClaimStaker = async ({ dappAddress,
     const withdrawalInfo = await api.tx.dappsStaking
       .withdrawFromUnregistered(getDappAddressEnum(dappAddress))
       .paymentInfo(senderAddress);
-    transactions.push({ payload: tx, weight: withdrawalInfo.weight });
+    transactions.push(new PayloadWithWeight(tx, withdrawalInfo.weight));
   }
 
   return transactions;

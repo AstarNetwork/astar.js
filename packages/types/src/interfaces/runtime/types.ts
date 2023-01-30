@@ -426,7 +426,7 @@ export interface ValidatorIdOf extends ValidatorId {}
 export interface Wasm extends AccountId {}
 
 /** @name Weight */
-export interface Weight extends WeightV1 {}
+export interface Weight extends WeightV2 {}
 
 /** @name WeightMultiplier */
 export interface WeightMultiplier extends Fixed64 {}
