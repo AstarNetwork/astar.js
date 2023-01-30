@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-api-derive",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Astar JS API",
   "main": "index.js",
   "author": "Astar Network <info@astar.network>",
@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/AstarNetwork/astar.js",
   "dependencies": {
-    "@astar-network/astar-types": "0.1.13",
+    "@astar-network/astar-types": "0.1.14",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-types": "^1.0.2-0",
-    "@polkadot/api-derive": "^9.11.2"
+    "@polkadot/api-derive": "^9.12.1"
   }
 }
