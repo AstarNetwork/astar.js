@@ -17,7 +17,7 @@ async function contract(address: string) {
   const keyring = new Keyring({ type: 'sr25519' });
   const alice = keyring.addFromUri('//Alice', { name: 'Alice default' });
 
-  const { refTime, proofSize } = await api.consts.system.blockWeights['perClass'].maxExtrinsic;
+  const { refTime, proofSize } = await api.consts.system.blockWeights['perClass'].operational.maxExtrinsic;
 
   const { gasRequired } = await contract.query.flip(
     alice.address,
