@@ -48,9 +48,6 @@ async function extrinsics(blockNumber: number) {
   });
 }
 
-
-
-
 (async () => {
   await connectToShiden();
   await connectToAstar();
