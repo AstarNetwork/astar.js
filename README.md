@@ -9,11 +9,11 @@ More documentation and examples on [wiki](https://github.com/astarNetwork/astar.
 
 - Install dependencies
 
-**📝NOTE: @polkadod/api version is pinned**
-
 ```bash
-yarn add @polkadot/api @astar-network/astar-api
+yarn add @polkadot/api@9.11.2 @astar-network/astar-api@0.1.13
 ```
+
+**📝NOTE: Please use @polkadod/api version 9.11.2 with  @astar-network/astar-api version 0.1.13 **
 
 - Create API instance
 
@@ -69,3 +69,7 @@ console.log(data.toHuman())
 ```shell
 yarn up @polkadot/api @polkadot/api-augment @polkadot/api-derive @polkadot/rpc-core @polkadot/types @polkadot/types-codec
 ```
+
+## Contract Examples
+
+Examples of contracts can be found in the [examples](./examples/contract) folder.
