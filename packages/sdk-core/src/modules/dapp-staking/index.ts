@@ -275,13 +275,18 @@ const getTxsForClaimDapp = async ({ dappAddress,
     // When: User claims after dApp has been unstaked
     if (!e) break;
 
+    const weight = api.registry.createType('WeightV2', {
+      proofSize: info.weight.proofSize,
+      refTime: info.weight.refTime
+    });
+
     if (era === e) {
       const tx = api.tx.dappsStaking.claimDapp(getDappAddressEnum(dappAddress), era);
-      transactions.push(new PayloadWithWeight(tx, info.weight));
+      transactions.push(new PayloadWithWeight(tx, weight));
     } else {
       // Memo: e -> skip to the era that have been staked after unstaked
       const tx = api.tx.dappsStaking.claimDapp(getDappAddressEnum(dappAddress), e);
-      transactions.push(new PayloadWithWeight(tx, info.weight));
+      transactions.push(new PayloadWithWeight(tx, weight));
       era = e;
     }
   }
@@ -307,9 +312,14 @@ const getTxsForClaimStaker = async ({ dappAddress,
     })
   ]);
 
+  const weight = api.registry.createType('WeightV2', {
+    proofSize: claimInfo.weight.proofSize,
+    refTime: claimInfo.weight.refTime
+  });
+
   for (let i = 0; i < numberOfUnclaimedEra; i++) {
     const tx = api.tx.dappsStaking.claimStaker(getDappAddressEnum(dappAddress));
-    transactions.push(new PayloadWithWeight(tx, claimInfo.weight));
+    transactions.push(new PayloadWithWeight(tx, weight));
   }
 
   if (!isRegistered) {
@@ -317,7 +327,11 @@ const getTxsForClaimStaker = async ({ dappAddress,
     const withdrawalInfo = await api.tx.dappsStaking
       .withdrawFromUnregistered(getDappAddressEnum(dappAddress))
       .paymentInfo(senderAddress);
-    transactions.push(new PayloadWithWeight(tx, withdrawalInfo.weight));
+    const weight = api.registry.createType('WeightV2', {
+      proofSize: withdrawalInfo.weight.proofSize,
+      refTime: withdrawalInfo.weight.refTime
+    });
+    transactions.push(new PayloadWithWeight(tx, weight));
   }
 
   return transactions;
