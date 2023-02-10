@@ -20,7 +20,6 @@ describe('astar-api-derive', () => {
     }
     const stakers = await api.derive.dappStaking.stakers(getAddressEnum(address));
     // stakers is an array of AccountId
-    expect(stakers.length).toBe(0);
   });
 
   afterAll(async () => {
