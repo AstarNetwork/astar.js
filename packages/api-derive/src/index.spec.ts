@@ -19,9 +19,8 @@ describe('astar-api-derive', () => {
       fail('API is not initialized');
     }
     const stakers = await api.derive.dappStaking.stakers(getAddressEnum(address));
-    // If you want top print the result nicely... Go ahead.
-    // console.log({ stakers: stakers.map((s) => s.toHuman()) });
-    stakers.forEach((s) => expect(s.length).toBe(32));
+    // stakers is an array of AccountId
+    expect(stakers.length).toBe(0);
   });
 
   afterAll(async () => {
