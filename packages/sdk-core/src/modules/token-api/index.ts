@@ -22,11 +22,62 @@ export interface XvmAssetsTransferHistory {
 }
 
 export interface StatsDetail {
-  era: string;
-  timestamp: string;
-  numberOfCalls: string;
-  uniqueActiveUsers: string;
+  timestamp: number;
+  date: string;
+  value: number;
 }
+
 
 export type StatsType = 'uniqueActiveUsers' | 'numberOfCalls';
 export type Duration = '7 days' | '30 days' | '90 days' | '1 year';
+export type Category = 'defi' | 'gamefi' | 'infra' | 'nft' | 'others';
+
+
+export interface LooseObject {
+  [key: string]: any;
+}
+
+export interface Developer {
+  githubAccountUrl: string;
+  twitterAccountUrl: string;
+  linkedInAccountUrl: string;
+  iconFile: string;
+  name: string;
+}
+
+export enum CommunityType {
+  Twitter = 'Twitter',
+  Reddit = 'Reddit',
+  Facebook = 'Facebook',
+  TikTok = 'TikTok',
+  YouTube = 'YouTube',
+  Instagram = 'Instagram',
+  Discord = 'Discord',
+}
+
+
+export interface Community {
+  type: CommunityType;
+  handle: string;
+}
+
+
+export interface DappItem extends LooseObject {
+  name: string;
+  iconUrl: string;
+  description: string;
+  descriptionMarkdown: string;
+  url: string;
+  address: string;
+  license: string;
+  videoUrl: string;
+  tags: string[];
+  forumUrl: string;
+  authorContact: string;
+  gitHubUrl: string;
+  imagesUrl: string[];
+  developers: Developer[];
+  communities: Community[];
+  contractType: string;
+  mainCategory: Category;
+}
