@@ -27,11 +27,9 @@ export interface StatsDetail {
   value: number;
 }
 
-
 export type StatsType = 'uniqueActiveUsers' | 'numberOfCalls';
 export type Duration = '7 days' | '30 days' | '90 days' | '1 year';
 export type Category = 'defi' | 'gamefi' | 'infra' | 'nft' | 'others';
-
 
 export interface LooseObject {
   [key: string]: any;
@@ -55,12 +53,10 @@ export enum CommunityType {
   Discord = 'Discord',
 }
 
-
 export interface Community {
   type: CommunityType;
   handle: string;
 }
-
 
 export interface DappItem extends LooseObject {
   name: string;

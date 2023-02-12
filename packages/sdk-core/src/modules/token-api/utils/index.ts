@@ -175,11 +175,9 @@ export const fetchDappsStats = async ({ dapp,
   return result.data;
 };
 
-export const filterStatsData = ({
-  data,
+export const filterStatsData = ({ data,
   currentFilter,
-  property,
-}: {
+  property }: {
   data: StatsDetail[];
   currentFilter: Duration;
   property: StatsType;
@@ -194,10 +192,8 @@ export const filterStatsData = ({
     });
 };
 
-export const fetchDappTransactions = async ({
-  dapp,
-  network,
-}: {
+export const fetchDappTransactions = async ({ dapp,
+  network }: {
   dapp: DappItem;
   network: string;
 }): Promise<StatsDetail[]> => {
@@ -206,10 +202,8 @@ export const fetchDappTransactions = async ({
   return result.data;
 };
 
-export const fetchDappUAW = async ({
-  dapp,
-  network,
-}: {
+export const fetchDappUAW = async ({ dapp,
+  network }: {
   dapp: DappItem;
   network: string;
 }): Promise<StatsDetail[]> => {
@@ -217,4 +211,3 @@ export const fetchDappUAW = async ({
   const result = await axios.get<StatsDetail[]>(url);
   return result.data;
 };
-
