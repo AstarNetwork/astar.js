@@ -1,4 +1,4 @@
-import { ChartData, TOKEN_API_URL, Duration, XvmAssetsTransferHistory, StatsDetail, StatsType, TransferDetail } from '@astar-network/astar-sdk-core/modules/token-api';
+import { ChartData, TOKEN_API_URL, Duration, XvmAssetsTransferHistory, StatsDetail, StatsType, TransferDetail, DappItem } from '@astar-network/astar-sdk-core/modules/token-api';
 import { formatNumber } from '@astar-network/astar-sdk-core/modules/units';
 import axios from 'axios';
 
@@ -182,15 +182,32 @@ export const filterStatsData = ({ data,
   currentFilter: Duration;
   property: StatsType;
 }): number[][] => {
-  const filteredResult = data.filter(
-    (it) => Number(it.numberOfCalls) !== 0 && Number(it[property]) !== 0
-  );
   const oneDayMilli = 3600000 * 24;
-  return filteredResult
-    .map((it) => [Number(it.timestamp) * 1000, Number(it[property])])
+  return data
+    .map((it) => [Number(it.timestamp) * 1000, Number(it.value)])
     .filter((it) => {
-      const latestTs = Number(filteredResult[filteredResult.length - 1].timestamp) * 1000;
+      const latestTs = Number(data[data.length - 1].timestamp) * 1000;
       const cutoff = latestTs - oneDayMilli * castDurationToDaysNumber(currentFilter);
       return it[0] > cutoff;
     });
+};
+
+export const fetchDappTransactions = async ({ dapp,
+  network }: {
+  dapp: DappItem;
+  network: string;
+}): Promise<StatsDetail[]> => {
+  const url = `${TOKEN_API_URL}/v1/${network}/dapps-staking/stats/transactions?dappName=${dapp.name}&dappUrl=${dapp.url}`;
+  const result = await axios.get<StatsDetail[]>(url);
+  return result.data;
+};
+
+export const fetchDappUAW = async ({ dapp,
+  network }: {
+  dapp: DappItem;
+  network: string;
+}): Promise<StatsDetail[]> => {
+  const url = `${TOKEN_API_URL}/v1/${network}/dapps-staking/stats/uaw?dappName=${dapp.name}&dappUrl=${dapp.url}`;
+  const result = await axios.get<StatsDetail[]>(url);
+  return result.data;
 };
