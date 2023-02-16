@@ -1,9 +1,7 @@
-import { hexToU8a, isHex, stringToU8a, u8aConcat, u8aToHex } from '@polkadot/util';
-import { decodeAddress, encodeAddress, checkAddress, addressToEvm, evmToAddress } from '@polkadot/util-crypto';
-import { blake2AsU8a } from '@polkadot/util-crypto/blake2';
-import Keyring, { createPair } from '@polkadot/keyring';
-import { ethers } from 'ethers';
 import { ASTAR_SS58_FORMAT } from '@astar-network/astar-sdk-core/modules/config';
+import { hexToU8a, isHex, u8aToHex } from '@polkadot/util';
+import { addressToEvm, checkAddress, decodeAddress, encodeAddress, evmToAddress } from '@polkadot/util-crypto';
+import { ethers } from 'ethers';
 
 export const isValidAddressPolkadotAddress = (address: string, prefix?: number): boolean => {
   try {
@@ -17,22 +15,6 @@ export const isValidAddressPolkadotAddress = (address: string, prefix?: number):
     return false;
   }
 };
-
-export function evmConverter(evmAddress = ''): string {
-  try {
-    const addr = hexToU8a(evmAddress);
-    const data = stringToU8a('evm:');
-    const res = blake2AsU8a(u8aConcat(data, addr));
-
-    const mainnetKeyring = new Keyring({ type: 'sr25519', ss58Format: 7 });
-    const mainnetPair = createPair({ toSS58: mainnetKeyring.encodeAddress, type: 'sr25519' }, { publicKey: res });
-
-    const convertedMainnetAddress = mainnetPair.address;
-    return convertedMainnetAddress;
-  } catch (err) {
-    return 'error';
-  }
-}
 
 export const checkSumEvmAddress = (evmAddress: string): string => {
   return ethers.utils.getAddress(evmAddress);
