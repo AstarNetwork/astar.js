@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astar-network/astar-api-derive@0.1.15, @astar-network/astar-api-derive@workspace:packages/api-derive":
+"@astar-network/astar-api-derive@0.1.16, @astar-network/astar-api-derive@workspace:packages/api-derive":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api-derive@workspace:packages/api-derive"
   dependencies:
@@ -30,8 +30,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api@workspace:packages/api"
   dependencies:
-    "@astar-network/astar-api-derive": 0.1.15
-    "@astar-network/astar-types": 0.1.15
+    "@astar-network/astar-api-derive": 0.1.16
+    "@astar-network/astar-types": 0.1.16
     "@babel/runtime": ^7.10.2
     "@open-web3/orml-api-derive": ^1.0.2-0
     "@polkadot/api": ^9.13.6
@@ -46,9 +46,8 @@ __metadata:
   resolution: "@astar-network/astar-sdk-core@workspace:packages/sdk-core"
   dependencies:
     "@ethersproject/bignumber": ^5.6.2
-    "@polkadot/keyring": ^10.2.6
-    "@polkadot/util": ^10.2.6
-    "@polkadot/util-crypto": ^10.2.6
+    "@polkadot/util": ^10.3.1
+    "@polkadot/util-crypto": ^10.3.1
     "@types/jest": ^28.1.1
     axios: ^0.24.0
     bn.js: ^5.2.1
@@ -60,7 +59,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-type-definitions@0.1.15, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
+"@astar-network/astar-type-definitions@0.1.16, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-type-definitions@workspace:packages/type-definitions"
   dependencies:
@@ -79,11 +78,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astar-network/astar-types@0.1.15, @astar-network/astar-types@workspace:packages/types":
+"@astar-network/astar-types@0.1.16, @astar-network/astar-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-types@workspace:packages/types"
   dependencies:
-    "@astar-network/astar-type-definitions": 0.1.15
+    "@astar-network/astar-type-definitions": 0.1.16
     "@babel/runtime": ^7.10.2
     "@open-web3/api-mobx": ^1.0.2-0
     "@open-web3/orml-types": ^1.0.2-0
@@ -3606,7 +3605,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/keyring@npm:^10.2.6, @polkadot/keyring@npm:^10.3.1":
+"@polkadot/keyring@npm:^10.3.1":
   version: 10.3.1
   resolution: "@polkadot/keyring@npm:10.3.1"
   dependencies:
@@ -3788,7 +3787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util-crypto@npm:10.3.1, @polkadot/util-crypto@npm:^10.2.6, @polkadot/util-crypto@npm:^10.3.1":
+"@polkadot/util-crypto@npm:10.3.1, @polkadot/util-crypto@npm:^10.3.1":
   version: 10.3.1
   resolution: "@polkadot/util-crypto@npm:10.3.1"
   dependencies:
@@ -3809,7 +3808,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@polkadot/util@npm:10.3.1, @polkadot/util@npm:^10.2.6, @polkadot/util@npm:^10.3.1":
+"@polkadot/util@npm:10.3.1, @polkadot/util@npm:^10.3.1":
   version: 10.3.1
   resolution: "@polkadot/util@npm:10.3.1"
   dependencies:
