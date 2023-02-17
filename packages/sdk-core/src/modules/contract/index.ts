@@ -18,7 +18,7 @@ const estimateGas = (api: ApiPromise, gasRequired: WeightV2) => {
   return estimatedGas;
 };
 
-export const sendTransaction = async (api: ApiPromise, contract: ContractPromise, method: string, address: string, value: number | string | BN, ...args: any[]): Promise<SubmittableExtrinsic<'promise'>> => {
+export const sendTransaction = async (api: ApiPromise, contract: ContractPromise, method: string, address: string, value: string | number | bigint | BN | undefined, ...args: any[]): Promise<SubmittableExtrinsic<'promise'>> => {
   const result = await contract.query[method](
     address,
     {
