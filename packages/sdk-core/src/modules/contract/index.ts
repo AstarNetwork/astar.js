@@ -1,6 +1,6 @@
 import { ContractPromise } from '@polkadot/api-contract'
-import { ApiPromise, Keyring } from '@polkadot/api'
-import type { WeightV2,  } from '@polkadot/types/interfaces'
+import { ApiPromise } from '@polkadot/api'
+import type { WeightV2 } from '@polkadot/types/interfaces'
 import { SubmittableExtrinsic } from "@polkadot/api/types";
 import { BN } from '@polkadot/util'
 
@@ -25,7 +25,7 @@ const getGasLimit = (api: ApiPromise): WeightV2 =>
     api.consts.system.blockWeights['maxBlock']
   )
 
-export const doTransaction = async (api: ApiPromise, contract: ContractPromise, method: string, address: string, value: string, ...args): Promise<SubmittableExtrinsic<"promise">> => {
+export const sendTransaction = async (api: ApiPromise, contract: ContractPromise, method: string, address: string, value: string, ...args): Promise<SubmittableExtrinsic<"promise">> => {
   const gasLimit = getGasLimit(api)
 
   // { gasRequired, storageDeposit, result }
@@ -38,15 +38,14 @@ export const doTransaction = async (api: ApiPromise, contract: ContractPromise, 
     }
   )
 
-
   if (result.result.isErr) {
-    return result
+    throw result
   }
 
   if (result.result.isOk) {
     const flags = result.result.asOk.flags.toHuman()
     if (flags.includes('Revert')) {
-      return result
+      throw result
     }
   }
 
