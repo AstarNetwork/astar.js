@@ -19,20 +19,17 @@ const estimateGas = (api: ApiPromise, gasRequired: WeightV2) => {
   return estimatedGas
 }
 
-const getGasLimit = (api: ApiPromise): WeightV2 =>
-  api.registry.createType(
-    'WeightV2',
-    api.consts.system.blockWeights['maxBlock']
-  )
-
-export const sendTransaction = async (api: ApiPromise, contract: ContractPromise, method: string, address: string, value: string, ...args): Promise<SubmittableExtrinsic<"promise">> => {
-  const gasLimit = getGasLimit(api)
-
-  // { gasRequired, storageDeposit, result }
+export const sendTransaction = async (api: ApiPromise, contract: ContractPromise, method: string, address: string, value: string, ...args: any[]): Promise<SubmittableExtrinsic<"promise">> => {
   const result = await contract.query[method](
     address,
     {
-      gasLimit: gasLimit,
+      gasLimit: api.registry.createType(
+        'WeightV2',
+        {
+          refTime: '500000000000',
+          proofSize: '5242880'
+        }
+      ) as WeightV2,
       storageDepositLimit: null,
       value
     }
