@@ -15,11 +15,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astar-network/astar-api-derive@0.1.16, @astar-network/astar-api-derive@workspace:packages/api-derive":
+"@astar-network/astar-api-derive@0.1.17, @astar-network/astar-api-derive@workspace:packages/api-derive":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api-derive@workspace:packages/api-derive"
   dependencies:
-    "@astar-network/astar-types": 0.1.16
+    "@astar-network/astar-types": 0.1.17
     "@babel/runtime": ^7.10.2
     "@open-web3/orml-types": ^1.0.2-0
     "@polkadot/api-derive": ^9.13.6
@@ -30,8 +30,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api@workspace:packages/api"
   dependencies:
-    "@astar-network/astar-api-derive": 0.1.16
-    "@astar-network/astar-types": 0.1.16
+    "@astar-network/astar-api-derive": 0.1.17
+    "@astar-network/astar-types": 0.1.17
     "@babel/runtime": ^7.10.2
     "@open-web3/orml-api-derive": ^1.0.2-0
     "@polkadot/api": ^9.13.6
@@ -59,7 +59,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-type-definitions@0.1.16, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
+"@astar-network/astar-type-definitions@0.1.17, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-type-definitions@workspace:packages/type-definitions"
   dependencies:
@@ -68,11 +68,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-types@0.1.16, @astar-network/astar-types@workspace:packages/types":
+"@astar-network/astar-types@0.1.17, @astar-network/astar-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-types@workspace:packages/types"
   dependencies:
-    "@astar-network/astar-type-definitions": 0.1.16
+    "@astar-network/astar-type-definitions": 0.1.17
     "@babel/runtime": ^7.10.2
     "@open-web3/api-mobx": ^1.0.2-0
     "@open-web3/orml-types": ^1.0.2-0
@@ -3431,6 +3431,22 @@ __metadata:
     "@polkadot/util": ^10.3.1
     rxjs: ^7.8.0
   checksum: 59e91465b12333ed76d6eb76afb6b1162283b03240384427065713cfb5df7eca38ff3fb23767bc5edafc395cf1da691b215d013cb0c8950f910b38540f5d6e3b
+  languageName: node
+  linkType: hard
+
+"@polkadot/api-contract@npm:9.13.6":
+  version: 9.13.6
+  resolution: "@polkadot/api-contract@npm:9.13.6"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    "@polkadot/api": 9.13.6
+    "@polkadot/types": 9.13.6
+    "@polkadot/types-codec": 9.13.6
+    "@polkadot/types-create": 9.13.6
+    "@polkadot/util": ^10.3.1
+    "@polkadot/util-crypto": ^10.3.1
+    rxjs: ^7.8.0
+  checksum: 9fcbbd78e61bf7954d2300ff523d65b59e86f2595bcaba9b2604ac0c2e6c753fab68e8a971d764d3c44fcf15da60420f8d49a2ab44078fe0b69be71ba8a48e7b
   languageName: node
   linkType: hard
 
@@ -17020,6 +17036,7 @@ __metadata:
     "@open-web3/util": ^1.0.2-0
     "@polkadot/api": ^9.13.6
     "@polkadot/api-augment": ^9.13.6
+    "@polkadot/api-contract": 9.13.6
     "@polkadot/api-derive": ^9.13.6
     "@polkadot/dev": ^0.67.178
     "@polkadot/rpc-core": ^9.13.6
