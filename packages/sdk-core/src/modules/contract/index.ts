@@ -5,6 +5,8 @@ import { SubmittableExtrinsic } from '@polkadot/api/types';
 import { BN } from '@polkadot/util';
 
 const BN_TWO = new BN(2);
+const MAX_REF_TIME = '500000000000';
+const MAX_PROOF_SIZE = '5242880';
 
 const estimateGas = (api: ApiPromise, gasRequired: WeightV2) => {
   const estimatedGas = api.registry.createType(
@@ -25,8 +27,8 @@ export const sendTransaction = async (api: ApiPromise, contract: ContractPromise
       gasLimit: api.registry.createType(
         'WeightV2',
         {
-          refTime: '500000000000',
-          proofSize: '5242880'
+          refTime: MAX_REF_TIME,
+          proofSize: MAX_PROOF_SIZE
         }
       ) as WeightV2,
       storageDepositLimit: null,
