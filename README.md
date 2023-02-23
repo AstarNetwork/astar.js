@@ -10,10 +10,10 @@ More documentation and examples on [wiki](https://github.com/astarNetwork/astar.
 - Install dependencies
 
 ```bash
-yarn add @polkadot/api@9.13.6 @astar-network/astar-api@0.1.18
+yarn add @polkadot/api@9.13.6 @astar-network/astar-api@0.1.19
 ```
 
-**📝NOTE: Please use @polkadod/api version 9.13.6 with  @astar-network/astar-api version 0.1.18 **
+**📝NOTE: Please use @polkadod/api version 9.13.6 with  @astar-network/astar-api version 0.1.19 **
 
 - Create API instance
 

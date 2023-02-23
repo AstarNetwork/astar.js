@@ -33,7 +33,8 @@ export const sendTransaction = async (api: ApiPromise, contract: ContractPromise
       ) as WeightV2,
       storageDepositLimit: null,
       value
-    }
+    },
+    ...args
   );
 
   if (result.result.isErr) {
