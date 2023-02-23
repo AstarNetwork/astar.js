@@ -33,17 +33,26 @@ export const sendTransaction = async (api: ApiPromise, contract: ContractPromise
       ) as WeightV2,
       storageDepositLimit: null,
       value
-    }
+    },
+    ...args
   );
 
   if (result.result.isErr) {
-    throw result;
+    let display = '';
+    if (result.result.asErr.isModule) {
+      const dispatchError = api.registry.findMetaError(result.result.asErr.asModule);
+      display = dispatchError.docs.length ? dispatchError.docs.concat().toString() : dispatchError.name;
+    } else {
+      display = result.result.asErr.toString();
+    }
+
+    throw new Error(display);
   }
 
   if (result.result.isOk) {
     const flags = result.result.asOk.flags.toHuman();
     if (flags.includes('Revert')) {
-      throw result;
+      throw new Error('Contract will be Reverted');
     }
   }
 
