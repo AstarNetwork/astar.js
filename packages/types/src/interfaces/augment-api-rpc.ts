@@ -5,7 +5,6 @@
 // this is required to allow for ambient/previous definitions
 import '@polkadot/rpc-core/types/jsonrpc';
 
-import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from '@astar-network/astar-types/interfaces/runtime';
 import type { AugmentedRpc } from '@polkadot/rpc-core/types';
 import type { Metadata, StorageKey } from '@polkadot/types';
 import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, f64, u32, u64 } from '@polkadot/types-codec';
@@ -26,6 +25,7 @@ import type { MmrLeafBatchProof, MmrLeafProof } from '@polkadot/types/interfaces
 import type { StorageKind } from '@polkadot/types/interfaces/offchain';
 import type { FeeDetails, RuntimeDispatchInfoV1 } from '@polkadot/types/interfaces/payment';
 import type { RpcMethods } from '@polkadot/types/interfaces/rpc';
+import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from '@polkadot/types/interfaces/runtime';
 import type { MigrationStatusResult, ReadProof, RuntimeVersion, TraceBlockResponse } from '@polkadot/types/interfaces/state';
 import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkState, NodeRole, PeerInfo, SyncState } from '@polkadot/types/interfaces/system';
 import type { IExtrinsic, Observable } from '@polkadot/types/types';
