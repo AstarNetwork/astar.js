@@ -75,6 +75,7 @@ yarn up @polkadot/api @polkadot/api-augment @polkadot/api-derive @polkadot/rpc-c
 
 Example: Here is a dapp example that uses Astar.js to interact with WASM smart contract. You can find the source code [dApp](https://github.com/astarNetwork/wasm-lottery)
 This is a simple lottery dapp that allows users to enter and draw the lottery. The lottery is implemented as a WASM smart contract.
+The code snippets are taken from [Home.tsx](https://github.com/AstarNetwork/wasm-lottery/blob/master/src/Home.tsx) file.
 
 ### Usage
 
