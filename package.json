@@ -18,7 +18,7 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "polkadot-dev-build-ts",
+    "build": "yarn build:interfaces && polkadot-dev-build-ts",
     "build:interfaces": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/generate.ts && node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
     "build:typegen": "node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
     "build:release": "node ./scripts/build-release.js",
