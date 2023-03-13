@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-types",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "Polkadot.js type definations for Astar Network",
   "main": "index.js",
   "author": "Astar Network <info@astar.network>",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/AstarNetwork/astar.js",
   "dependencies": {
-    "@astar-network/astar-type-definitions": "0.1.19",
+    "@astar-network/astar-type-definitions": "0.1.20",
     "@babel/runtime": "^7.10.2",
     "@open-web3/api-mobx": "^1.0.2-0",
     "@open-web3/orml-types": "^1.0.2-0",

@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-sdk-core",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "the core for astar SDK",
   "main": "index.js",
   "author": "Astar Network <info@astar.network>",
