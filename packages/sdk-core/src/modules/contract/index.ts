@@ -15,7 +15,7 @@ const estimateGas = (api: ApiPromise, gasRequired: WeightV2) => {
       refTime: gasRequired.refTime.toBn().mul(BN_TWO),
       proofSize: gasRequired.proofSize.toBn().mul(BN_TWO)
     }
-  ) as WeightV2;
+  );
 
   return estimatedGas;
 };
@@ -30,7 +30,7 @@ export const sendTransaction = async (api: ApiPromise, contract: ContractPromise
           refTime: MAX_REF_TIME,
           proofSize: MAX_PROOF_SIZE
         }
-      ) as WeightV2,
+      ),
       storageDepositLimit: null,
       value
     },
