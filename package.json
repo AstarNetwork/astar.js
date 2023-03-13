@@ -20,8 +20,8 @@
   "scripts": {
     "build": "yarn build:interfaces && polkadot-dev-build-ts",
     "build:interfaces": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/generate.ts && node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
-    "build:typegen": "node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
     "build:release": "node ./scripts/build-release.js",
+    "build:typegen": "node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
     "check-deps": "./node_modules/@open-web3/util/scripts/check-deps.js yarn.lock @polkadot/ @open-web3/",
     "clean": "polkadot-dev-clean-build",
     "lint": "polkadot-dev-run-lint",

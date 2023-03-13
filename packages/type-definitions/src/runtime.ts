@@ -1,6 +1,12 @@
 export default {
   rpc: {},
   types: {
+    SmartContract: {
+      _enum: {
+        Evm: 'H160',
+        Wasm: 'AccountId'
+      }
+    },
     ShidenRuntimeSmartContract: {
       _enum: ['Evm', 'Wasm']
     },
@@ -17,7 +23,7 @@ export default {
       staked: 'Balance'
     },
     PalletDappsStakingForcing: {
-      _enum: ['NotForcing', 'ForceNew', 'ForceNone', 'ForceAlways']
+      _enum: ['NotForcing', 'ForceNew']
     }
   },
   typesAlias: {}

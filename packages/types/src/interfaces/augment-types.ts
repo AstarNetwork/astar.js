@@ -5,6 +5,7 @@
 // this is required to allow for ambient/previous definitions
 import '@polkadot/types/types/registry';
 
+import type { AccountId, AccountId20, AccountId32, AccountId33, AccountIdOf, AccountIndex, Address, AssetId, Balance, BalanceOf, Block, BlockNumber, BlockNumberFor, BlockNumberOf, Call, CallHash, CallHashOf, ChangesTrieConfiguration, ChangesTrieSignal, CodecHash, Consensus, ConsensusEngineId, CrateVersion, Digest, DigestItem, EncodedJustification, Evm, ExtrinsicsWeight, Fixed128, Fixed64, FixedI128, FixedI64, FixedU128, FixedU64, H1024, H128, H160, H2048, H256, H32, H512, H64, Hash, Header, HeaderPartial, I32F32, Index, IndicesLookupSource, Justification, Justifications, KeyTypeId, KeyValue, LockIdentifier, LookupSource, LookupTarget, ModuleId, Moment, MultiAddress, MultiSigner, OpaqueCall, Origin, OriginCaller, PalletDappsStakingEraRewardAndStake, PalletDappsStakingEraStakingPoints, PalletDappsStakingForcing, PalletId, PalletVersion, PalletsOrigin, Pays, PerU16, Perbill, Percent, Permill, Perquintill, Phantom, PhantomData, PreRuntime, Releases, RuntimeCall, RuntimeDbWeight, RuntimeEvent, Seal, SealV0, ShidenRuntimeSmartContract, SignedBlock, SignedBlockWithJustification, SignedBlockWithJustifications, Slot, SlotDuration, SmartContract, StorageData, StorageInfo, StorageProof, TransactionInfo, TransactionLongevity, TransactionPriority, TransactionStorageProof, TransactionTag, U32F32, ValidatorId, ValidatorIdOf, Wasm, Weight, WeightMultiplier, WeightV0, WeightV1, WeightV2 } from '@astar-network/astar-types/interfaces/runtime';
 import type { Data, StorageKey } from '@polkadot/types';
 import type { BitVec, Bool, Bytes, F32, F64, I128, I16, I256, I32, I64, I8, Json, Null, OptionBool, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, f32, f64, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
 import type { AssetApproval, AssetApprovalKey, AssetBalance, AssetDestroyWitness, AssetDetails, AssetMetadata, TAssetBalance, TAssetDepositBalance } from '@polkadot/types/interfaces/assets';
@@ -52,7 +53,6 @@ import type { ProxyAnnouncement, ProxyDefinition, ProxyType } from '@polkadot/ty
 import type { AccountStatus, AccountValidity } from '@polkadot/types/interfaces/purchase';
 import type { ActiveRecovery, RecoveryConfig } from '@polkadot/types/interfaces/recovery';
 import type { RpcMethods } from '@polkadot/types/interfaces/rpc';
-import type { AccountId, AccountId20, AccountId32, AccountId33, AccountIdOf, AccountIndex, Address, AssetId, Balance, BalanceOf, Block, BlockNumber, BlockNumberFor, BlockNumberOf, Call, CallHash, CallHashOf, ChangesTrieConfiguration, ChangesTrieSignal, CodecHash, Consensus, ConsensusEngineId, CrateVersion, Digest, DigestItem, EncodedJustification, ExtrinsicsWeight, Fixed128, Fixed64, FixedI128, FixedI64, FixedU128, FixedU64, H1024, H128, H160, H2048, H256, H32, H512, H64, Hash, Header, HeaderPartial, I32F32, Index, IndicesLookupSource, Justification, Justifications, KeyTypeId, KeyValue, LockIdentifier, LookupSource, LookupTarget, ModuleId, Moment, MultiAddress, MultiSigner, OpaqueCall, Origin, OriginCaller, PalletId, PalletVersion, PalletsOrigin, Pays, PerU16, Perbill, Percent, Permill, Perquintill, Phantom, PhantomData, PreRuntime, Releases, RuntimeCall, RuntimeDbWeight, RuntimeEvent, Seal, SealV0, SignedBlock, SignedBlockWithJustification, SignedBlockWithJustifications, Slot, SlotDuration, StorageData, StorageInfo, StorageProof, TransactionInfo, TransactionLongevity, TransactionPriority, TransactionStorageProof, TransactionTag, U32F32, ValidatorId, ValidatorIdOf, Weight, WeightMultiplier, WeightV0, WeightV1, WeightV2 } from '@polkadot/types/interfaces/runtime';
 import type { Si0Field, Si0LookupTypeId, Si0Path, Si0Type, Si0TypeDef, Si0TypeDefArray, Si0TypeDefBitSequence, Si0TypeDefCompact, Si0TypeDefComposite, Si0TypeDefPhantom, Si0TypeDefPrimitive, Si0TypeDefSequence, Si0TypeDefTuple, Si0TypeDefVariant, Si0TypeParameter, Si0Variant, Si1Field, Si1LookupTypeId, Si1Path, Si1Type, Si1TypeDef, Si1TypeDefArray, Si1TypeDefBitSequence, Si1TypeDefCompact, Si1TypeDefComposite, Si1TypeDefPrimitive, Si1TypeDefSequence, Si1TypeDefTuple, Si1TypeDefVariant, Si1TypeParameter, Si1Variant, SiField, SiLookupTypeId, SiPath, SiType, SiTypeDef, SiTypeDefArray, SiTypeDefBitSequence, SiTypeDefCompact, SiTypeDefComposite, SiTypeDefPrimitive, SiTypeDefSequence, SiTypeDefTuple, SiTypeDefVariant, SiTypeParameter, SiVariant } from '@polkadot/types/interfaces/scaleInfo';
 import type { Period, Priority, SchedulePeriod, SchedulePriority, Scheduled, ScheduledTo254, TaskAddress } from '@polkadot/types/interfaces/scheduler';
 import type { BeefyKey, FullIdentification, IdentificationTuple, Keys, MembershipProof, SessionIndex, SessionKeys1, SessionKeys10, SessionKeys10B, SessionKeys2, SessionKeys3, SessionKeys4, SessionKeys5, SessionKeys6, SessionKeys6B, SessionKeys7, SessionKeys7B, SessionKeys8, SessionKeys8B, SessionKeys9, SessionKeys9B, ValidatorCount } from '@polkadot/types/interfaces/session';
@@ -432,6 +432,7 @@ declare module '@polkadot/types/types/registry' {
     EventMetadataV14: EventMetadataV14;
     EventMetadataV9: EventMetadataV9;
     EventRecord: EventRecord;
+    Evm: Evm;
     EvmAccount: EvmAccount;
     EvmCallInfo: EvmCallInfo;
     EvmCreateInfo: EvmCreateInfo;
@@ -738,6 +739,9 @@ declare module '@polkadot/types/types/registry' {
     PalletCallMetadataV14: PalletCallMetadataV14;
     PalletConstantMetadataLatest: PalletConstantMetadataLatest;
     PalletConstantMetadataV14: PalletConstantMetadataV14;
+    PalletDappsStakingEraRewardAndStake: PalletDappsStakingEraRewardAndStake;
+    PalletDappsStakingEraStakingPoints: PalletDappsStakingEraStakingPoints;
+    PalletDappsStakingForcing: PalletDappsStakingForcing;
     PalletErrorMetadataLatest: PalletErrorMetadataLatest;
     PalletErrorMetadataV14: PalletErrorMetadataV14;
     PalletEventMetadataLatest: PalletEventMetadataLatest;
@@ -922,6 +926,7 @@ declare module '@polkadot/types/types/registry' {
     SessionKeys9B: SessionKeys9B;
     SetId: SetId;
     SetIndex: SetIndex;
+    ShidenRuntimeSmartContract: ShidenRuntimeSmartContract;
     Si0Field: Si0Field;
     Si0LookupTypeId: Si0LookupTypeId;
     Si0Path: Si0Path;
@@ -989,6 +994,7 @@ declare module '@polkadot/types/types/registry' {
     SlotNumber: SlotNumber;
     SlotRange: SlotRange;
     SlotRange10: SlotRange10;
+    SmartContract: SmartContract;
     SocietyJudgement: SocietyJudgement;
     SocietyVote: SocietyVote;
     SolutionOrSnapshotSize: SolutionOrSnapshotSize;
@@ -1150,6 +1156,7 @@ declare module '@polkadot/types/types/registry' {
     VrfData: VrfData;
     VrfOutput: VrfOutput;
     VrfProof: VrfProof;
+    Wasm: Wasm;
     Weight: Weight;
     WeightLimitV2: WeightLimitV2;
     WeightMultiplier: WeightMultiplier;
