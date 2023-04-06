@@ -82,11 +82,9 @@ const getClaimableEraRange = (era: number, currentEra: number): number[] => {
   return result;
 };
 
-const formatGeneralStakerInfo = ({
-  eraTvls,
+const formatGeneralStakerInfo = ({ eraTvls,
   currentEra,
-  generalStakerInfo
-}: {
+  generalStakerInfo }: {
   currentEra: number;
   eraTvls: EraTvl[];
   generalStakerInfo: [StorageKey<any>, Codec][];
@@ -122,13 +120,11 @@ const formatGeneralStakerInfo = ({
   return { stakerInfo, stakedEras };
 };
 
-const estimateEraTokenIssuances = async ({
-  blockHeight,
+const estimateEraTokenIssuances = async ({ blockHeight,
   api,
   stakedEras,
   currentEra,
-  blocksPerEra
-}: {
+  blocksPerEra }: {
   blockHeight: number;
   api: ApiPromise;
   stakedEras: number[];
@@ -168,13 +164,11 @@ const estimateEraTokenIssuances = async ({
   return eraTokenIssuances;
 };
 
-const formatStakerPendingRewards = ({
-  stakerInfo,
+const formatStakerPendingRewards = ({ stakerInfo,
   eraTvls,
   eraTokenIssuances,
   eraRewards,
-  rewardsDistributionConfig
-}: {
+  rewardsDistributionConfig }: {
   stakerInfo: StakerInfo[];
   eraTvls: EraTvl[];
   eraTokenIssuances: EraTokenIssuances[];
@@ -198,10 +192,8 @@ const formatStakerPendingRewards = ({
   });
 };
 
-export const getPendingRewards = async ({
-  api,
-  currentAccount
-}: {
+export const getPendingRewards = async ({ api,
+  currentAccount }: {
   api: ApiPromise;
   currentAccount: string;
 }): Promise<{ stakerPendingRewards: number }> => {
