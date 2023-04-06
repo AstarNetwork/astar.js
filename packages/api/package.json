@@ -19,8 +19,8 @@
   },
   "homepage": "https://github.com/AstarNetwork/astar.js",
   "dependencies": {
-    "@astar-network/astar-api-derive": "0.2.1",
-    "@astar-network/astar-types": "0.2.1",
+    "@astar-network/astar-api-derive": "0.2.2",
+    "@astar-network/astar-types": "0.2.2",
     "@babel/runtime": "^7.10.2",
     "@open-web3/orml-api-derive": "^1.0.2-0",
     "@polkadot/api": "9.14.2"
