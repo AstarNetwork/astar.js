@@ -192,16 +192,21 @@ const formatStakerPendingRewards = ({ stakerInfo,
   });
 };
 
-export const getPendingRewards = async ({ api,
-  currentAccount }: {
+// Memo:
+// The amount of each era’s token issuance is used to calculate the total amount of estimated rewards.
+// In order to minimize fetching of this value from on-chain, this function assumes the amount of 1 era’s issuance by taking the average of 7 eras.
+// Hence, the amount of estimated rewards is slightly different from the actual amount.
+// In other words, as the number of unclaimed eras increases, the difference increases (but it shouldn't be too far away).
+export const estimatePendingRewards = async ({ api,
+  walletAddress }: {
   api: ApiPromise;
-  currentAccount: string;
+  walletAddress: string;
 }): Promise<{ stakerPendingRewards: number }> => {
   try {
     const [eraInfo, generalStakerInfo, blockHeight, blocksPerEra, rawBlockRewards, rewardsDistributionConfig] =
       await Promise.all([
         api.query.dappsStaking.generalEraInfo.entries(),
-        api.query.dappsStaking.generalStakerInfo.entries(currentAccount),
+        api.query.dappsStaking.generalStakerInfo.entries(walletAddress),
         api.query.system.number(),
         Number(api.consts.dappsStaking.blockPerEra),
         String(api.consts.blockReward.rewardAmount),
