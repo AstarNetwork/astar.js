@@ -193,3 +193,69 @@ try {
   }
 }
 ```
+
+#### SDK Core Functiosn
+
+Here is the list of functions and their brief explanations:
+
+1. `fetchNativeBalance`: Fetches the native balance of a given account from the Polkadot network.
+2. `getVested`: Calculates the vested amount in an account based on current block, start block, per block vesting amount, and total locked amount.
+3. `isValidAddressPolkadotAddress`: Checks whether a provided string is a valid Polkadot address.
+4. `checkSumEvmAddress`: Converts an Ethereum address to a checksum address.
+5. `isValidEvmAddress`: Validates if a string is a valid Ethereum address.
+6. `toSS58Address`: Converts a hexadecimal address to a SS58 format address.
+7. `buildEvmAddress`: Builds a valid Ethereum address from a string that can either be a Polkadot address or an Ethereum address.
+8. `getShortenAddress`: Returns a shortened address by displaying only the first and last few characters, with the rest replaced by dots.
+9. `getPubkeyFromSS58Addr`: Extracts the public key from a SS58 formatted address.
+10. `objToArray`: Converts an object into an array without maintaining property keys.
+11. `checkIsNullOrUndefined`: Checks if the provided value is null or undefined.
+12. `capitalize`: Capitalizes the first letter of the input string and turns the rest into lower case.
+13. `getRandomFromArray`: Returns a random item from an array.
+14. `wait`: Creates a promise that resolves after a specified number of milliseconds.
+15. `truncate`: Truncates a number to a specified number of decimal places without rounding.
+16. `scrollTo`: Scrolls to the HTML element with the provided id.
+17. `getQueryParams`: Retrieves query parameters from the current URL and returns them as an object.
+18. `getTimestamp`: Returns the current timestamp in seconds.
+19. `paginate`: Returns a sub-array from the provided array based on page number and size.
+20. `ExtrinsicPayload`: Exports the type `SubmittableExtrinsic<'promise'>` from the '@polkadot/api/types' package as `ExtrinsicPayload`.
+21. `sendTransaction`: Sends a transaction to a smart contract on a Polkadot network.
+22. `getDappStakers`: Returns the number of stakers on the DApp.
+23. `getDappAddressEnum`: Returns an object with the contract address and its format.
+24. `checkIsDappOwner`: Checks whether the given account address is the owner of the DApp.
+25. `checkIsDappRegistered`: Checks if the DApp is registered and returns the era at which the DApp was unregistered.
+26. `getNumberOfUnclaimedEra`: Returns the number of eras that have not been claimed by the DApp and checks if withdrawal is required.
+27. `getContractEraStake`: Queries the API for contract era stake data.
+28. `eraSkippedZeroStake`: Finds the next era after the DApp has unstaked all its amount.
+29. `getTxsForClaimDapp`: Assembles an array of transactions for the DApp to claim rewards from past eras.
+30. `getTxsForClaimStaker`: Assembles an array of transactions for stakers to claim rewards from past eras.
+31. `getFirstEraDappHasNotClaimed`: Returns the first era that the DApp has not claimed.
+32. `getLastEraClaimedForDapp`: Returns the last era claimed for the DApp.
+33. `getIndividualClaimTxs`: Returns a list of transactions for staker and DApp claims.
+34. `RewardDistributionConfig`: Describes the structure of reward distribution configuration.
+35. `fetchRewardsDistributionConfig`: Fetches reward distribution configuration from Polkadot API.
+36. `removeKSeparator`: Removes all comma characters from a string.
+37. `fmtAmtFromKSeparator`: Removes any commas from a string and formats the resulting string as Ether.
+38. `estimatePendingRewards`: Calculates the estimated pending rewards for a given wallet address.
+39. `getEvmGas`: Retrieves the gas price for Ethereum Virtual Machine (EVM) transactions.
+40. `getEvmGasCost`: Calculates the cost of gas for a transaction.
+41. `formatTip`: Converts the provided fee into ether format.
+42. `fetchEvmGasPrice`: Fetches gas price from an API and formats it accordingly.
+43. `getUsdBySymbol`: Fetches the price of a token in USD.
+44. `calUsdAmount`: Fetches the USD price for a given token symbol and multiplies it by an amount.
+45. `mergeTvlArray`: Merges the TVL (Total Value Locked) array based on the base type.
+46. `getTvlData`: Fetches TVL data for the `ecosystem` and `dappStaking` for a given network.
+47. `filterTvlData`: Filters the TVL data array based on the provided duration.
+48. `castDurationToDaysNumber`: Converts a duration string to the corresponding number of days.
+49. `getClaimedAmount`: Fetches and returns the claimed amount for a given account on a specific network.
+50. `fetchTransferDetails`: Fetches and returns the details of a transfer transaction on a given network.
+51. `fetchXvmAssetsTransferHistories`: Fetches and returns the XVM assets transfer history for a given sender and contract address.
+52. `fetchDappsStats`: Fetches and returns the stats of a specific dapp on a given network.
+53. `filterStatsData`: Filters the stats data array based on the provided filter duration.
+54. `fetchDappTransactions`: Fetches and returns the transaction stats of a specific dapp on a given network.
+55. `fetchDappUAW`: Fetches and returns the UAW (Unique Active Wallets) stats of a specific dapp on a given network.
+56. `defaultAmountWithDecimals`: Converts a value into the given token decimal point without losing decimals.
+57. `setDefaultUnitName`: Sets a new default name in the `arrUnitNames` array.
+58. `getUnitNames`: Returns the array `arrUnitNames` containing the unit names.
+59. `getUnit`: Returns the corresponding unit from the `arrUnitPrefixes` array.
+60. `nFormatter`: Returns a string representation of a number in a more readable format.
+61. `formatNumber`: Formats a number by adding weight prefix and considering decimal places.
