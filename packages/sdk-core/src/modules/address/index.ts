@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 
 export const isValidAddressPolkadotAddress = (address: string, prefix?: number): boolean => {
   try {
-    if (prefix) {
+    if (prefix || prefix === 0) {
       return checkAddress(address, prefix)[0];
     } else {
       encodeAddress(isHex(address) ? hexToU8a(address) : decodeAddress(address));

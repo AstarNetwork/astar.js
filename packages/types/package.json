@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-types",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Polkadot.js type definations for Astar Network",
   "main": "index.js",
   "author": "Astar Network <info@astar.network>",
@@ -19,21 +19,21 @@
   },
   "homepage": "https://github.com/AstarNetwork/astar.js",
   "dependencies": {
-    "@astar-network/astar-type-definitions": "0.2.3",
+    "@astar-network/astar-type-definitions": "0.2.4",
     "@babel/runtime": "^7.10.2",
     "@open-web3/api-mobx": "^1.0.2-0",
     "@open-web3/orml-types": "^1.0.2-0",
-    "@polkadot/api": "9.14.2",
-    "@polkadot/typegen": "9.14.2",
-    "@polkadot/types": "9.14.2"
+    "@polkadot/api": "10.9.1",
+    "@polkadot/typegen": "10.9.1",
+    "@polkadot/types": "10.9.1"
   },
   "devDependencies": {
     "@types/websocket": "^1.0.0",
     "websocket": "^1.0.31"
   },
   "peerDependencies": {
-    "@polkadot/api": "9.14.2",
-    "@polkadot/typegen": "9.14.2",
-    "@polkadot/types": "9.14.2"
+    "@polkadot/api": "10.9.1",
+    "@polkadot/typegen": "10.9.1",
+    "@polkadot/types": "10.9.1"
   }
 }
