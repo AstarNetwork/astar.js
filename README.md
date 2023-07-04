@@ -194,7 +194,7 @@ try {
 }
 ```
 
-#### SDK Core Functiosn
+#### SDK-Core Library Functions
 
 Here is the list of functions and their brief explanations:
 
