@@ -51,6 +51,7 @@ export enum CommunityType {
   YouTube = 'YouTube',
   Instagram = 'Instagram',
   Discord = 'Discord',
+  GitHub = 'GitHub',
 }
 
 export interface Community {
