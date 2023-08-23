@@ -8,7 +8,8 @@ on:
 
 jobs:
   CodeQL-Build:
-
+    # Don't run for Dependabot since it will fail for push events 
+    if: ${{ github.actor != 'dependabot[bot]' }}  
     # CodeQL runs on ubuntu-latest and windows-latest
     runs-on: ubuntu-latest
 
