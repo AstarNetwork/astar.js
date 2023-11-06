@@ -21,7 +21,7 @@
   "dependencies": {
     "@astar-network/astar-api-derive": "0.2.6",
     "@astar-network/astar-types": "0.2.6",
-    "@babel/runtime": "^7.10.2",
+    "@babel/runtime": "^7.23.2",
     "@open-web3/orml-api-derive": "^1.0.2-0",
     "@polkadot/api": "10.9.1"
   },
