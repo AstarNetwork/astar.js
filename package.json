@@ -34,9 +34,9 @@
     "ts-proto": "^1.82.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/register": "^7.13.6",
-    "@babel/runtime": "^7.14.0",
+    "@babel/core": "^7.23.2",
+    "@babel/register": "^7.22.15",
+    "@babel/runtime": "^7.23.2",
     "@open-web3/dev-config": "^0.1.14",
     "@open-web3/util": "^2.0.1",
     "@polkadot/api": "10.9.1",
