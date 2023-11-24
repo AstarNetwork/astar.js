@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-type-definitions",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Polkadot.js type definitions for astar Network",
   "main": "index.js",
   "author": "Astar Network <info@astar.network>",
