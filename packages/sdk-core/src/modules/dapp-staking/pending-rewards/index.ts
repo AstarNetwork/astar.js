@@ -210,7 +210,7 @@ export const estimatePendingRewards = async ({ api,
         api.query.system.number(),
         Number(api.consts.dappsStaking.blockPerEra),
         String(
-          api.consts.blockReward.hasOwnProperty('maxBlockRewardAmount')
+          Object.prototype.hasOwnProperty.call(api.consts.blockReward, 'maxBlockRewardAmount')
             ? api.consts.blockReward.maxBlockRewardAmount
             : api.consts.blockReward.rewardAmount
         ),
