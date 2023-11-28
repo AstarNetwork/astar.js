@@ -25,7 +25,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astar-network/astar-api-derive@0.2.6, @astar-network/astar-api-derive@workspace:packages/api-derive":
+"@astar-network/astar-api-derive@npm:0.2.6":
+  version: 0.2.6
+  resolution: "@astar-network/astar-api-derive@npm:0.2.6"
+  dependencies:
+    "@astar-network/astar-types": 0.2.6
+    "@babel/runtime": ^7.23.2
+    "@open-web3/orml-types": ^1.0.2-0
+    "@polkadot/api-derive": 10.9.1
+  checksum: 2da7e99687e88cf103372ed04a1debb880bf6482b3d9bac4bc194c6fae127f3977c72ae7b813060cde66fc651920acb86379731e0d5ec3b1a36f3b8ffc02728c
+  languageName: node
+  linkType: hard
+
+"@astar-network/astar-api-derive@workspace:packages/api-derive":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-api-derive@workspace:packages/api-derive"
   dependencies:
@@ -69,7 +81,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-type-definitions@0.2.6, @astar-network/astar-type-definitions@workspace:packages/type-definitions":
+"@astar-network/astar-type-definitions@npm:0.2.6":
+  version: 0.2.6
+  resolution: "@astar-network/astar-type-definitions@npm:0.2.6"
+  dependencies:
+    "@babel/runtime": ^7.23.2
+    "@open-web3/orml-type-definitions": ^1.0.2-0
+  checksum: 5c59dabd309ea1d75a595cdf35b520e83de8020fa00431adf518568daf97f02cfca2345753ef33bfecf45cdbfd4c0f6bc21d333804b82ec9d3ca3255accbd99d
+  languageName: node
+  linkType: hard
+
+"@astar-network/astar-type-definitions@workspace:packages/type-definitions":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-type-definitions@workspace:packages/type-definitions"
   dependencies:
@@ -78,7 +100,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@astar-network/astar-types@0.2.6, @astar-network/astar-types@workspace:packages/types":
+"@astar-network/astar-types@npm:0.2.6":
+  version: 0.2.6
+  resolution: "@astar-network/astar-types@npm:0.2.6"
+  dependencies:
+    "@astar-network/astar-type-definitions": 0.2.6
+    "@babel/runtime": ^7.23.2
+    "@open-web3/api-mobx": ^1.0.2-0
+    "@open-web3/orml-types": ^1.0.2-0
+    "@polkadot/api": 10.9.1
+    "@polkadot/typegen": 10.9.1
+    "@polkadot/types": 10.9.1
+  peerDependencies:
+    "@polkadot/api": 10.9.1
+    "@polkadot/typegen": 10.9.1
+    "@polkadot/types": 10.9.1
+  checksum: a78bae436f1e840fe6246ad4e2eb5b900715b52f8fbdd6614f2cd5f3ffe95a28252b21b83f02b4dd619fd965b32817d3133abd59c4db8de3164a595354606973
+  languageName: node
+  linkType: hard
+
+"@astar-network/astar-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@astar-network/astar-types@workspace:packages/types"
   dependencies:
