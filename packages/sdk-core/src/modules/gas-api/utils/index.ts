@@ -12,15 +12,13 @@ export const getEvmGas = async (web3: Web3, selectedGasPrice: string): Promise<s
   return gasPrice;
 };
 
-export const getEvmGasCost = async ({
-  isNativeToken,
+export const getEvmGasCost = async ({ isNativeToken,
   evmGasPrice,
   fromAddress,
   toAddress,
   web3,
   value,
-  encodedData
-}: {
+  encodedData }: {
   isNativeToken: boolean;
   evmGasPrice: GasPrice;
   fromAddress: string;
@@ -31,17 +29,17 @@ export const getEvmGasCost = async ({
 }): Promise<GasPrice> => {
   const tx: TransactionConfig = isNativeToken
     ? {
-        from: fromAddress,
-        to: toAddress,
-        value: ethers.utils.parseEther(value).toString()
-      }
+      from: fromAddress,
+      to: toAddress,
+      value: ethers.utils.parseEther(value).toString()
+    }
     : {
-        nonce: await web3.eth.getTransactionCount(fromAddress),
-        from: fromAddress,
-        to: toAddress,
-        value,
-        data: encodedData
-      };
+      nonce: await web3.eth.getTransactionCount(fromAddress),
+      from: fromAddress,
+      to: toAddress,
+      value,
+      data: encodedData
+    };
 
   const numEstimatedGas = await web3.eth.estimateGas(tx);
   const estimatedGas = new BN(numEstimatedGas);
