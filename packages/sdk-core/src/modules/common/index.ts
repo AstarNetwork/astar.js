@@ -7,6 +7,10 @@ export const objToArray = (obj: any): any[] => {
   return array;
 };
 
+export const hasProperty = (obj: object, key: string): boolean => {
+  return !!obj && Object.prototype.hasOwnProperty.call(obj, key);
+};
+
 export const checkIsNullOrUndefined = (value: any): boolean => {
   return value === null || value === undefined;
 };

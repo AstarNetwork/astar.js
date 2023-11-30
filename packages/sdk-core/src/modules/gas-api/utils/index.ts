@@ -62,13 +62,7 @@ export const formatTip = (fee: string): string => {
   return price;
 };
 
-export const fetchEvmGasPrice = async ({ network,
-  isEip1559,
-  web3 }: {
-  network: string;
-  isEip1559: boolean;
-  web3: Web3;
-}): Promise<{ evmGasPrice: GasPrice; nativeTipPrice: GasPrice }> => {
+export const fetchEvmGasPrice = async ({ network }: { network: string }): Promise<{ nativeTipPrice: GasPrice }> => {
   try {
     const url = `${GAS_API_URL}/gasnow?network=${network}`;
     const { data } = await axios.get<ApiGasNow>(url);
@@ -76,62 +70,25 @@ export const fetchEvmGasPrice = async ({ network,
       throw Error('something went wrong');
     }
     const { tip } = data.data;
-    const { priorityFeePerGas } = data.data.eip1559;
     const nativeTipPrice = {
       slow: formatTip(tip.slow),
       average: formatTip(tip.average),
       fast: formatTip(tip.fast)
     };
 
-    if (isEip1559) {
-      const evmGasPrice = {
-        slow: priorityFeePerGas.slow,
-        average: priorityFeePerGas.average,
-        fast: priorityFeePerGas.fast,
-        baseFeePerGas: data.data.eip1559.baseFeePerGas
-      };
-      return {
-        evmGasPrice,
-        nativeTipPrice
-      };
-    } else {
-      const { slow, average, fast } = data.data;
-      const evmGasPrice = {
-        slow,
-        average,
-        fast,
-        baseFeePerGas: '0'
-      };
-      return {
-        evmGasPrice,
-        nativeTipPrice
-      };
-    }
+    return {
+      nativeTipPrice
+    };
   } catch (error) {
     if (network.toLowerCase() !== astarChain.DEVELOPMENT.toLowerCase()) {
       console.error(error);
     }
-    const fallbackGasPrice = Number(
-      await web3.eth.getGasPrice().catch(() => {
-        const oneGwei = '1000000000';
-        return oneGwei;
-      })
-    );
 
-    const slow = fallbackGasPrice;
-    const average = Math.floor(fallbackGasPrice * 9);
-    const fast = Math.floor(fallbackGasPrice * 56);
-    const evmGasPrice = {
-      slow: String(slow),
-      average: String(average),
-      fast: String(fast),
-      baseFeePerGas: '0'
-    };
     const nativeTipPrice = {
       slow: formatTip('10000000000000'),
       average: formatTip('50000000000000'),
       fast: formatTip('5000000000000000')
     };
-    return { evmGasPrice, nativeTipPrice };
+    return { nativeTipPrice };
   }
 };
