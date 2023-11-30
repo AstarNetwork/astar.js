@@ -12,13 +12,15 @@ export const getEvmGas = async (web3: Web3, selectedGasPrice: string): Promise<s
   return gasPrice;
 };
 
-export const getEvmGasCost = async ({ isNativeToken,
+export const getEvmGasCost = async ({
+  isNativeToken,
   evmGasPrice,
   fromAddress,
   toAddress,
   web3,
   value,
-  encodedData }: {
+  encodedData
+}: {
   isNativeToken: boolean;
   evmGasPrice: GasPrice;
   fromAddress: string;
@@ -29,17 +31,17 @@ export const getEvmGasCost = async ({ isNativeToken,
 }): Promise<GasPrice> => {
   const tx: TransactionConfig = isNativeToken
     ? {
-      from: fromAddress,
-      to: toAddress,
-      value: ethers.utils.parseEther(value).toString()
-    }
+        from: fromAddress,
+        to: toAddress,
+        value: ethers.utils.parseEther(value).toString()
+      }
     : {
-      nonce: await web3.eth.getTransactionCount(fromAddress),
-      from: fromAddress,
-      to: toAddress,
-      value,
-      data: encodedData
-    };
+        nonce: await web3.eth.getTransactionCount(fromAddress),
+        from: fromAddress,
+        to: toAddress,
+        value,
+        data: encodedData
+      };
 
   const numEstimatedGas = await web3.eth.estimateGas(tx);
   const estimatedGas = new BN(numEstimatedGas);
@@ -62,7 +64,7 @@ export const formatTip = (fee: string): string => {
   return price;
 };
 
-export const fetchEvmGasPrice = async ({ network }: { network: string }): Promise<{ nativeTipPrice: GasPrice }> => {
+export const fetchTipPrice = async ({ network }: { network: string }): Promise<{ nativeTipPrice: GasPrice }> => {
   try {
     const url = `${GAS_API_URL}/gasnow?network=${network}`;
     const { data } = await axios.get<ApiGasNow>(url);
