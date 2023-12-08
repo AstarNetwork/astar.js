@@ -3,7 +3,7 @@ import { Perbill } from '@polkadot/types/interfaces';
 import { ApiPromise } from '@polkadot/api';
 import { ethers } from 'ethers';
 import { Codec } from '@polkadot/types/types';
-import { truncate } from '@astar-network/astar-sdk-core';
+import { hasProperty, truncate } from '@astar-network/astar-sdk-core';
 
 export interface RewardDistributionConfig extends Struct {
   readonly baseTreasuryPercent: Perbill;
@@ -210,7 +210,7 @@ export const estimatePendingRewards = async ({ api,
         api.query.system.number(),
         Number(api.consts.dappsStaking.blockPerEra),
         String(
-          Object.prototype.hasOwnProperty.call(api.consts.blockReward, 'maxBlockRewardAmount')
+          hasProperty(api.consts.blockReward, 'maxBlockRewardAmount')
             ? api.consts.blockReward.maxBlockRewardAmount
             : api.consts.blockReward.rewardAmount
         ),

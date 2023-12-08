@@ -239,7 +239,7 @@ Here is the list of functions and their brief explanations:
 39. `getEvmGas`: Retrieves the gas price for Ethereum Virtual Machine (EVM) transactions.
 40. `getEvmGasCost`: Calculates the cost of gas for a transaction.
 41. `formatTip`: Converts the provided fee into ether format.
-42. `fetchEvmGasPrice`: Fetches gas price from an API and formats it accordingly.
+42. `fetchTipPrice`: Fetches tip price from an API and formats it accordingly.
 43. `getUsdBySymbol`: Fetches the price of a token in USD.
 44. `calUsdAmount`: Fetches the USD price for a given token symbol and multiplies it by an amount.
 45. `mergeTvlArray`: Merges the TVL (Total Value Locked) array based on the base type.
