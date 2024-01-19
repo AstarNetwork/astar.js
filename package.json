@@ -18,17 +18,16 @@
     "examples/*"
   ],
   "scripts": {
-    "build": "yarn build:interfaces && polkadot-dev-build-ts",
-    "build:interfaces": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/generate.ts && node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
-    "build:release": "node ./scripts/build-release.js",
-    "build:typegen": "node -r ts-node/register -r tsconfig-paths/register packages/type-definitions/scripts/generate.ts",
-    "check-deps": "./node_modules/@open-web3/util/scripts/check-deps.js yarn.lock @polkadot/ @open-web3/",
+    "generate": "yarn update-metadata && yarn generate:defs && yarn generate:meta",
+    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package @astar-network/astar-types/interfaces --input ./packages/types/src/interfaces --endpoint ./metadata.json",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package @astar-network/astar-types/interfaces --endpoint ./metadata.json --output ./packages/types/src/interfaces",
+    "build": "node ./scripts/build-release.js",
     "clean": "polkadot-dev-clean-build",
     "lint": "polkadot-dev-run-lint",
     "postinstall": "polkadot-dev-yarn-only",
     "run-example": "ts-node -r tsconfig-paths/register examples/example.ts",
     "test": "polkadot-dev-run-test --coverage --passWithNoTests",
-    "update-metadata": "ts-node --project ./tsconfig.json packages/types/scripts/updateMetadata.ts"
+    "update-metadata": "curl -s -H \"Content-Type: application/json\" -d '{\"id\":\"1\", \"jsonrpc\":\"2.0\", \"method\": \"state_getMetadata\", \"params\":[]}' https://rpc.shibuya.astar.network > metadata.json"
   },
   "dependencies": {
     "ts-proto": "^1.82.2"

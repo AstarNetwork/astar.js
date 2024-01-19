@@ -1,8 +1,36 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { GenericAccountId32, GenericAccountId33, GenericAccountIndex, GenericBlock, GenericCall, GenericConsensusEngineId, GenericEthereumAccountId, GenericLookupSource, GenericMultiAddress, StorageKey } from '@polkadot/types';
-import type { BTreeMap, Bytes, Compact, DoNotConstruct, Enum, Int, Null, Option, Struct, U8aFixed, UInt, Vec, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type {
+  GenericAccountId32,
+  GenericAccountId33,
+  GenericAccountIndex,
+  GenericBlock,
+  GenericCall,
+  GenericConsensusEngineId,
+  GenericEthereumAccountId,
+  GenericLookupSource,
+  GenericMultiAddress,
+  StorageKey
+} from '@polkadot/types';
+import type {
+  BTreeMap,
+  Bytes,
+  Compact,
+  DoNotConstruct,
+  Enum,
+  Int,
+  Null,
+  Option,
+  Struct,
+  U8aFixed,
+  UInt,
+  Vec,
+  u16,
+  u32,
+  u64,
+  u8
+} from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AuthorityId } from '@polkadot/types/interfaces/consensus';
 import type { Signature } from '@polkadot/types/interfaces/extrinsics';
@@ -113,7 +141,16 @@ export interface DigestItem extends Enum {
   readonly isChangesTrieSignal: boolean;
   readonly asChangesTrieSignal: ChangesTrieSignal;
   readonly isRuntimeEnvironmentUpdated: boolean;
-  readonly type: 'Other' | 'AuthoritiesChange' | 'ChangesTrieRoot' | 'SealV0' | 'Consensus' | 'Seal' | 'PreRuntime' | 'ChangesTrieSignal' | 'RuntimeEnvironmentUpdated';
+  readonly type:
+    | 'Other'
+    | 'AuthoritiesChange'
+    | 'ChangesTrieRoot'
+    | 'SealV0'
+    | 'Consensus'
+    | 'Seal'
+    | 'PreRuntime'
+    | 'ChangesTrieSignal'
+    | 'RuntimeEnvironmentUpdated';
 }
 
 /** @name EncodedJustification */

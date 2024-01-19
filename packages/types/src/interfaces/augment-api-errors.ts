@@ -33,6 +33,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       BalanceLow: AugmentedError<ApiType>;
       /**
+       * Callback action resulted in error
+       **/
+      CallbackFailed: AugmentedError<ApiType>;
+      /**
        * The origin account is frozen.
        **/
       Frozen: AugmentedError<ApiType>;
@@ -66,12 +70,6 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       NoPermission: AugmentedError<ApiType>;
       /**
-       * Unable to increment the consumer reference counters on the account. Either no provider
-       * reference exists to allow a non-zero balance of a non-self-sufficient asset, or the
-       * maximum number of consumers has been reached.
-       **/
-      NoProvider: AugmentedError<ApiType>;
-      /**
        * The asset should be frozen before the given operation.
        **/
       NotFrozen: AugmentedError<ApiType>;
@@ -79,6 +77,12 @@ declare module '@polkadot/api-base/types/errors' {
        * No approval exists that would allow the transfer.
        **/
       Unapproved: AugmentedError<ApiType>;
+      /**
+       * Unable to increment the consumer reference counters on the account. Either no provider
+       * reference exists to allow a non-zero balance of a non-self-sufficient asset, or one
+       * fewer then the maximum number of consumers has been reached.
+       **/
+      UnavailableConsumer: AugmentedError<ApiType>;
       /**
        * The given asset ID is unknown.
        **/
@@ -91,76 +95,56 @@ declare module '@polkadot/api-base/types/errors' {
        * The source account would not survive the transfer and it needs to stay alive.
        **/
       WouldDie: AugmentedError<ApiType>;
-    };
-    authorship: {
       /**
-       * The uncle is genesis.
+       * Generic error
        **/
-      GenesisUncle: AugmentedError<ApiType>;
-      /**
-       * The uncle parent not in the chain.
-       **/
-      InvalidUncleParent: AugmentedError<ApiType>;
-      /**
-       * The uncle isn't recent enough to be included.
-       **/
-      OldUncle: AugmentedError<ApiType>;
-      /**
-       * The uncle is too high in chain.
-       **/
-      TooHighUncle: AugmentedError<ApiType>;
-      /**
-       * Too many uncles.
-       **/
-      TooManyUncles: AugmentedError<ApiType>;
-      /**
-       * The uncle is already included.
-       **/
-      UncleAlreadyIncluded: AugmentedError<ApiType>;
-      /**
-       * Uncles already set in the block.
-       **/
-      UnclesAlreadySet: AugmentedError<ApiType>;
+      [key: string]: AugmentedError<ApiType>;
     };
     balances: {
       /**
-       * Beneficiary account must pre-exist
+       * Beneficiary account must pre-exist.
        **/
       DeadAccount: AugmentedError<ApiType>;
       /**
-       * Value too low to create account due to existential deposit
+       * Value too low to create account due to existential deposit.
        **/
       ExistentialDeposit: AugmentedError<ApiType>;
       /**
-       * A vesting schedule already exists for this account
+       * A vesting schedule already exists for this account.
        **/
       ExistingVestingSchedule: AugmentedError<ApiType>;
+      /**
+       * Transfer/payment would kill account.
+       **/
+      Expendability: AugmentedError<ApiType>;
       /**
        * Balance too low to send value.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
       /**
-       * Transfer/payment would kill account
-       **/
-      KeepAlive: AugmentedError<ApiType>;
-      /**
-       * Account liquidity restrictions prevent withdrawal
+       * Account liquidity restrictions prevent withdrawal.
        **/
       LiquidityRestrictions: AugmentedError<ApiType>;
       /**
-       * Number of named reserves exceed MaxReserves
+       * Number of freezes exceed `MaxFreezes`.
+       **/
+      TooManyFreezes: AugmentedError<ApiType>;
+      /**
+       * Number of holds exceed `MaxHolds`.
+       **/
+      TooManyHolds: AugmentedError<ApiType>;
+      /**
+       * Number of named reserves exceed `MaxReserves`.
        **/
       TooManyReserves: AugmentedError<ApiType>;
       /**
-       * Vesting balance too high to send value
+       * Vesting balance too high to send value.
        **/
       VestingBalance: AugmentedError<ApiType>;
-    };
-    blockReward: {
       /**
-       * Sum of all rations must be one whole (100%)
+       * Generic error
        **/
-      InvalidDistributionConfiguration: AugmentedError<ApiType>;
+      [key: string]: AugmentedError<ApiType>;
     };
     collatorSelection: {
       /**
@@ -199,6 +183,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Validator ID is not yet registered
        **/
       ValidatorNotRegistered: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     contracts: {
       /**
@@ -211,11 +199,11 @@ declare module '@polkadot/api-base/types/errors' {
       CodeNotFound: AugmentedError<ApiType>;
       /**
        * The contract's code was found to be invalid during validation or instrumentation.
-       * 
+       *
        * The most likely cause of this is that an API was used which is not supported by the
-       * node. This hapens if an older node is used with a new version of ink!. Try updating
+       * node. This happens if an older node is used with a new version of ink!. Try updating
        * your node to the newest available version.
-       * 
+       *
        * A more detailed error can be found on the node console if debug messages are enabled
        * by supplying `-lruntime::contracts=debug`.
        **/
@@ -241,34 +229,13 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       ContractTrapped: AugmentedError<ApiType>;
       /**
-       * The debug buffer size used during contract execution exceeded the limit determined by
-       * the `MaxDebugBufferLen` pallet config parameter.
-       **/
-      DebugBufferExhausted: AugmentedError<ApiType>;
-      /**
-       * The debug message specified to `seal_debug_message` does contain invalid UTF-8.
-       **/
-      DebugMessageInvalidUTF8: AugmentedError<ApiType>;
-      /**
        * Input passed to a contract API function failed to decode as expected type.
        **/
       DecodingFailed: AugmentedError<ApiType>;
       /**
-       * Removal of a contract failed because the deletion queue is full.
-       * 
-       * This can happen when calling `seal_terminate`.
-       * The queue is filled by deleting contracts and emptied by a fixed amount each block.
-       * Trying again during another block is the only way to resolve this issue.
-       **/
-      DeletionQueueFull: AugmentedError<ApiType>;
-      /**
        * A contract with the same AccountId already exists.
        **/
       DuplicateContract: AugmentedError<ApiType>;
-      /**
-       * The topics passed to `seal_deposit_events` contains at least one duplicate.
-       **/
-      DuplicateTopics: AugmentedError<ApiType>;
       /**
        * An indetermistic code was used in a context where this is not permitted.
        **/
@@ -291,11 +258,19 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       MaxCallDepthReached: AugmentedError<ApiType>;
       /**
+       * A pending migration needs to complete before the extrinsic can be called.
+       **/
+      MigrationInProgress: AugmentedError<ApiType>;
+      /**
        * The chain does not provide a chain extension. Calling the chain extension results
        * in this error. Note that this usually  shouldn't happen as deploying such contracts
        * is rejected.
        **/
       NoChainExtension: AugmentedError<ApiType>;
+      /**
+       * Migrate dispatch call was attempted but no migration was performed.
+       **/
+      NoMigrationPerformed: AugmentedError<ApiType>;
       /**
        * A buffer outside of sandbox memory was passed to a contract API function.
        **/
@@ -314,6 +289,9 @@ declare module '@polkadot/api-base/types/errors' {
       RandomSubjectTooLong: AugmentedError<ApiType>;
       /**
        * A call tried to invoke a contract that is flagged as non-reentrant.
+       * The only other cause is that a call from a contract into the runtime tried to call back
+       * into `pallet-contracts`. This would make the whole pallet reentrant with regard to
+       * contract code execution which is not supported.
        **/
       ReentranceDenied: AugmentedError<ApiType>;
       /**
@@ -326,7 +304,7 @@ declare module '@polkadot/api-base/types/errors' {
       StorageDepositNotEnoughFunds: AugmentedError<ApiType>;
       /**
        * A contract self destructed in its constructor.
-       * 
+       *
        * This can be triggered by a call to `seal_terminate`.
        **/
       TerminatedInConstructor: AugmentedError<ApiType>;
@@ -348,6 +326,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The size defined in `T::MaxValueSize` was exceeded.
        **/
       ValueTooLarge: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     council: {
       /**
@@ -390,8 +372,16 @@ declare module '@polkadot/api-base/types/errors' {
        * The given weight bound for the proposal was too low.
        **/
       WrongProposalWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     cumulusXcm: {
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     dappsStaking: {
       /**
@@ -488,6 +478,158 @@ declare module '@polkadot/api-base/types/errors' {
        * Upgrade is too heavy, reduce the weight parameter.
        **/
       UpgradeTooHeavy: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    dappStaking: {
+      /**
+       * Smart contract already exists within dApp staking protocol.
+       **/
+      ContractAlreadyExists: AugmentedError<ApiType>;
+      /**
+       * Specified smart contract does not exist in dApp staking.
+       **/
+      ContractNotFound: AugmentedError<ApiType>;
+      /**
+       * Contract is still active, not unregistered.
+       **/
+      ContractStillActive: AugmentedError<ApiType>;
+      /**
+       * dApp reward has already been claimed for this era.
+       **/
+      DAppRewardAlreadyClaimed: AugmentedError<ApiType>;
+      /**
+       * Pallet is disabled/in maintenance mode.
+       **/
+      Disabled: AugmentedError<ApiType>;
+      /**
+       * Maximum number of smart contracts has been reached.
+       **/
+      ExceededMaxNumberOfContracts: AugmentedError<ApiType>;
+      /**
+       * Total staked amount on contract is below the minimum required value.
+       **/
+      InsufficientStakeAmount: AugmentedError<ApiType>;
+      /**
+       * An unexpected error occured while trying to claim bonus reward.
+       **/
+      InternalClaimBonusError: AugmentedError<ApiType>;
+      /**
+       * An unexpected error occured while trying to claim dApp reward.
+       **/
+      InternalClaimDAppError: AugmentedError<ApiType>;
+      /**
+       * An unexpected error occured while trying to claim staker rewards.
+       **/
+      InternalClaimStakerError: AugmentedError<ApiType>;
+      /**
+       * An unexpected error occured while trying to stake.
+       **/
+      InternalStakeError: AugmentedError<ApiType>;
+      /**
+       * An unexpected error occured while trying to unstake.
+       **/
+      InternalUnstakeError: AugmentedError<ApiType>;
+      /**
+       * Claim era is invalid - it must be in history, and rewards must exist for it.
+       **/
+      InvalidClaimEra: AugmentedError<ApiType>;
+      /**
+       * Total locked amount for staker is below minimum threshold.
+       **/
+      LockedAmountBelowThreshold: AugmentedError<ApiType>;
+      /**
+       * Not possible to assign a new dApp Id.
+       * This should never happen since current type can support up to 65536 - 1 unique dApps.
+       **/
+      NewDAppIdUnavailable: AugmentedError<ApiType>;
+      /**
+       * There are no claimable rewards.
+       **/
+      NoClaimableRewards: AugmentedError<ApiType>;
+      /**
+       * No dApp tier info exists for the specified era. This can be because era has expired
+       * or because during the specified era there were no eligible rewards or protocol wasn't active.
+       **/
+      NoDAppTierInfo: AugmentedError<ApiType>;
+      /**
+       * There are no expired entries to cleanup for the account.
+       **/
+      NoExpiredEntries: AugmentedError<ApiType>;
+      /**
+       * Account has no staking information for the contract.
+       **/
+      NoStakingInfo: AugmentedError<ApiType>;
+      /**
+       * Account is has no eligible stake amount for bonus reward.
+       **/
+      NotEligibleForBonusReward: AugmentedError<ApiType>;
+      /**
+       * dApp is part of dApp staking but isn't active anymore.
+       **/
+      NotOperatedDApp: AugmentedError<ApiType>;
+      /**
+       * There are no eligible unlocked chunks to claim. This can happen either if no eligible chunks exist, or if user has no chunks at all.
+       **/
+      NoUnlockedChunksToClaim: AugmentedError<ApiType>;
+      /**
+       * There are no unlocking chunks available to relock.
+       **/
+      NoUnlockingChunks: AugmentedError<ApiType>;
+      /**
+       * Call origin is not dApp owner.
+       **/
+      OriginNotOwner: AugmentedError<ApiType>;
+      /**
+       * Stake operation is rejected since period ends in the next era.
+       **/
+      PeriodEndsInNextEra: AugmentedError<ApiType>;
+      /**
+       * Remaining stake prevents entire balance of starting the unlocking process.
+       **/
+      RemainingStakePreventsFullUnlock: AugmentedError<ApiType>;
+      /**
+       * Rewards are no longer claimable since they are too old.
+       **/
+      RewardExpired: AugmentedError<ApiType>;
+      /**
+       * Reward payout has failed due to an unexpected reason.
+       **/
+      RewardPayoutFailed: AugmentedError<ApiType>;
+      /**
+       * There are too many contract stake entries for the account. This can be cleaned up by either unstaking or cleaning expired entries.
+       **/
+      TooManyStakedContracts: AugmentedError<ApiType>;
+      /**
+       * Cannot add additional unlocking chunks due to capacity limit.
+       **/
+      TooManyUnlockingChunks: AugmentedError<ApiType>;
+      /**
+       * The amount being staked is too large compared to what's available for staking.
+       **/
+      UnavailableStakeFunds: AugmentedError<ApiType>;
+      /**
+       * There are unclaimed rewards remaining from past eras or periods. They should be claimed before attempting any stake modification again.
+       **/
+      UnclaimedRewards: AugmentedError<ApiType>;
+      /**
+       * Unstake amount is greater than the staked amount.
+       **/
+      UnstakeAmountTooLarge: AugmentedError<ApiType>;
+      /**
+       * Unstaking is rejected since the period in which past stake was active has passed.
+       **/
+      UnstakeFromPastPeriod: AugmentedError<ApiType>;
+      /**
+       * Performing locking or staking with 0 amount.
+       **/
+      ZeroAmount: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     democracy: {
       /**
@@ -551,6 +693,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       NotVoter: AugmentedError<ApiType>;
       /**
+       * The preimage does not exist.
+       **/
+      PreimageNotExist: AugmentedError<ApiType>;
+      /**
        * Proposal still blacklisted
        **/
       ProposalBlacklisted: AugmentedError<ApiType>;
@@ -583,6 +729,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Invalid upper bound.
        **/
       WrongUpperBound: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     dmpQueue: {
       /**
@@ -593,20 +743,20 @@ declare module '@polkadot/api-base/types/errors' {
        * The message index given is unknown.
        **/
       Unknown: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
-    ethCall: {
+    dynamicEvmBaseFee: {
       /**
-       * Bad nonce parameter.
+       * Specified value is outside of the allowed range.
        **/
-      BadNonce: AugmentedError<ApiType>;
+      ValueOutOfBounds: AugmentedError<ApiType>;
       /**
-       * Signature decode fails.
+       * Generic error
        **/
-      DecodeFailure: AugmentedError<ApiType>;
-      /**
-       * Signature and account mismatched.
-       **/
-      InvalidSignature: AugmentedError<ApiType>;
+      [key: string]: AugmentedError<ApiType>;
     };
     ethereum: {
       /**
@@ -617,6 +767,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Pre-log is present, therefore transact is not allowed.
        **/
       PreLogExists: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     evm: {
       /**
@@ -652,6 +806,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       Reentrancy: AugmentedError<ApiType>;
       /**
+       * EIP-3607,
+       **/
+      TransactionMustComeFromEOA: AugmentedError<ApiType>;
+      /**
        * Undefined error.
        **/
       Undefined: AugmentedError<ApiType>;
@@ -659,6 +817,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Withdraw fee failed
        **/
       WithdrawFailed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     identity: {
       /**
@@ -733,6 +895,20 @@ declare module '@polkadot/api-base/types/errors' {
        * Too many subs-accounts.
        **/
       TooManySubAccounts: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    inflation: {
+      /**
+       * Sum of all parts must be one whole (100%).
+       **/
+      InvalidInflationParameters: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     multisig: {
       /**
@@ -791,10 +967,14 @@ declare module '@polkadot/api-base/types/errors' {
        * A different timepoint was given to the multisig operation that is underway.
        **/
       WrongTimepoint: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     parachainSystem: {
       /**
-       * The inherent which supplies the host configuration did not run this block
+       * The inherent which supplies the host configuration did not run this block.
        **/
       HostConfigurationNotAvailable: AugmentedError<ApiType>;
       /**
@@ -806,16 +986,16 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       NotScheduled: AugmentedError<ApiType>;
       /**
-       * Attempt to upgrade validation function while existing upgrade pending
+       * Attempt to upgrade validation function while existing upgrade pending.
        **/
       OverlappingUpgrades: AugmentedError<ApiType>;
       /**
-       * Polkadot currently prohibits this parachain from upgrading its validation function
+       * Polkadot currently prohibits this parachain from upgrading its validation function.
        **/
       ProhibitedByPolkadot: AugmentedError<ApiType>;
       /**
        * The supplied validation function has compiled into a blob larger than Polkadot is
-       * willing to run
+       * willing to run.
        **/
       TooBig: AugmentedError<ApiType>;
       /**
@@ -823,11 +1003,19 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       Unauthorized: AugmentedError<ApiType>;
       /**
-       * The inherent which supplies the validation data did not run this block
+       * The inherent which supplies the validation data did not run this block.
        **/
       ValidationDataNotAvailable: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     polkadotXcm: {
+      /**
+       * The given account is not an identifiable sovereign account for any location.
+       **/
+      AccountNotSovereign: AugmentedError<ApiType>;
       /**
        * The location is invalid since it already has a subscription from us.
        **/
@@ -854,13 +1042,33 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       Empty: AugmentedError<ApiType>;
       /**
+       * The operation required fees to be paid which the initiator could not meet.
+       **/
+      FeesNotMet: AugmentedError<ApiType>;
+      /**
        * The message execution fails the filter.
        **/
       Filtered: AugmentedError<ApiType>;
       /**
+       * The unlock operation cannot succeed because there are still consumers of the lock.
+       **/
+      InUse: AugmentedError<ApiType>;
+      /**
+       * Invalid asset for the operation.
+       **/
+      InvalidAsset: AugmentedError<ApiType>;
+      /**
        * Origin is invalid for sending.
        **/
       InvalidOrigin: AugmentedError<ApiType>;
+      /**
+       * A remote lock with the corresponding data could not be found.
+       **/
+      LockNotFound: AugmentedError<ApiType>;
+      /**
+       * The owner does not own (all) of the asset that they wish to do the operation on.
+       **/
+      LowBalance: AugmentedError<ApiType>;
       /**
        * The referenced subscription could not be found.
        **/
@@ -875,6 +1083,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooManyAssets: AugmentedError<ApiType>;
       /**
+       * The asset owner has too many locks on the asset.
+       **/
+      TooManyLocks: AugmentedError<ApiType>;
+      /**
        * The desired destination was unreachable, generally because there is a no way of routing
        * to it.
        **/
@@ -883,6 +1095,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The message's weight could not be determined.
        **/
       UnweighableMessage: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     preimage: {
       /**
@@ -909,6 +1125,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Preimage is too large to store on-chain.
        **/
       TooBig: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     proxy: {
       /**
@@ -943,6 +1163,10 @@ declare module '@polkadot/api-base/types/errors' {
        * A call which is incompatible with the proxy type's filter was attempted.
        **/
       Unproxyable: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     scheduler: {
       /**
@@ -965,6 +1189,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Given target block number is in the past.
        **/
       TargetBlockNumberInPast: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     session: {
       /**
@@ -987,12 +1215,20 @@ declare module '@polkadot/api-base/types/errors' {
        * No keys are associated with this account.
        **/
       NoKeys: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     sudo: {
       /**
        * Sender must be the Sudo account
        **/
       RequireSudo: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     system: {
       /**
@@ -1001,7 +1237,7 @@ declare module '@polkadot/api-base/types/errors' {
       CallFiltered: AugmentedError<ApiType>;
       /**
        * Failed to extract the runtime version from the new runtime.
-       * 
+       *
        * Either calling `Core_version` or decoding `RuntimeVersion` failed.
        **/
       FailedToExtractRuntimeVersion: AugmentedError<ApiType>;
@@ -1023,6 +1259,10 @@ declare module '@polkadot/api-base/types/errors' {
        * and the new runtime.
        **/
       SpecVersionNeedsToIncrease: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     technicalCommittee: {
       /**
@@ -1065,6 +1305,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The given weight bound for the proposal was too low.
        **/
       WrongProposalWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     treasury: {
       /**
@@ -1088,12 +1332,42 @@ declare module '@polkadot/api-base/types/errors' {
        * Too many approvals in the queue.
        **/
       TooManyApprovals: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    unifiedAccounts: {
+      /**
+       * AccountId or EvmAddress already mapped
+       **/
+      AlreadyMapped: AugmentedError<ApiType>;
+      /**
+       * Funds unavailable to claim account
+       **/
+      FundsUnavailable: AugmentedError<ApiType>;
+      /**
+       * The signature verification failed due to mismatch evm address
+       **/
+      InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * The signature is malformed
+       **/
+      UnexpectedSignatureFormat: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     utility: {
       /**
        * Too many calls batched.
        **/
       TooManyCalls: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     vesting: {
       /**
@@ -1117,6 +1391,10 @@ declare module '@polkadot/api-base/types/errors' {
        * An index was out of bounds of the vesting schedules.
        **/
       ScheduleIndexOutOfBounds: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     xcAssetConfig: {
       /**
@@ -1127,6 +1405,14 @@ declare module '@polkadot/api-base/types/errors' {
        * Asset does not exist (hasn't been registered).
        **/
       AssetDoesNotExist: AugmentedError<ApiType>;
+      /**
+       * Failed to convert to latest versioned MultiLocation
+       **/
+      MultiLocationNotSupported: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     xcmpQueue: {
       /**
@@ -1149,8 +1435,95 @@ declare module '@polkadot/api-base/types/errors' {
        * Provided weight is possibly not enough to execute the message.
        **/
       WeightOverLimit: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
-    xvm: {
+    xTokens: {
+      /**
+       * Asset has no reserve location.
+       **/
+      AssetHasNoReserve: AugmentedError<ApiType>;
+      /**
+       * The specified index does not exist in a MultiAssets struct.
+       **/
+      AssetIndexNonExistent: AugmentedError<ApiType>;
+      /**
+       * The version of the `Versioned` value used is not able to be
+       * interpreted.
+       **/
+      BadVersion: AugmentedError<ApiType>;
+      /**
+       * Could not re-anchor the assets to declare the fees for the
+       * destination chain.
+       **/
+      CannotReanchor: AugmentedError<ApiType>;
+      /**
+       * The destination `MultiLocation` provided cannot be inverted.
+       **/
+      DestinationNotInvertible: AugmentedError<ApiType>;
+      /**
+       * We tried sending distinct asset and fee but they have different
+       * reserve chains.
+       **/
+      DistinctReserveForAssetAndFee: AugmentedError<ApiType>;
+      /**
+       * Fee is not enough.
+       **/
+      FeeNotEnough: AugmentedError<ApiType>;
+      /**
+       * Could not get ancestry of asset reserve location.
+       **/
+      InvalidAncestry: AugmentedError<ApiType>;
+      /**
+       * The MultiAsset is invalid.
+       **/
+      InvalidAsset: AugmentedError<ApiType>;
+      /**
+       * Invalid transfer destination.
+       **/
+      InvalidDest: AugmentedError<ApiType>;
+      /**
+       * MinXcmFee not registered for certain reserve location
+       **/
+      MinXcmFeeNotDefined: AugmentedError<ApiType>;
+      /**
+       * Not cross-chain transfer.
+       **/
+      NotCrossChainTransfer: AugmentedError<ApiType>;
+      /**
+       * Currency is not cross-chain transferable.
+       **/
+      NotCrossChainTransferableCurrency: AugmentedError<ApiType>;
+      /**
+       * Not supported MultiLocation
+       **/
+      NotSupportedMultiLocation: AugmentedError<ApiType>;
+      /**
+       * The number of assets to be sent is over the maximum.
+       **/
+      TooManyAssetsBeingSent: AugmentedError<ApiType>;
+      /**
+       * The message's weight could not be determined.
+       **/
+      UnweighableMessage: AugmentedError<ApiType>;
+      /**
+       * XCM execution failed.
+       **/
+      XcmExecutionFailed: AugmentedError<ApiType>;
+      /**
+       * The transfering asset amount is zero.
+       **/
+      ZeroAmount: AugmentedError<ApiType>;
+      /**
+       * The fee is zero.
+       **/
+      ZeroFee: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
   } // AugmentedErrors
 } // declare module
