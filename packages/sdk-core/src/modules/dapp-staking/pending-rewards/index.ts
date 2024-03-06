@@ -3,7 +3,7 @@ import { Perbill } from '@polkadot/types/interfaces';
 import { ApiPromise } from '@polkadot/api';
 import { ethers } from 'ethers';
 import { Codec } from '@polkadot/types/types';
-import { hasProperty, truncate } from '@astar-network/astar-sdk-core';
+import { commaStrToBigInt, hasProperty, truncate } from '@astar-network/astar-sdk-core';
 
 export interface RewardDistributionConfig extends Struct {
   readonly baseTreasuryPercent: Perbill;
@@ -251,3 +251,92 @@ export const estimatePendingRewards = async ({ api,
     return { stakerPendingRewards: 0 };
   }
 };
+
+
+
+
+/**
+ * Memo:
+ * This method returns claimed reward amount by stakerAddress and blockHeight that have the reward event.
+ * After StkingV3, Two kinds of rewards exist.
+ * - Staker Reward : When "Build&Earn" comes after the "Voting", stakers can get the reward by staking on dApps.
+ * - Bonus Reward : During the "Voting" subperiod makes the staker eligible for bonus rewards.
+ */
+export const claimedReward = async (
+  {
+    api, staker, height
+  } : 
+  {
+    api: ApiPromise, staker: string, height: BigInt
+  }): Promise<{claimedRewards: number}> => {
+  try {
+
+      const blockHash = await api.rpc.chain.getBlockHash(height);
+      const signedBlock = await api.rpc.chain.getBlock(blockHash);
+      const apiAt = await api.at(signedBlock.block.header.hash);
+      const allRecords = (await apiAt.query.system.events()).toArray();
+
+      let claimedReward = BigInt('0');
+      const method = 'Reward';
+      const section = 'dappStaking';
+
+      allRecords.map((e) => {
+          if (e.toHuman()?.event?.data?.account == staker &&
+              e.toHuman()?.event?.method == method &&
+              e.toHuman()?.event?.section == section) {
+              let tmpAmount = e.toHuman().event?.data?.amount;
+              let tmpAmountBigInt = commaStrToBigInt(tmpAmount);
+
+              claimedReward += tmpAmountBigInt;
+
+          } else {
+              claimedReward = claimedReward;
+          }
+      })
+
+      return { claimedRewards: Number(claimedReward) };
+
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
+}
+
+/**
+ * Memo:
+ * This method returns usedfee amount by Address and blockHeight that have the actualFee.
+ */
+export const UsedFee = async (
+  {
+    api, address, height
+  } : 
+  {
+    api: ApiPromise, address: string, height: BigInt
+  }): Promise<{usedFee: number}> => {
+  try {
+
+      const blockHash = await api.rpc.chain.getBlockHash(height);
+      const signedBlock = await api.rpc.chain.getBlock(blockHash);
+      const apiAt = await api.at(signedBlock.block.header.hash);
+      const allRecords = (await apiAt.query.system.events()).toArray();
+
+      let usedFee = BigInt('0');
+      allRecords.map((e) => {
+        if (e.toHuman()?.event?.data?.who == address) {
+          let tmpUsedFee = e.toHuman().event?.data?.actualFee;
+          let tmpUsedFeeBigInt = commaStrToBigInt(tmpUsedFee);
+
+          usedFee = tmpUsedFeeBigInt;
+          
+        } else {
+            usedFee = usedFee;
+        }
+    })
+
+    return { usedFee: Number(usedFee) };
+
+  } catch (error) {
+      console.log(error);
+      throw error;
+  }
+}
