@@ -80,3 +80,21 @@ export const formatNumber = (value: number, digits: number): string => {
 
   return item ? (value / item.value).toFixed(digits).replace(rx, '$1') + item.symbol : '0';
 };
+
+
+export function commaStrToBigInt(_str: string) {
+
+  let _strToStr = String(_str);
+
+  let _noCommaStr = _strToStr.replace(/,/g, '');
+
+  let rlt = BigInt("0");
+
+  if (_noCommaStr === "undefined") {
+      console.log(' _noCommaStr :undefined ');
+  } else {
+      rlt = BigInt(_noCommaStr);
+  }
+
+  return rlt;
+}
