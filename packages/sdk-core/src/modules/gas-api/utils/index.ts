@@ -2,13 +2,13 @@ import axios from 'axios';
 import { BN } from '@polkadot/util';
 import { ethers } from 'ethers';
 import Web3 from 'web3';
-import { TransactionConfig } from 'web3-eth';
+import { TransactionCall } from 'web3-types';
 import { ApiGasNow, GasPrice, GAS_API_URL } from '../index';
 import { astarChain } from '../../config';
 
 export const getEvmGas = async (web3: Web3, selectedGasPrice: string): Promise<string> => {
   const gasPriceFallback = await web3.eth.getGasPrice();
-  const gasPrice = selectedGasPrice !== '0' ? selectedGasPrice : gasPriceFallback;
+  const gasPrice = selectedGasPrice !== '0' ? selectedGasPrice : gasPriceFallback.toString();
   return gasPrice;
 };
 
@@ -27,7 +27,7 @@ export const getEvmGasCost = async ({ isNativeToken,
   value: string;
   encodedData?: string;
 }): Promise<GasPrice> => {
-  const tx: TransactionConfig = isNativeToken
+  const tx: TransactionCall = isNativeToken
     ? {
       from: fromAddress,
       to: toAddress,
@@ -42,7 +42,7 @@ export const getEvmGasCost = async ({ isNativeToken,
     };
 
   const numEstimatedGas = await web3.eth.estimateGas(tx);
-  const estimatedGas = new BN(numEstimatedGas);
+  const estimatedGas = new BN(numEstimatedGas.toString());
   const data = {
     ...evmGasPrice,
     slow: ethers.utils.formatEther(estimatedGas.mul(new BN(evmGasPrice.slow)).toString()),
