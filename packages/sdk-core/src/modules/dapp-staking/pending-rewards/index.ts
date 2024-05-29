@@ -291,12 +291,14 @@ export const claimedReward = async (
       record.phase.asApplyExtrinsic.eq(extrinsicIndex)
     );
 
-    const method = 'Reward';
+    const methodRwd = 'Reward';
+    const methodBns = 'BonusReward';
     const section = 'dappStaking';
     let claimedReward = BigInt('0');
 
-    extrinsicEvents.map((e) => {
-      if (e.toHuman()?.event?.method == method &&
+    extrinsicEvents.map((e, idx) => {
+      console.log(e.toHuman(), idx);
+      if ((e.toHuman()?.event?.method == methodRwd || e.toHuman()?.event?.method == methodBns) &&
         e.toHuman()?.event?.section == section) {
         let tmpAmount = e.toHuman().event?.data?.amount;
         let tmpAmountBigInt = commaStrToBigInt(tmpAmount);
