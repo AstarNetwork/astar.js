@@ -1,6 +1,6 @@
 import { StorageKey, Struct } from '@polkadot/types';
 import { Perbill } from '@polkadot/types/interfaces';
-import { ApiPromise } from '@polkadot/api';
+import { ApiPromise, HttpProvider } from '@polkadot/api';
 import { ethers } from 'ethers';
 import { Codec } from '@polkadot/types/types';
 import { commaStrToBigInt, hasProperty, truncate } from '@astar-network/astar-sdk-core';
@@ -85,10 +85,10 @@ const getClaimableEraRange = (era: number, currentEra: number): number[] => {
 const formatGeneralStakerInfo = ({ eraTvls,
   currentEra,
   generalStakerInfo }: {
-    currentEra: number;
-    eraTvls: EraTvl[];
-    generalStakerInfo: [StorageKey<any>, Codec][];
-  }): { stakerInfo: StakerInfo[]; stakedEras: number[] } => {
+  currentEra: number;
+  eraTvls: EraTvl[];
+  generalStakerInfo: [StorageKey<any>, Codec][];
+}): { stakerInfo: StakerInfo[]; stakedEras: number[] } => {
   const stakerInfo: StakerInfo[] = [];
   const stakedEras: number[] = [];
 
@@ -125,12 +125,12 @@ const estimateEraTokenIssuances = async ({ blockHeight,
   stakedEras,
   currentEra,
   blocksPerEra }: {
-    blockHeight: number;
-    api: ApiPromise;
-    stakedEras: number[];
-    currentEra: number;
-    blocksPerEra: number;
-  }): Promise<EraTokenIssuances[]> => {
+  blockHeight: number;
+  api: ApiPromise;
+  stakedEras: number[];
+  currentEra: number;
+  blocksPerEra: number;
+}): Promise<EraTokenIssuances[]> => {
   const eraTokenIssuances: { era: number; eraTokenIssuance: number }[] = [];
   const block7EraAgo = blockHeight - blocksPerEra * 7;
   const [hash, currentIssuance] = await Promise.all([
@@ -169,12 +169,12 @@ const formatStakerPendingRewards = ({ stakerInfo,
   eraTokenIssuances,
   eraRewards,
   rewardsDistributionConfig }: {
-    stakerInfo: StakerInfo[];
-    eraTvls: EraTvl[];
-    eraTokenIssuances: EraTokenIssuances[];
-    eraRewards: number;
-    rewardsDistributionConfig: DistributionConfig;
-  }) => {
+  stakerInfo: StakerInfo[];
+  eraTvls: EraTvl[];
+  eraTokenIssuances: EraTokenIssuances[];
+  eraRewards: number;
+  rewardsDistributionConfig: DistributionConfig;
+}) => {
   return stakerInfo.map((it) => {
     const totalStaked = eraTvls[it.era].tvlLocked;
     const { baseStakerPercent, adjustablePercent, idealDappsStakingTvl } = rewardsDistributionConfig;
@@ -199,9 +199,9 @@ const formatStakerPendingRewards = ({ stakerInfo,
 // In other words, as the number of unclaimed eras increases, the difference increases (but it shouldn't be too far away).
 export const estimatePendingRewards = async ({ api,
   walletAddress }: {
-    api: ApiPromise;
-    walletAddress: string;
-  }): Promise<{ stakerPendingRewards: number }> => {
+  api: ApiPromise;
+  walletAddress: string;
+}): Promise<{ stakerPendingRewards: number }> => {
   try {
     const [eraInfo, generalStakerInfo, blockHeight, blocksPerEra, rawBlockRewards, rewardsDistributionConfig] =
       await Promise.all([
@@ -252,9 +252,6 @@ export const estimatePendingRewards = async ({ api,
   }
 };
 
-
-
-
 /**
  * Memo:
  * This method returns claimed reward amount by extrinsicHash and blockHeight that have the reward event.
@@ -263,14 +260,11 @@ export const estimatePendingRewards = async ({ api,
  * - Bonus Reward : During the "Voting" subperiod makes the staker eligible for bonus rewards.
  */
 export const claimedReward = async (
+  { api, extrinsicHash, height }:
   {
-    api, extrinsicHash, height
-  }:
-    {
-      api: ApiPromise, extrinsicHash: string, height: number
-    }): Promise<{ claimedRewards: number }> => {
+    api: ApiPromise, extrinsicHash: string, height: number
+  }): Promise<{ claimedRewards: number }> => {
   try {
-
     const blockHash = await api.rpc.chain.getBlockHash(height);
     const signedBlock = await api.rpc.chain.getBlock(blockHash);
     const apiAt = await api.at(signedBlock.block.header.hash);
@@ -298,39 +292,32 @@ export const claimedReward = async (
 
     extrinsicEvents.map((e, idx) => {
       console.log(e.toHuman(), idx);
-      if ((e.toHuman()?.event?.method == methodRwd || e.toHuman()?.event?.method == methodBns) &&
-        e.toHuman()?.event?.section == section) {
-        let tmpAmount = e.toHuman().event?.data?.amount;
-        let tmpAmountBigInt = commaStrToBigInt(tmpAmount);
+      if ((e.toHuman()?.event?.method === methodRwd || e.toHuman()?.event?.method === methodBns) &&
+        e.toHuman()?.event?.section === section) {
+        const tmpAmount = e.toHuman().event?.data?.amount;
+        const tmpAmountBigInt = commaStrToBigInt(tmpAmount);
 
         claimedReward += tmpAmountBigInt;
-
-      } else {
-        claimedReward = claimedReward;
       }
-    })
+    });
 
     return { claimedRewards: Number(claimedReward) };
-
   } catch (error) {
     console.log(error);
     throw error;
   }
-}
+};
 
 /**
  * Memo:
  * This method returns usedfee amount by extrinsicHash and blockHeight that have the actualFee.
  */
 export const UsedFee = async (
+  { api, extrinsicHash, height }:
   {
-    api, extrinsicHash, height
-  }:
-    {
-      api: ApiPromise, extrinsicHash: string, height: number
-    }): Promise<{ usedFee: number }> => {
+    api: ApiPromise, extrinsicHash: string, height: number
+  }): Promise<{ usedFee: number }> => {
   try {
-
     const blockHash = await api.rpc.chain.getBlockHash(height);
     const signedBlock = await api.rpc.chain.getBlock(blockHash);
     const apiAt = await api.at(signedBlock.block.header.hash);
@@ -357,22 +344,18 @@ export const UsedFee = async (
     let usedFee = BigInt('0');
 
     extrinsicEvents.map((e) => {
-      if (e.toHuman()?.event?.method == method &&
-        e.toHuman()?.event?.section == section) {
-        let tmpUsedFee = e.toHuman().event?.data?.actualFee;
-        let tmpUsedFeeBigInt = commaStrToBigInt(tmpUsedFee);
+      if (e.toHuman()?.event?.method === method &&
+        e.toHuman()?.event?.section === section) {
+        const tmpUsedFee = e.toHuman().event?.data?.actualFee;
+        const tmpUsedFeeBigInt = commaStrToBigInt(tmpUsedFee);
 
         usedFee = tmpUsedFeeBigInt;
-
-      } else {
-        usedFee = usedFee;
       }
-    })
+    });
 
     return { usedFee: Number(usedFee) };
-
   } catch (error) {
     console.log(error);
     throw error;
   }
-}
+};
