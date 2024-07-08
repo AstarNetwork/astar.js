@@ -291,13 +291,9 @@ export const claimedReward = async (
     let claimedReward = BigInt('0');
 
     extrinsicEvents.map((e, idx) => {
-      console.log(e.toHuman(), idx);
-      if ((e.toHuman()?.event?.method === methodRwd || e.toHuman()?.event?.method === methodBns) &&
-        e.toHuman()?.event?.section === section) {
-        const tmpAmount = e.toHuman().event?.data?.amount;
-        const tmpAmountBigInt = commaStrToBigInt(tmpAmount);
-
-        claimedReward += tmpAmountBigInt;
+      if ((e.event?.method === methodRwd || e.event?.method === methodBns) &&
+        e.event?.section === section) {
+        claimedReward += e.event?.data?.amount;
       }
     });
 
@@ -344,12 +340,9 @@ export const UsedFee = async (
     let usedFee = BigInt('0');
 
     extrinsicEvents.map((e) => {
-      if (e.toHuman()?.event?.method === method &&
-        e.toHuman()?.event?.section === section) {
-        const tmpUsedFee = e.toHuman().event?.data?.actualFee;
-        const tmpUsedFeeBigInt = commaStrToBigInt(tmpUsedFee);
-
-        usedFee = tmpUsedFeeBigInt;
+      if (e.event?.method === method &&
+        e.event?.section === section) {
+        usedFee = e.event?.data?.actualFee;
       }
     });
 
