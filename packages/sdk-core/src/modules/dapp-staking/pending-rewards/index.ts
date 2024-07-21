@@ -312,7 +312,7 @@ export const claimedReward = async (
  * Memo:
  * This method returns usedfee amount by extrinsicHash and blockHeight that have the actualFee.
  */
-export const UsedFee = async (
+export const getUsedFee = async (
   { api, extrinsicHash, height }:
   {
     api: ApiPromise, extrinsicHash: string, height: number
