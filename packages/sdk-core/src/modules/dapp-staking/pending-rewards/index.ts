@@ -262,7 +262,7 @@ export const estimatePendingRewards = async ({ api,
  *      During the "Voting" subperiod makes the staker eligible for bonus rewards.
  * - Dapp Reward : Dapp reward has been paid out to a beneficiary.
  */
-export const claimedReward = async (
+export const getClaimedReward = async (
   { api, extrinsicHash, height }:
   {
     api: ApiPromise, extrinsicHash: string, height: number
