@@ -260,4 +260,4 @@ Here is the list of functions and their brief explanations:
 60. `nFormatter`: Returns a string representation of a number in a more readable format.
 61. `formatNumber`: Formats a number by adding weight prefix and considering decimal places.
 62. `claimedReward`: Returns claimed reward amount by extrinsicHash and blockHeight that have the reward event.
-62. `UsedFee`: Returns usedfee amount by extrinsicHash and blockHeight that have the actualFee.
+62. `getUsedFee`: Returns usedfee amount by extrinsicHash and blockHeight that have the actualFee.
