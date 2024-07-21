@@ -256,8 +256,11 @@ export const estimatePendingRewards = async ({ api,
  * Memo:
  * This method returns claimed reward amount by extrinsicHash and blockHeight that have the reward event.
  * After StkingV3, Two kinds of rewards exist.
- * - Staker Reward : When "Build&Earn" comes after the "Voting", stakers can get the reward by staking on dApps.
- * - Bonus Reward : During the "Voting" subperiod makes the staker eligible for bonus rewards.
+ * - Staker Reward : Account has claimed some stake rewards.
+ *      When "Build&Earn" comes after the "Voting", stakers can get the reward by staking on dApps.
+ * - Bonus Reward : Bonus reward has been paid out to a loyal staker.
+ *      During the "Voting" subperiod makes the staker eligible for bonus rewards.
+ * - Dapp Reward : Dapp reward has been paid out to a beneficiary.
  */
 export const claimedReward = async (
   { api, extrinsicHash, height }:
@@ -286,12 +289,13 @@ export const claimedReward = async (
     );
 
     const methodRwd = 'Reward';
-    const methodBns = 'BonusReward';
+    const methodBnsRwd = 'BonusReward';
+    const methodDappRwd = 'DAppReward';
     const section = 'dappStaking';
     let claimedReward = BigInt('0');
 
     extrinsicEvents.map((e, idx) => {
-      if ((e.event?.method === methodRwd || e.event?.method === methodBns) &&
+      if ((e.event?.method === methodRwd || e.event?.method === methodBnsRwd || e.event?.method === methodDappRwd) &&
         e.event?.section === section) {
         claimedReward += e.event?.data?.amount;
       }
