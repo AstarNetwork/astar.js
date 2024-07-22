@@ -1,9 +1,9 @@
 import { StorageKey, Struct } from '@polkadot/types';
-import { Perbill } from '@polkadot/types/interfaces';
-import { ApiPromise, HttpProvider } from '@polkadot/api';
+import { EventRecord, Perbill } from '@polkadot/types/interfaces';
+import { ApiPromise } from '@polkadot/api';
 import { ethers } from 'ethers';
 import { Codec } from '@polkadot/types/types';
-import { commaStrToBigInt, hasProperty, truncate } from '@astar-network/astar-sdk-core';
+import { hasProperty, truncate } from '@astar-network/astar-sdk-core';
 
 export interface RewardDistributionConfig extends Struct {
   readonly baseTreasuryPercent: Perbill;
@@ -271,7 +271,7 @@ export const getClaimedReward = async (
     const blockHash = await api.rpc.chain.getBlockHash(height);
     const signedBlock = await api.rpc.chain.getBlock(blockHash);
     const apiAt = await api.at(signedBlock.block.header.hash);
-    const allRecords = (await apiAt.query.system.events()).toArray();
+    const allRecords: any = await apiAt.query.system.events();
 
     // Find the extrinsic index by matching the extrinsic hash
     const extrinsicIndex = signedBlock.block.extrinsics.findIndex(
@@ -283,7 +283,7 @@ export const getClaimedReward = async (
     }
 
     // Get events associated with the extrinsic
-    const extrinsicEvents = allRecords.filter((record) =>
+    const extrinsicEvents = allRecords.filter((record: EventRecord) =>
       record.phase.isApplyExtrinsic &&
       record.phase.asApplyExtrinsic.eq(extrinsicIndex)
     );
@@ -294,10 +294,11 @@ export const getClaimedReward = async (
     const section = 'dappStaking';
     let claimedReward = BigInt('0');
 
-    extrinsicEvents.map((e, idx) => {
+    extrinsicEvents.map((e: EventRecord) => {
       if ((e.event?.method === methodRwd || e.event?.method === methodBnsRwd || e.event?.method === methodDappRwd) &&
         e.event?.section === section) {
-        claimedReward += e.event?.data?.amount;
+        const eData: any = e.event?.data;
+        claimedReward += eData?.amount;
       }
     });
 
@@ -321,7 +322,7 @@ export const getUsedFee = async (
     const blockHash = await api.rpc.chain.getBlockHash(height);
     const signedBlock = await api.rpc.chain.getBlock(blockHash);
     const apiAt = await api.at(signedBlock.block.header.hash);
-    const allRecords = (await apiAt.query.system.events()).toArray();
+    const allRecords: any = await apiAt.query.system.events();
 
     // Find the extrinsic index by matching the extrinsic hash
     const extrinsicIndex = signedBlock.block.extrinsics.findIndex(
@@ -333,7 +334,7 @@ export const getUsedFee = async (
     }
 
     // Get events associated with the extrinsic
-    const extrinsicEvents = allRecords.filter((record) =>
+    const extrinsicEvents = allRecords.filter((record: EventRecord) =>
       record.phase.isApplyExtrinsic &&
       record.phase.asApplyExtrinsic.eq(extrinsicIndex)
     );
@@ -343,10 +344,10 @@ export const getUsedFee = async (
 
     let usedFee = BigInt('0');
 
-    extrinsicEvents.map((e) => {
-      if (e.event?.method === method &&
-        e.event?.section === section) {
-        usedFee = e.event?.data?.actualFee;
+    extrinsicEvents.map((e: EventRecord) => {
+      if (e.event?.method === method && e.event?.section === section) {
+        const eData: any = e.event?.data;
+        usedFee += eData?.actualFee;
       }
     });
 
