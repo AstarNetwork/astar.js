@@ -4,8 +4,6 @@ import { ApiPromise } from '@polkadot/api';
 import { ethers } from 'ethers';
 import { Codec } from '@polkadot/types/types';
 import { hasProperty, truncate } from '@astar-network/astar-sdk-core';
-// import { FrameSystemEventRecord } from '@polkadot/types/lookup';
-// import { FrameSystemEventRecord } from '@polkadot/types/interfaces/system'
 
 export interface RewardDistributionConfig extends Struct {
   readonly baseTreasuryPercent: Perbill;
