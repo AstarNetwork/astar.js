@@ -1,7 +1,7 @@
 {
   "bugs": "https://github.com/AstarNetwork/astar.js/issues",
   "engines": {
-    "yarn": "^1.10.1"
+    "node": ">=18"
   },
   "homepage": "https://github.com/AstarNetwork/astar.js#readme",
   "license": "Apache-2.0",
@@ -12,7 +12,7 @@
     "url": "https://github.com/AstarNetwork/astar.js.git"
   },
   "sideEffects": false,
-  "version": "0.2.9",
+  "version": "0.3.0",
   "workspaces": [
     "packages/*",
     "examples/*"
@@ -39,15 +39,15 @@
     "@babel/runtime": "^7.23.2",
     "@open-web3/dev-config": "^0.1.14",
     "@open-web3/util": "^2.0.1",
-    "@polkadot/api": "10.9.1",
-    "@polkadot/api-augment": "10.9.1",
-    "@polkadot/api-contract": "10.9.1",
-    "@polkadot/api-derive": "10.9.1",
-    "@polkadot/dev": "^0.67.178",
-    "@polkadot/rpc-core": "10.9.1",
-    "@polkadot/typegen": "10.9.1",
-    "@polkadot/types": "10.9.1",
-    "@polkadot/types-codec": "10.9.1",
+    "@polkadot/api": "12.3.1",
+    "@polkadot/api-augment": "12.3.1",
+    "@polkadot/api-contract": "12.3.1",
+    "@polkadot/api-derive": "12.3.1",
+    "@polkadot/dev": "^0.79.3",
+    "@polkadot/rpc-core": "12.3.1",
+    "@polkadot/typegen": "12.3.1",
+    "@polkadot/types": "12.3.1",
+    "@polkadot/types-codec": "12.3.1",
     "@types/jest": "27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "jest": "^27.5.1",

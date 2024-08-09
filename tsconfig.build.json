@@ -6,6 +6,8 @@
   "references": [
     { "path": "./packages/api/tsconfig.build.json" },
     { "path": "./packages/types/tsconfig.build.json" },
-    { "path": "./packages/sdk-core/tsconfig.build.json" }
+    { "path": "./packages/sdk-core/tsconfig.build.json" },
+    { "path": "./packages/api-derive/tsconfig.build.json" },
+    { "path": "./packages/type-definitions/tsconfig.build.json" }
   ]
 }
