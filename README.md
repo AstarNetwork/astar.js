@@ -1,3 +1,6 @@
+# Deprecated!
+As of Oct 30th 2024, this astar.js repository ([npm:@astar-network/astar-api](https://www.npmjs.com/package/@astar-network/astar-api)) is fully deprecated. No new changes are expected to be made to this repository.
+
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
 # @astar-network
 
