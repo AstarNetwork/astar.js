@@ -1,6 +1,6 @@
 {
   "name": "@astar-network/astar-sdk-core",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "the core for astar SDK",
   "main": "index.js",
   "author": "Astar Network <info@astar.network>",
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.6.2",
-    "@polkadot/util": "^12.3.2",
-    "@polkadot/util-crypto": "^12.3.2",
+    "@polkadot/util": "^13.0.2",
+    "@polkadot/util-crypto": "^13.0.2",
     "axios": "^1.6.8",
     "bn.js": "^5.2.1",
     "ethers": "^5.6.9",
