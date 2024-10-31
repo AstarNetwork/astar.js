@@ -1,5 +1,5 @@
-import { StorageKey, Struct } from '@polkadot/types';
-import { Perbill } from '@polkadot/types/interfaces';
+import { StorageKey, Struct, Vec } from '@polkadot/types';
+import { EventRecord, Perbill } from '@polkadot/types/interfaces';
 import { ApiPromise } from '@polkadot/api';
 import { ethers } from 'ethers';
 import { Codec } from '@polkadot/types/types';
@@ -85,10 +85,10 @@ const getClaimableEraRange = (era: number, currentEra: number): number[] => {
 const formatGeneralStakerInfo = ({ eraTvls,
   currentEra,
   generalStakerInfo }: {
-  currentEra: number;
-  eraTvls: EraTvl[];
-  generalStakerInfo: [StorageKey<any>, Codec][];
-}): { stakerInfo: StakerInfo[]; stakedEras: number[] } => {
+    currentEra: number;
+    eraTvls: EraTvl[];
+    generalStakerInfo: [StorageKey<any>, Codec][];
+  }): { stakerInfo: StakerInfo[]; stakedEras: number[] } => {
   const stakerInfo: StakerInfo[] = [];
   const stakedEras: number[] = [];
 
@@ -125,12 +125,12 @@ const estimateEraTokenIssuances = async ({ blockHeight,
   stakedEras,
   currentEra,
   blocksPerEra }: {
-  blockHeight: number;
-  api: ApiPromise;
-  stakedEras: number[];
-  currentEra: number;
-  blocksPerEra: number;
-}): Promise<EraTokenIssuances[]> => {
+    blockHeight: number;
+    api: ApiPromise;
+    stakedEras: number[];
+    currentEra: number;
+    blocksPerEra: number;
+  }): Promise<EraTokenIssuances[]> => {
   const eraTokenIssuances: { era: number; eraTokenIssuance: number }[] = [];
   const block7EraAgo = blockHeight - blocksPerEra * 7;
   const [hash, currentIssuance] = await Promise.all([
@@ -169,12 +169,12 @@ const formatStakerPendingRewards = ({ stakerInfo,
   eraTokenIssuances,
   eraRewards,
   rewardsDistributionConfig }: {
-  stakerInfo: StakerInfo[];
-  eraTvls: EraTvl[];
-  eraTokenIssuances: EraTokenIssuances[];
-  eraRewards: number;
-  rewardsDistributionConfig: DistributionConfig;
-}) => {
+    stakerInfo: StakerInfo[];
+    eraTvls: EraTvl[];
+    eraTokenIssuances: EraTokenIssuances[];
+    eraRewards: number;
+    rewardsDistributionConfig: DistributionConfig;
+  }) => {
   return stakerInfo.map((it) => {
     const totalStaked = eraTvls[it.era].tvlLocked;
     const { baseStakerPercent, adjustablePercent, idealDappsStakingTvl } = rewardsDistributionConfig;
@@ -199,9 +199,9 @@ const formatStakerPendingRewards = ({ stakerInfo,
 // In other words, as the number of unclaimed eras increases, the difference increases (but it shouldn't be too far away).
 export const estimatePendingRewards = async ({ api,
   walletAddress }: {
-  api: ApiPromise;
-  walletAddress: string;
-}): Promise<{ stakerPendingRewards: number }> => {
+    api: ApiPromise;
+    walletAddress: string;
+  }): Promise<{ stakerPendingRewards: number }> => {
   try {
     const [eraInfo, generalStakerInfo, blockHeight, blocksPerEra, rawBlockRewards, rewardsDistributionConfig] =
       await Promise.all([
@@ -249,5 +249,112 @@ export const estimatePendingRewards = async ({ api,
   } catch (error) {
     console.error(error);
     return { stakerPendingRewards: 0 };
+  }
+};
+
+/**
+ * Memo:
+ * This method returns claimed reward amount by extrinsicHash and blockHeight that have the reward event.
+ * After StkingV3, Two kinds of rewards exist.
+ * - Staker Reward : Account has claimed some stake rewards.
+ *      When "Build&Earn" comes after the "Voting", stakers can get the reward by staking on dApps.
+ * - Bonus Reward : Bonus reward has been paid out to a loyal staker.
+ *      During the "Voting" subperiod makes the staker eligible for bonus rewards.
+ * - Dapp Reward : Dapp reward has been paid out to a beneficiary.
+ */
+export const getClaimedReward = async (
+  { api, extrinsicHash, height }:
+    {
+      api: ApiPromise, extrinsicHash: string, height: number
+    }): Promise<{ claimedRewards: number }> => {
+  try {
+    const blockHash = await api.rpc.chain.getBlockHash(height);
+    const signedBlock = await api.rpc.chain.getBlock(blockHash);
+    const apiAt = await api.at(signedBlock.block.header.hash);
+    const allRecords = await apiAt.query.system.events<Vec<EventRecord>>();
+
+
+    // Find the extrinsic index by matching the extrinsic hash
+    const extrinsicIndex = signedBlock.block.extrinsics.findIndex(
+      (ex) => ex.hash.toString() === extrinsicHash
+    );
+
+    if (extrinsicIndex === -1) {
+      throw new Error('Extrinsic not found in the block');
+    }
+
+    // Get events associated with the extrinsic
+    const extrinsicEvents = allRecords.filter((record) =>
+      record.phase.isApplyExtrinsic &&
+      record.phase.asApplyExtrinsic.eq(extrinsicIndex)
+    );
+
+    const methodRwd = 'Reward';
+    const methodBnsRwd = 'BonusReward';
+    const methodDappRwd = 'DAppReward';
+    const section = 'dappStaking';
+    let claimedReward = BigInt('0');
+
+    extrinsicEvents.map((e) => {
+      if ((e.event?.method === methodRwd || e.event?.method === methodBnsRwd || e.event?.method === methodDappRwd) &&
+        e.event?.section === section) {
+        const amountIdx = e.event?.data.length - 1;
+        claimedReward = claimedReward + BigInt(e.event?.data[amountIdx].toString());
+      }
+    });
+
+    return { claimedRewards: Number(claimedReward) };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+/**
+ * Memo:
+ * This method returns usedfee amount by extrinsicHash and blockHeight that have the actualFee.
+ */
+export const getUsedFee = async (
+  { api, extrinsicHash, height }:
+    {
+      api: ApiPromise, extrinsicHash: string, height: number
+    }): Promise<{ usedFee: number }> => {
+  try {
+    const blockHash = await api.rpc.chain.getBlockHash(height);
+    const signedBlock = await api.rpc.chain.getBlock(blockHash);
+    const apiAt = await api.at(signedBlock.block.header.hash);
+    const allRecords = await apiAt.query.system.events<Vec<EventRecord>>();
+
+    // Find the extrinsic index by matching the extrinsic hash
+    const extrinsicIndex = signedBlock.block.extrinsics.findIndex(
+      (ex) => ex.hash.toString() === extrinsicHash
+    );
+
+    if (extrinsicIndex === -1) {
+      throw new Error('Extrinsic not found in the block');
+    }
+
+    // Get events associated with the extrinsic
+    const extrinsicEvents = allRecords.filter((record) =>
+      record.phase.isApplyExtrinsic &&
+      record.phase.asApplyExtrinsic.eq(extrinsicIndex)
+    );
+
+    const method = 'TransactionFeePaid';
+    const section = 'transactionPayment';
+
+    let usedFee = BigInt('0');
+
+    extrinsicEvents.map((e) => {
+      if (e.event?.method === method && e.event?.section === section) {
+        const actualFeeIdx = e.event?.data.length - 2;
+        usedFee = usedFee + BigInt(e.event?.data[actualFeeIdx].toString());
+      }
+    });
+
+    return { usedFee: Number(usedFee) };
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };
